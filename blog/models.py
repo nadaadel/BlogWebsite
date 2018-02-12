@@ -13,7 +13,7 @@ class Post(models.Model):
     author = models.ForeignKey(User)
 
     def __str__(self):
-        return self.username
+        return self.title
 
 class Word(models.Model):
     word = models.CharField(max_length=50)
