@@ -6,6 +6,26 @@
 </head>
 <body>
 home
+
+<h4>search</h4>
+{% csrf_token %}
+<form name="sc" action="/blog/?sv={{ sc.search.value }}" method="post">
+    <input type="text" name="search" >
+    {% csrf_token %}
+
+    <input type="submit"  />
+</form>
+<h2>{{post.title}}</h2>
+<b>Age: </b> {{post.title}}
+<b>Age: </b> {{post.description}}
+
+<br />
+
+
+
+
+
+</body>
 </form>
 </body>
 </html>

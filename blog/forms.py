@@ -37,3 +37,11 @@ class WordForm(forms.ModelForm):
         model = Word
         fields = ('word',)
 
+
+
+
+
+class SearchForm(form.ModelForm):
+    class Meta:
+        model = Search
+        field =('s_v',)
