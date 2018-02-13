@@ -8,5 +8,12 @@ urlpatterns = [
     url(r'^login$',views.login_form),
     url(r'^register$', views.register_form),
     url(r'^logout$', views.user_logout),
+<<<<<<< HEAD
+=======
+    url(r'^about$', views.get_about),
+    url(r'^contact$', views.get_contact),
+
+]
+>>>>>>> nada
 
 ]

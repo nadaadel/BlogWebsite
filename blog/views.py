@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterationForm
 
 
+<<<<<<< HEAD
 def allPosts(request):
 	all_post = Post.objects.all()
 	context = {"allpost": all_post}
@@ -81,12 +82,21 @@ def checkdislike(request,post_id)
 
 def get_home(request):
     return render(request, "index.html")
+=======
+# Create your views here.
+
+def get_contact(request):
+    return render(request, "contact.html")
+def get_home(request):
+    return render(request, "index.html")
+def get_about(request):
+    return render(request, "about.html")
+>>>>>>> nada
 
 def user_logout(request):
     if request.user.is_authenticated():
         logout(request)
         return HttpResponseRedirect('home')
-
 
 def login_form(request):
     if request.user.is_authenticated():
@@ -99,7 +109,6 @@ def login_form(request):
             login(request, user)
             return HttpResponse("Login success")
     return render(request, "login_form.html")
-
 
 def register_form(request):
     if request.user.is_authenticated():
