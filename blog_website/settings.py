@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blogdb',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'menna',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
@@ -107,4 +107,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-
