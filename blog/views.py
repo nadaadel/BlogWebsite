@@ -7,10 +7,13 @@ from .forms import RegisterationForm
 
 
 # Create your views here.
+
+def get_contact(request):
+    return render(request, "contact.html")
 def get_home(request):
     return render(request, "index.html")
 def get_about(request):
-     return render(request, "about.html")
+    return render(request, "about.html")
 
 def user_logout(request):
     if request.user.is_authenticated():
