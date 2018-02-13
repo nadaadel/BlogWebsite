@@ -41,7 +41,7 @@ class WordForm(forms.ModelForm):
 
 
 
-class SearchForm(form.ModelForm):
-    class Meta:
-        model = Search
-        field =('s_v',)
+# class SearchForm(forms.ModelForm):
+#     class Meta:
+#         model = Search
+#         field =('s_v',)

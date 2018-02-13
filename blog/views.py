@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import PostForm,TagForm
+from .forms import PostForm,TagForm ,CommentForm
 from blog.models import Comment,Replay,Category,Post,Tag,Word
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -31,15 +31,46 @@ def  addTag(request):
 		return HttpResponseRedirect('/blog/home')
 	return render(request, 'blog/addpost.html', {'form':form})
 
-def search(request):
-	if request.method == "POST":
-		search_text=request.POST['search_text']
-	else:
-		search_text=''
-	post =Post.objects.filter(title__contains=search_text)
-	return render_to_response("ajax_search.html",{"post" : post})
-
 
 def postshow(request):
 	post=Post.objects.get(title="ttttt")
 	return render(request, 'blog/home.html', {'post': post})
+
+
+
+def allComment(request,post_id):
+	all_comments = Comment.objects.all(post_id)
+	context = {"allposts": all_comments}
+	return render(request, "post/details.html", context)
+
+def  addTag(request):
+	form = TagForm()
+	if request.method == "POST":
+		form = TagForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/home')
+	return render(request, 'blog/addpost.html', {'form':form})
+
+def  addcomment(request,user_id):
+	form = CommentForm()
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/details')
+	return render(request, 'blog/details.html', {'form':form})
+
+
+def like(request,post_id):
+	post = Post.objects.get(id =post_id)
+	form = PostForm(instance=post)
+	if request.method == "POST":
+		form = PostForm( request.POST, instance=post)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/blog/details')
+		else:
+			form = PostForm( instance=post)
+	return render(request, '/blog/details.html', {'form':form})
+
