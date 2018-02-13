@@ -2,12 +2,73 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b03d31d-cff9-40b9-b8dc-8cb14f18582b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/images/mina.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/fonts/Raleway-Regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/fonts/RobotoSlab-Regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/fonts/glyphicons-halflings-regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/abt-1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/banner.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-10.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-11.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-12.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-6.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-7.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/c-8.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/dot.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/g-1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/g-2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/g-3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/g-4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/g-5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/g-6.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/g-7.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/g-8.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/g-9.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/left-1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/left.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/logo-1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/nav-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/right-1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/right.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/s-1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/s-2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/s-3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/s-4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/s-5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/s-6.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/search.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/si.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/single-1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/social.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/t-1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/t-2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/t-3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/images/t-4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/css/bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/css/chocolat.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/fonts/glyphicons-halflings-regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/js/easing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/js/jquery-3.1.1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/js/jquery.chocolat.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/js/jquery.flexisel.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/js/jquery.hoverdir.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/js/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/js/modernizr.custom.97074.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templates/js/move-top.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/about.html" afterPath="$PROJECT_DIR$/blog/templates/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/footer.html" afterPath="$PROJECT_DIR$/blog/templates/footer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/index.html" afterPath="$PROJECT_DIR$/blog/templates/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/login_form.html" afterPath="$PROJECT_DIR$/blog/templates/login_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/register_form.html" afterPath="$PROJECT_DIR$/blog/templates/register_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/views.py" afterPath="$PROJECT_DIR$/blog/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/single.html" afterPath="$PROJECT_DIR$/blog/templates/single.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,11 +80,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login_form.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="login_form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blog/templates/login_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="23" column="12" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+            <state relative-caret-position="528">
+              <caret line="46" column="7" lean-forward="true" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -33,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/blog/templates/register_form.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
-              <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+              <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
               </folding>
@@ -41,11 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="10" column="40" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -67,7 +128,7 @@
         <entry file="file://$PROJECT_DIR$/blog/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
-              <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+              <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -106,9 +167,13 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="51" column="16" lean-forward="false" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
-              <folding />
+            <state relative-caret-position="387">
+              <caret line="57" column="16" lean-forward="false" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="16" />
+              <folding>
+                <marker date="1518549646557" expanded="true" signature="12331:12384" ph="..." />
+                <marker date="1518549646557" expanded="true" signature="12331:12393" ph="..." />
+                <marker date="1518549646557" expanded="true" signature="12331:12401" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,12 +210,12 @@
         <option value="$PROJECT_DIR$/blog/templates/base.html" />
         <option value="$PROJECT_DIR$/blog/templates/index.html" />
         <option value="$PROJECT_DIR$/blog/templates/gallery.html" />
-        <option value="$PROJECT_DIR$/blog/templates/login_form.html" />
         <option value="$PROJECT_DIR$/blog/templates/register_form.html" />
         <option value="$PROJECT_DIR$/blog/urls.py" />
         <option value="$PROJECT_DIR$/blog/templates/footer.html" />
         <option value="$PROJECT_DIR$/blog/templates/about.html" />
         <option value="$PROJECT_DIR$/blog/views.py" />
+        <option value="$PROJECT_DIR$/blog/templates/login_form.html" />
       </list>
     </option>
   </component>
@@ -754,9 +819,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="51" column="16" lean-forward="false" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="387">
+          <caret line="57" column="16" lean-forward="false" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="16" />
+          <folding>
+            <marker date="1518549646557" expanded="true" signature="12331:12384" ph="..." />
+            <marker date="1518549646557" expanded="true" signature="12331:12393" ph="..." />
+            <marker date="1518549646557" expanded="true" signature="12331:12401" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -812,14 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blog/templates/login_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="23" column="12" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blog/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -831,7 +892,7 @@
     <entry file="file://$PROJECT_DIR$/blog/templates/register_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
           </folding>
@@ -849,7 +910,7 @@
     <entry file="file://$PROJECT_DIR$/blog/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+          <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -880,11 +941,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="10" column="40" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/templates/login_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="46" column="7" lean-forward="true" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
