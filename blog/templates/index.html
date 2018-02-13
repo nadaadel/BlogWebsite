@@ -98,24 +98,33 @@
 						</ul>
 					</div>	
 					<div class="about-tre">
+					{%  for post in allpost  %}
+
 						<div class="a-1">
-							<div class="col-md-6 abt-left">
+																	
+								<div class="col-md-6 abt-left">
 								<a href="single.html"><img src="{% static "images/c-3.jpg" %}" alt="" /></a>
-								<h6>Find The Most</h6>
-								<h3><a href="single.html">Tasty Coffee</a></h3>
-								<p>Vivamus interdum diam diam, non faucibus tortor consequat vitae. Proin sit amet augue sed massa pellentesque viverra. Suspendisse iaculis purus eget est pretium aliquam ut sed diam.</p>
-								<label>May 29, 2015</label>
+								<h3><a href="single.html">{{post.title}}</a></h3>
+								<p>{{post.description}}</p>
+								<label>{{post.date}}</label>
 							</div>
+
+							{%  endfor  %}
+
 							<div class="col-md-6 abt-left">
 								<a href="single.html"><img src="{% static "images/c-4.jpg" %}" alt="" /></a>
 								<h6>Find The Most</h6>
+
+
+
 								<h3><a href="single.html">Tasty Coffee</a></h3>
 								<p>Vivamus interdum diam diam, non faucibus tortor consequat vitae. Proin sit amet augue sed massa pellentesque viverra. Suspendisse iaculis purus eget est pretium aliquam ut sed diam.</p>
 								<label>May 29, 2015</label>
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="a-1">
+
+												<div class="a-1">
 							<div class="col-md-6 abt-left">
 								<a href="single.html"><img src="{% static "images/c-5.jpg" %}" alt="" /></a>
 								<h6>Find The Most</h6>

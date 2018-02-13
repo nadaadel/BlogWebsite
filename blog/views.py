@@ -13,8 +13,12 @@ from .forms import RegisterationForm
 def allPosts(request):
 	all_post = Post.objects.all()
 	context = {"allpost": all_post}
-	return render(request, "blog/home.html", context)
-	return render(request, "blog/home.html")
+	return context
+
+
+
+
+
 
 def  addPost(request):
 	form = PostForm()
@@ -82,15 +86,15 @@ def checkdislike(request,post_id):
 	if (num==8):
 		post.delete()
 
-def get_home(request):
-    return render(request, "index.html")
+# def get_home(request):
+#     return render(request, "index.html")
 
 # Create your views here.
 
 def get_contact(request):
     return render(request, "contact.html")
-def get_home(request):
-    return render(request, "index.html")
+# def get_home(request):
+    # return render(request, "index.html")
 def get_about(request):
     return render(request, "about.html")
 
@@ -126,3 +130,7 @@ def register_form(request):
         user_form = RegisterationForm()
     return render(request, "register_form.html", {'form': user_form})
 
+def home(request):
+	context = allPosts(request)
+	# get_home(request)
+	return render(request, "index.html", context)

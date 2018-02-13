@@ -69,3 +69,11 @@ class WordForm(forms.ModelForm):
         model = Word
         fields = ('word',)
 
+# class searchForm(forms.Form):
+#    search = forms.CharField(max_length = 100)
+#
+#
+# class ProfileForm(forms.Form):
+#    name = forms.CharField(max_length = 100)
+#    picture = forms.ImageFields()
+#
