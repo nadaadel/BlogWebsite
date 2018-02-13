@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-<<<<<<< HEAD
+from django.contrib.auth.forms import UserCreationForm
 from .models import Post , Tag , Word ,Comment ,Replay
 
 
@@ -22,9 +22,7 @@ class replayForm(forms.ModelForm):
 #     class Meta:
 #         model=User
 #         fields = ('username','first_name','last_name' ,'email','password','status','type',)
-=======
-from django.contrib.auth.forms import UserCreationForm
-from .models import Post , Tag , Word ,Comment ,Replay
+
 
 class RegisterationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -43,7 +41,7 @@ class RegisterationForm(UserCreationForm):
             user.save()
         return user
 
->>>>>>> nada
+
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -71,14 +69,3 @@ class WordForm(forms.ModelForm):
         model = Word
         fields = ('word',)
 
-<<<<<<< HEAD
-
-
-
-
-# class SearchForm(forms.ModelForm):
-#     class Meta:
-#         model = Search
-#         field =('s_v',)
-=======
->>>>>>> nada
