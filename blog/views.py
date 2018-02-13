@@ -9,14 +9,13 @@ from .forms import RegisterationForm
 # Create your views here.
 def get_home(request):
     return render(request, "index.html")
-# def get_about(request):
-#     return render(request, "about.html")
+def get_about(request):
+     return render(request, "about.html")
 
 def user_logout(request):
     if request.user.is_authenticated():
         logout(request)
         return HttpResponseRedirect('home')
-
 
 def login_form(request):
     if request.user.is_authenticated():
@@ -29,7 +28,6 @@ def login_form(request):
             login(request, user)
             return HttpResponse("Login success")
     return render(request, "login_form.html")
-
 
 def register_form(request):
     if request.user.is_authenticated():
