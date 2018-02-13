@@ -33,7 +33,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+<<<<<<< HEAD
     'blog',
+=======
+          'blog',
+>>>>>>> nada
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -108,4 +112,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 
+=======
+STATIC_URL = os.path.join(BASE_DIR, "blog/static/")
+>>>>>>> nada

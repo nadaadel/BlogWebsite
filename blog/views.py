@@ -4,6 +4,9 @@ from .forms import PostForm,TagForm ,CommentForm
 from blog.models import Comment,Replay,Category,Post,Tag,Word
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from .forms import RegisterationForm
 
 
 def allPosts(request):
@@ -75,4 +78,40 @@ def checkdislike(request,post_id)
 	num =post.dislikes
 	if (num=8):
 		post.delete()
+
+def get_home(request):
+    return render(request, "index.html")
+
+def user_logout(request):
+    if request.user.is_authenticated():
+        logout(request)
+        return HttpResponseRedirect('home')
+
+
+def login_form(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('home')
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponse("Login success")
+    return render(request, "login_form.html")
+
+
+def register_form(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('home')
+    if request.user.is_authenticated():
+        return HttpResponse("You are Logged in")
+    if request.method == "POST":
+        user_form = RegisterationForm(request.POST)
+        if user_form.is_valid():
+            user_form.save()
+            return HttpResponseRedirect('home')
+    else:
+        user_form = RegisterationForm()
+    return render(request, "register_form.html", {'form': user_form})
 
