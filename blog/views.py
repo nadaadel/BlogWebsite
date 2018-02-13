@@ -64,13 +64,15 @@ def  addcomment(request,user_id):
 
 def like(request,post_id):
 	post = Post.objects.get(id =post_id)
-	form = PostForm(instance=post)
 	if request.method == "POST":
-		form = PostForm( request.POST, instance=post)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/blog/details')
-		else:
-			form = PostForm( instance=post)
-	return render(request, '/blog/details.html', {'form':form})
+		post.likes+=1
+		post.update()
+
+
+
+def checkdislike(request,post_id)
+	post = Post.objects.get(id=post_id)
+	num =post.dislikes
+	if (num=8):
+		post.delete()
 
