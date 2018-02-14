@@ -48,7 +48,8 @@ def postshow(request):
 	post=Post.objects.get(title="ttttt")
 	return render(request, 'blog/home.html', {'post': post})
 
-
+def getPost(request,post_id):
+	return HttpResponse(post_id)
 
 def allComment(request,post_id):
 	all_comments = Comment.objects.all(post_id)
