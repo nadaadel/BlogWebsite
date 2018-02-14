@@ -10,11 +10,17 @@ from .forms import RegisterationForm
 # from django.views.generric import ListView
 
 
+
+
 def allPosts(request):
-	all_post = Post.objects.all()[:5]
+	all_post = Post.objects.all()
 	context = {"allpost": all_post}
 	return context
 
+def allcat(request):
+	all_post = Category.objects.all()
+	context = {"allcat": allcat}
+	return context
 
 def addPost(request):
 	form = PostForm()
@@ -140,8 +146,9 @@ def register_form(request):
     return render(request, "register_form.html", {'form': user_form})
 
 def home(request):
-	context = allPosts(request)
-	# get_home(request)
-	return render(request, "index.html", context)
+	all_post = Post.objects.all().order_by('-date' )[:5]
+	all_cat = Category.objects.all()
+	all_post3 = Post.objects.order_by('-date' )[:3]
+	return render(request, "index.html", {"allpost":all_post , "allcat":all_cat ,"allpost3" : all_post3})
 
 
