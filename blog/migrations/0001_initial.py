@@ -34,6 +34,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=200)),
                 ('description', models.TextField()),
                 ('photo', models.ImageField(upload_to=b'')),
+
                 ('rate', models.IntegerField()),
                 ('likes', models.IntegerField()),
                 ('dislikes', models.IntegerField()),
