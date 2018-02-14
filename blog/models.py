@@ -1,10 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-<<<<<<< HEAD
-
-=======
->>>>>>> nada
 class Category(models.Model):
 	category_name=models.CharField(max_length=200)
 	def __str__(self):
@@ -13,8 +9,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    photo = models.ImageField(blank=True ,null=True,
-    upload_to="cover/%Y/%m/%D/")
+    # photo = models. ImageField(upload_to='images/')
     rate = models.IntegerField()
     likes = models.IntegerField()
     dislikes = models.IntegerField()
@@ -50,3 +45,16 @@ class Word(models.Model):
 class Tag(models.Model):
     tag = models.CharField(max_length=50)
 
+
+
+# class Profile(models.Model):
+#    name = models.CharField(max_length = 50)
+#    picture = models.ImageField(upload_to = 'pictures')
+#
+#    class Meta:
+#       db_table = "profile"
+
+
+class usersub(models.Model):
+    userid = models.ForeignKey(User)
+    categoryid=models.ForeignKey(Category)

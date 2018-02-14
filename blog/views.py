@@ -7,23 +7,27 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterationForm
+# from django.views.generric import ListView
 
 
-<<<<<<< HEAD
 def allPosts(request):
-	all_post = Post.objects.all()
+	all_post = Post.objects.all()[:5]
 	context = {"allpost": all_post}
-	return render(request, "blog/home.html", context)
-	return render(request, "blog/home.html")
+	return context
 
-def  addPost(request):
+
+
+
+
+
+def addPost(request):
 	form = PostForm()
 	if request.method == "POST":
 		form = PostForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
 		return HttpResponseRedirect('/blog/home')
-	return render(request, 'blog/addpost.html', {'form':form})
+	return render(request,'blog/addpost.html', {'form':form})
 
 
 def  addTag(request):
@@ -33,7 +37,7 @@ def  addTag(request):
 		if form.is_valid():
 			form.save()
 		return HttpResponseRedirect('/blog/home')
-	return render(request, 'blog/addpost.html', {'form':form})
+	return render(request,'blog/addpost.html', {'form':form})
 
 
 def postshow(request):
@@ -71,27 +75,29 @@ def like(request,post_id):
 	if request.method == "POST":
 		post.likes+=1
 		post.update()
+	return
 
 
 
-def checkdislike(request,post_id)
+
+def checkdislike(request,post_id):
 	post = Post.objects.get(id=post_id)
 	num =post.dislikes
-	if (num=8):
+	if (num==8):
 		post.delete()
 
-def get_home(request):
-    return render(request, "index.html")
-=======
+# def get_home(request):
+#     return render(request, "index.html")
+
 # Create your views here.
 
 def get_contact(request):
     return render(request, "contact.html")
-def get_home(request):
-    return render(request, "index.html")
+# def get_home(request):
+    # return render(request, "index.html")
 def get_about(request):
     return render(request, "about.html")
->>>>>>> nada
+
 
 def user_logout(request):
     if request.user.is_authenticated():
@@ -123,4 +129,10 @@ def register_form(request):
     else:
         user_form = RegisterationForm()
     return render(request, "register_form.html", {'form': user_form})
+
+def home(request):
+	context = allPosts(request)
+	# get_home(request)
+	return render(request, "index.html", context)
+
 
