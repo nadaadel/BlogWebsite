@@ -70,6 +70,49 @@
 		<!-- END LEFT SIDEBAR -->
 
 
+
+
+
+
+
+
+			<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<!-- OVERVIEW -->
+					<h2 class="panel-title">categories</h2>
+
+					{%  for ut in allusers_admin  %}
+
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							<p class="panel-subtitle">{{ut.username}}</p>
+
+
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-2 ">
+									<div class="metric">
+										<p>
+											<span><a href = "/blog/{{ut.id}}/block">block</a></span>
+
+										</p>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="metric">
+										<p>
+											<span><a href = "/blog/{{ut.id}}/unblock">unblock</a></span>
+
+										</p>
+									</div>
+								</div>
+
+								{%  endfor  %}
+
+
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="{% static "assets/vendor/jquery/jquery.min.js"%}"></script>

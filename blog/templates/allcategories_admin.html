@@ -70,6 +70,57 @@
 		<!-- END LEFT SIDEBAR -->
 
 
+
+
+
+
+
+
+			<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<h3 class="panel-title">Categories</h3>
+
+				<div class="container-fluid">
+					<!-- OVERVIEW -->
+
+					{%  for ct in allcategories_admin  %}
+<div class="row">
+					<div class="panel panel-headline ">
+						<div class="panel-heading">
+							<p class="panel-subtitle ">{{ct.category_name}}</p>
+
+
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-2 ">
+									<div class="metric">
+										<p>
+											<span><a href = "/blog/{{ct.id}}">Create</a></span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="metric">
+										<p>
+											<span><a href = "/blog/{{ct.id}}/update">Edit</a></span>
+
+										</p>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="metric">
+										<p>
+											<span><a href = "/blog/{{ct.id}}/delete_category">Delete</a></span>
+
+										</p>
+									</div>
+								</div>
+							</div>
+								{%  endfor  %}
+
+
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="{% static "assets/vendor/jquery/jquery.min.js"%}"></script>

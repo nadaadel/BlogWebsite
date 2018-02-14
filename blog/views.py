@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterationForm
+from django.contrib.auth.models import User
 
 
 
@@ -102,7 +103,7 @@ def get_about(request):
 def user_logout(request):
     if request.user.is_authenticated():
         logout(request)
-        return HttpResponseRedirect('home')
+    return HttpResponseRedirect('login')
 
 def login_form(request):
     if request.user.is_authenticated():
@@ -147,3 +148,55 @@ def delete(request,pt_id):
 	pt= Post.objects.get(id=pt_id)
 	pt.delete()
 	return HttpResponseRedirect ('/blog/allposts_admin')
+
+
+
+def  addPost_admin(request):
+	form = PostForm()
+	if request.method == "POST":
+		form = PostForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/home')
+	return render(request, 'addpost.html', {'form':form})
+
+def allcategories_admin(request):
+	all_categories = Category.objects.all()
+	context = {"allcategories_admin": all_categories}
+	return render(request, 'allcategories_admin.html', context)
+
+def delete_category(request,ct_id):
+	ct= Category.objects.get(id=ct_id)
+	ct.delete()
+	#return HttpResponse("Deleted	")
+	return HttpResponseRedirect ('/blog/allcategories_admin')
+
+
+def allusers_admin(request):
+	all_users = User.objects.all()
+	context = {"allusers_admin": all_users}
+	return render(request, 'allusers_admin.html', context)
+
+def block(request,ut_id):
+	ut=User.objects.get(id=ut_id)
+	ut.is_active=0
+	ut.save()
+	return HttpResponseRedirect ('/blog/allusers_admin')
+
+def unblock(request,ut_id):
+	ut= User.objects.get(id=ut_id)
+	ut.is_active=1
+	ut.save()
+	#return HttpResponse("Deleted	")
+	return HttpResponseRedirect ('/blog/allusers_admin')
+
+def allwords_admin(request):
+	all_words = Word.objects.all()
+	context = {"allwords_admin": all_words}
+	return render(request, 'allwords_admin.html', context)
+
+def delete_word(request,wt_id):
+	wt= Word.objects.get(id=wt_id)
+	wt.delete()
+	#return HttpResponse("Deleted	")
+	return HttpResponseRedirect ('/blog/allwords_admin')

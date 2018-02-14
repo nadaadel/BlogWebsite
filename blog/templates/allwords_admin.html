@@ -70,6 +70,59 @@
 		<!-- END LEFT SIDEBAR -->
 
 
+
+
+
+
+
+
+			<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<!-- OVERVIEW -->
+
+					{%  for wt in allwords_admin  %}
+
+            <h3 class="panel-title">Words</h3>
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							<p class="panel-subtitle">{{wt.word}}</p>
+
+
+						</div>
+						<div class="panel-body">
+							<div class="row">
+                <div class="col-md-2">
+									<div class="metric text_center">
+										<p>
+											<span><a href = "/blog/{{wt.id}}/delete_word">Create</a></span>
+
+										</p>
+									</div>
+								</div>
+                <div class="col-md-2">
+									<div class="metric text_center">
+										<p>
+											<span><a href = "/blog/{{wt.id}}/delete_word">Edit</a></span>
+
+										</p>
+									</div>
+								</div>
+
+
+
+								<div class="col-md-2">
+									<div class="metric text_center">
+										<p>
+											<span><a href = "/blog/{{wt.id}}/delete_word">Delete</a></span>
+
+										</p>
+									</div>
+								</div>
+								{%  endfor  %}
+
+
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="{% static "assets/vendor/jquery/jquery.min.js"%}"></script>
