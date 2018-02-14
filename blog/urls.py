@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^logout$', views.user_logout),
     url(r'^about$', views.get_about),
     url(r'^contact$', views.get_contact),
+    url(r'^single$', views.get_post),
 
 
 ]
