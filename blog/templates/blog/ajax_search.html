@@ -1,0 +1,8 @@
+{% if post.count > %}
+
+{% for p in post %}
+  <li><a  hearf="/blog/get/{{p.id}}">{{p.title}}</a></li>
+{% endfor %}
+<li>nothing to show </li>
+
+{% endif %}

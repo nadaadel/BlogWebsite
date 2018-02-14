@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+{%  for post in allpost  %}
+
+						<div class="a-1">
+																	
+						<label>mina</label>
+
+							<div class="col-md-6 abt-left">
+								<a href="single.html"><img src="{% static "images/c-3.jpg" %}" alt="" /></a>
+								<h3><a href="single.html">{{post.title}}</a></h3>
+								<p>{{post.description}}</p>
+								<label>{{post.date}}</label>
+							</div>
+
+							{%  endfor  %}
+
+</body>
+</html>
