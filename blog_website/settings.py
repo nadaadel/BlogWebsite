@@ -61,7 +61,7 @@ ROOT_URLCONF = 'blog_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': os.path.join(BASE_DIR, "blog/templates"),
+        'DIRS': os.path.join(BASE_DIR, "blog/templates/"),
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blogdb',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'brehan',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }

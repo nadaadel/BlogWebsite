@@ -134,3 +134,16 @@ def home(request):
 	context = allPosts(request)
 	# get_home(request)
 	return render(request, "index.html", context)
+
+def admin(request):
+	 return render(request, 'indexadmin.html')
+
+def allPosts_admin(request):
+	all_posts = Post.objects.all()
+	context = {"allPosts_admin": all_posts}
+	return render(request, 'allposts_admin.html', context)
+
+def delete(request,pt_id):
+	pt= Post.objects.get(id=pt_id)
+	pt.delete()
+	return HttpResponseRedirect ('/blog/allposts_admin')
