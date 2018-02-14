@@ -149,6 +149,8 @@ def delete(request,pt_id):
 	pt.delete()
 	return HttpResponseRedirect ('/blog/allposts_admin')
 
+
+
 def  addPost_admin(request):
 	form = PostForm()
 	if request.method == "POST":
@@ -175,9 +177,16 @@ def allusers_admin(request):
 	context = {"allusers_admin": all_users}
 	return render(request, 'allusers_admin.html', context)
 
-def delete_user(request,ut_id):
+def block(request,ut_id):
+	ut=User.objects.get(id=ut_id)
+	ut.is_active=0
+	ut.save()
+	return HttpResponseRedirect ('/blog/allusers_admin')
+
+def unblock(request,ut_id):
 	ut= User.objects.get(id=ut_id)
-	ut.delete()
+	ut.is_active=1
+	ut.save()
 	#return HttpResponse("Deleted	")
 	return HttpResponseRedirect ('/blog/allusers_admin')
 
