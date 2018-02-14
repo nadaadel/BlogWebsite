@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Post , Tag , Word ,Comment ,Replay
+from .models import Post , Tag , Word ,Comment ,Replay,Category
 
 
 class RegisterationForm(UserCreationForm):
@@ -33,6 +33,11 @@ class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comment
     		fields = ('description',)
+
+class CatForm(forms.ModelForm):
+	class Meta:
+		model = Category
+		fields = ('category_name',)
 
 
 class replayForm(forms.ModelForm):
