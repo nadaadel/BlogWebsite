@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterationForm
 # from django.views.generric import ListView
-
+import json
 
 
 
@@ -51,7 +51,8 @@ def  addTag(request):
 
 
 def postshow(request):
-	posts=Post.objects.get(author_id=request.POST['search_box'])
+	posts=Post.objects.filter(title__contains=request.POST['search_box'])
+	# return HttpResponse(posts)
 	return render(request, 'test.html', {'posts': posts })
 
 def getPost(request,post_id):
@@ -152,3 +153,19 @@ def home(request):
 	return render(request, "index.html", {"allpost":all_post , "allcat":all_cat ,"allpost3" : all_post3})
 
 
+# def get_places(request):
+#   # if request.is_ajax():
+#   #   q = request.GET.get('term', '')
+#   #   posts = Post.objects.filter(title=q)
+#   #   results = []
+#   #   for post in posts:
+#   #     place_json = {}
+#   #     place_json = post.id + "," + post.title
+#   #     results.append(place_json)
+#   #   data = json.dumps(results)
+#   # else:
+#   #   data = 'fail'
+#   # mimetype = 'application/json'
+#   # return HttpResponse(data, mimetype)
+#   data = { "name":"John" }
+#   return HttpResponse (data)
