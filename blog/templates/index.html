@@ -4,7 +4,17 @@
 {% include "header.html" %}
 {% block main_block %}
 
+<style>
 
+    .mina{
+     margin: auto;
+      width:80%;
+    max-height: 200px ;
+
+
+    }
+
+</style>
 
 <div class="container">
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -13,14 +23,14 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="{% static "images/s-1.jpg" %}" alt="First slide">
+  <div class="carousel-inner mina">
+    <div class="carousel-item active mina">
+      <img  class="d-block w-100" src="{% static "images/s-1.jpg" %}" alt="First slide">
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item mina">
       <img class="d-block w-100" src="{% static "images/s-1.jpg" %}" alt="Second slide">
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item mina">
       <img class="d-block w-100" src="{% static "images/s-1.jpg" %}" alt="Third slide">
     </div>
   </div>
