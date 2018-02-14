@@ -33,8 +33,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=200)),
                 ('description', models.TextField()),
-                ('photo', models.ImageField(upload_to=b'')),
-
                 ('rate', models.IntegerField()),
                 ('likes', models.IntegerField()),
                 ('dislikes', models.IntegerField()),

@@ -1,59 +1,11 @@
-{% load static %}
-<body>
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="{% static "css/bootstrap.css" %}"     rel='stylesheet' type='text/css' />
-<link href="{% static "css/style.css" %}"   rel='stylesheet' type='text/css' />
-<script href="text/javascript" src= "{% static "js/jquery.min.js" %}"  ></script>
-<!-- jquery-3.1.1.js
-<script href="text/javascript" src= "{% static "jquery-3.1.1.js" %}"  ></script> -->
-		<div class="header-top">
-		<div class="container">
-			<div class="head-main">
-				<a href="index.html"><img src="{% static "images/logo-1.png" %}" alt="" /></a>
 
-			</div>
-		</div>
-	</div>
-	<!--header-top-end-->
-	<!--start-header-->
-	<div class="header">
-		<div class="container">
-			<div class="head">
-			<div class="navigation">
-				 <span class="menu"></span> 
-					<ul class="navig">
-						<li><a href="index.html"  class="active">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="gallery.html">Gallery</a></li>
-						<li><a href="typo.html">Typo</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-			</div>
-			<div class="header-right">
-				<div class="search-bar">
-					<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-					<input type="submit" value="">
-				</div>
-				<ul>
-					<li><a href="#"><span class="fb"> </span></a></li>
-					<li><a href="#"><span class="twit"> </span></a></li>
-					<li><a href="#"><span class="pin"> </span></a></li>
-					<li><a href="#"><span class="rss"> </span></a></li>
-					<li><a href="#"><span class="drbl"> </span></a></li>
-				</ul>
-			</div>
-				<div class="clearfix"></div>
-			</div>
-			</div>
-		</div>	
-	<!-- script-for-menu -->
-	<!-- script-for-menu -->
-		<script>
-			$("span.menu").click(function(){
-				$(" ul.navig").slideToggle("slow" , function(){
-				});
-			});
-		</script>
+{% extends "base.html" %}
+{% load static %}
+{% include "header.html" %}
+{% block main_block %}
+
+
+	<!--banner-starts-->
 
 	<div class="banner">
 		<div class="container">
@@ -160,6 +112,7 @@
 
 
 
+
 					</div>
 	<div class="about">
 		<div class="container">
@@ -233,7 +186,7 @@
 </body>
 
 			<!-- 				<div class="clearfix"></div>
-						</div>
+						</div>conflict
 					</div>	
 				
 				<div class="col-md-4 about-right heading">
@@ -319,5 +272,11 @@
 			</div>
 		</div>
 	</div> -->
+
+{% endblock %}
+	<!--slide-end-->
+	<!--footer-starts-->
+{% include "footer.html" %}
+
 	<!--footer-end-->
  

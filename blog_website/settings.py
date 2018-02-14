@@ -33,8 +33,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    # 'dajaxice',
-    # 'dajax',
     'blog',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -109,7 +107,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = os.path.join(BASE_DIR, "blog/static/")
+
+
 #
 # TEMPLATE_LOADERS = (
 #    'django.template.loaders.filesystem.Loader',
@@ -136,4 +135,8 @@ STATIC_URL = os.path.join(BASE_DIR, "blog/static/")
 # DAJAXICE_MEDIA_PREFIX = 'dajaxice'
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "blog/static/")
+
+
+STATIC_URL = os.path.join(BASE_DIR, "blog/static/")
+
+

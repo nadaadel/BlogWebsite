@@ -86,11 +86,15 @@ def checkdislike(request,post_id):
 	if (num==8):
 		post.delete()
 
-# def get_home(request):
-#     return render(request, "index.html")
+
+def get_home(request):
+    return render(request, "index.html")
+
 
 # Create your views here.
 
+def get_post(request):
+    return render(request, "single.html")
 def get_contact(request):
     return render(request, "contact.html")
 # def get_home(request):

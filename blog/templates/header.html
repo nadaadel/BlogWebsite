@@ -1,5 +1,7 @@
 {% load static %}
+
  <head>
+
 <title>Coffee Break</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -9,6 +11,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{% static "css/bootstrap.css" %}" rel='stylesheet' type='text/css' />
 <link href=" {% static "css/style.css" %}" rel='stylesheet' type='text/css' />
 <script src="{% static "js/jquery.min.js" %} "></script>
+
+
 
 <script type="text/javascript" src="{% static "js/move-top.js" %}"></script>
 <script type="text/javascript" src="{% static "js/easing.js" %}"></script>
@@ -20,7 +24,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 		</script>
-<!--start-smoth-scrolling-->
 
 
-</head>
+
+
+
+	<div class="header-top">
+		<div class="container">
+			<div class="head-main">
+				<a href="index.html"><img src="{% static "images/logo-1.png" %}" alt="" /></a>
+			</div>
+		</div>
+	</div>
+	<!--header-top-end-->
+	<!--start-header-->
+	<div class="header">
+		<div class="container">
+			<div class="head">
+			<div class="navigation">
+				 <span class="menu"></span>
+					<ul class="navig">
+						<li><a href="/blog/home">Home</a></li>
+						<li><a href="/blog/about">About</a></li>
+{#						<li><a href="gallery.html">Gallery</a></li>#}
+{#						<li><a href="typo.html">Typo</a></li>#}
+						<li><a href="/blog/contact">Contact</a></li>
+					</ul>
+			</div>
+			<div class="header-right">
+				<div class="search-bar">
+					<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+					<input type="submit" value="">
+				</div>
+				<ul>
+					<li><a href="#"><span class="fb"> </span></a></li>
+					<li><a href="#"><span class="twit"> </span></a></li>
+					<li><a href="#"><span class="pin"> </span></a></li>
+					<li><a href="#"><span class="rss"> </span></a></li>
+					<li><a href="#"><span class="drbl"> </span></a></li>
+				</ul>
+			</div>
+				<div class="clearfix"></div>
+			</div>
+			</div>
+		</div>
+	<!-- script-for-menu -->
+	<!-- script-for-menu -->
+		<script>
+			$("span.menu").click(function(){
+				$(" ul.navig").slideToggle("slow" , function(){
+				});
+			});
+		</script>
+
+</head>s
