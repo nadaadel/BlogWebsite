@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import PostForm,TagForm ,CommentForm
-from blog.models import Comment,Replay,Category,Post,Tag,Word
+from .forms import PostForm,TagForm ,CommentForm,CatForm
+from blog.models import Comment,Replay,Category,Post,Tag,Word ,Category
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -16,10 +16,6 @@ def allPosts(request):
 	return context
 
 
-
-
-
-
 def addPost(request):
 	form = PostForm()
 	if request.method == "POST":
@@ -27,8 +23,16 @@ def addPost(request):
 		if form.is_valid():
 			form.save()
 		return HttpResponseRedirect('/blog/home')
-	return render(request,'blog/addpost.html', {'form':form})
+	return render(request,'/blog/addpost.html', {'form':form})
 
+def addCat(request):
+	form = CatForm()
+	if request.method == "POST":
+		form = CatForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/home')
+	return render(request,'addcat.html', {'form':form})
 
 def  addTag(request):
 	form = TagForm()

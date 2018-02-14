@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^contact$', views.get_contact),
     url(r'^addpost$', views.addPost),
     url(r'^single$', views.get_post),
+    url(r'^addcat$', views.addCat),
 
 
 
