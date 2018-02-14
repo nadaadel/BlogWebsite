@@ -1,0 +1,10 @@
+<html>
+<body>
+<h1>New cat</h1>
+<form method="POST">{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" >add</button>
+</form>
+</body>
+</html>
+
