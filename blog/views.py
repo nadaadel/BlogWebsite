@@ -45,8 +45,8 @@ def  addTag(request):
 
 
 def postshow(request):
-	post=Post.objects.get(title="ttttt")
-	return render(request, 'blog/home.html', {'post': post})
+	posts=Post.objects.get(author_id=request.POST['search_box'])
+	return render(request, 'test.html', {'posts': posts })
 
 def getPost(request,post_id):
 	return HttpResponse(post_id)

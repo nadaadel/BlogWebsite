@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^addpost$', views.addPost),
     url(r'^single$', views.get_post),
     url(r'^addcat$', views.addCat),
+    url(r'^test$', views.postshow),
     url(r'^single/(?P<post_id>[0-9]+)$', views.getPost),
 
 
