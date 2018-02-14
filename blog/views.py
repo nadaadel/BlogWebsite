@@ -149,6 +149,15 @@ def delete(request,pt_id):
 	pt.delete()
 	return HttpResponseRedirect ('/blog/allposts_admin')
 
+def  addPost_admin(request):
+	form = PostForm()
+	if request.method == "POST":
+		form = PostForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/home')
+	return render(request, 'addpost.html', {'form':form})
+
 def allcategories_admin(request):
 	all_categories = Category.objects.all()
 	context = {"allcategories_admin": all_categories}

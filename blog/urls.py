@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^adminModify$', views.admin),
     url(r'^allposts_admin/$', views.allPosts_admin),
     url(r'^(?P<pt_id>[0-9]+)/delete$', views.delete),
+    url(r'^addPost_admin$', views.addPost_admin),
     url(r'^allcategories_admin/$', views.allcategories_admin),
     url(r'^(?P<ct_id>[0-9]+)/delete_category$', views.delete_category),
     url(r'^allusers_admin/$', views.allusers_admin),
