@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterationForm
-
+# from django.views.generric import ListView
 
 
 def allPosts(request):
@@ -20,14 +20,14 @@ def allPosts(request):
 
 
 
-def  addPost(request):
+def addPost(request):
 	form = PostForm()
 	if request.method == "POST":
 		form = PostForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
 		return HttpResponseRedirect('/blog/home')
-	return render(request, 'blog/addpost.html', {'form':form})
+	return render(request,'blog/addpost.html', {'form':form})
 
 
 def  addTag(request):
@@ -37,7 +37,7 @@ def  addTag(request):
 		if form.is_valid():
 			form.save()
 		return HttpResponseRedirect('/blog/home')
-	return render(request, 'blog/addpost.html', {'form':form})
+	return render(request,'blog/addpost.html', {'form':form})
 
 
 def postshow(request):
@@ -134,3 +134,5 @@ def home(request):
 	context = allPosts(request)
 	# get_home(request)
 	return render(request, "index.html", context)
+
+
