@@ -9,7 +9,6 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterationForm
 
 
-<<<<<<< HEAD
 def allPosts(request):
 	all_post = Post.objects.all()
 	context = {"allpost": all_post}
@@ -74,15 +73,15 @@ def like(request,post_id):
 
 
 
-def checkdislike(request,post_id)
+def checkdislike(request,post_id):
 	post = Post.objects.get(id=post_id)
 	num =post.dislikes
-	if (num=8):
+	if (num==8):
 		post.delete()
 
 def get_home(request):
     return render(request, "index.html")
-=======
+
 # Create your views here.
 
 def get_contact(request):
@@ -91,7 +90,6 @@ def get_home(request):
     return render(request, "index.html")
 def get_about(request):
     return render(request, "about.html")
->>>>>>> nada
 
 def user_logout(request):
     if request.user.is_authenticated():
