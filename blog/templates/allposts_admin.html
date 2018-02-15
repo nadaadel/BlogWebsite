@@ -81,6 +81,7 @@
 			<div class="main-content">
 				<div class="container-fluid">
 					<!-- OVERVIEW -->
+					<div class= "row">
 					{%  for pt in allPosts_admin  %}
 					<div class="panel panel-headline">
 						<div class="panel-heading">
@@ -111,11 +112,20 @@
 								<div class="col-md-2">
 									<div class="metric">
 										<p>
+											<span><a href = "/blog/{{pt.id}}/update_post">Update</a></span>
+
+										</p>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="metric">
+										<p>
 											<span><a href = "/blog/{{pt.id}}/delete">Delete</a></span>
 
 										</p>
 									</div>
 								</div>
+							</div>
 								{%  endfor  %}
 
 

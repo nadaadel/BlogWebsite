@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import PostForm,TagForm ,CommentForm
-from blog.models import Comment,Replay,Category,Post,Tag,Word
+from blog.models import Comment, Replay, Post, Tag,Word, Category
+from .forms import PostForm, TagForm, CommentForm, RegisterationForm,CategoryForm,WordForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegisterationForm
 from django.contrib.auth.models import User
 
 
@@ -15,10 +14,6 @@ def allPosts(request):
 	all_post = Post.objects.all()
 	context = {"allpost": all_post}
 	return context
-
-
-
-
 
 
 def  addPost(request):
@@ -30,15 +25,6 @@ def  addPost(request):
 		return HttpResponseRedirect('/blog/home')
 	return render(request, 'blog/addpost.html', {'form':form})
 
-
-def  addTag(request):
-	form = TagForm()
-	if request.method == "POST":
-		form = TagForm(request.POST)
-		if form.is_valid():
-			form.save()
-		return HttpResponseRedirect('/blog/home')
-	return render(request, 'blog/addpost.html', {'form':form})
 
 
 def postshow(request):
@@ -160,6 +146,12 @@ def  addPost_admin(request):
 		return HttpResponseRedirect('/blog/home')
 	return render(request, 'addpost.html', {'form':form})
 
+def getPost(request, pt_id):
+	pt = Post.objects.get(id = pt_id)
+	context = {"post":pt }
+	return render(request, "pt_details.html", context)
+
+
 def allcategories_admin(request):
 	all_categories = Category.objects.all()
 	context = {"allcategories_admin": all_categories}
@@ -171,6 +163,52 @@ def delete_category(request,ct_id):
 	#return HttpResponse("Deleted	")
 	return HttpResponseRedirect ('/blog/allcategories_admin')
 
+def addCategory (request):
+	category_form=CategoryForm()
+	context= {"category":category_form}
+	if request.method=="POST":
+		category_form=CategoryForm(request.POST)
+		if category_form.is_valid():
+			category_form.save()
+			return HttpResponseRedirect ("/blog/allcategories_admin")
+	return render(request,"newCategory.html",context)
+
+def update_category (request,ct_id):
+	ct= Category.objects.get(id=ct_id)
+	category_form=CategoryForm(instance=ct)
+
+	if request.method=="POST":
+		category_form=CategoryForm(request.POST,instance=ct)
+		if category_form.is_valid():
+			category_form.save()
+			return HttpResponseRedirect('/blog/allcategories_admin')
+	context={"category":category_form}
+	return render (request,"newCategory.html",context)
+
+
+def update_post (request,pt_id):
+	pt= Post.objects.get(id=pt_id)
+	post_form=PostForm(instance=pt)
+
+	if request.method=="POST":
+		post_form=PostForm(request.POST,instance=pt)
+		if post_form.is_valid():
+			post_form.save()
+			return HttpResponseRedirect('/blog/allposts_admin')
+	context={"form":post_form}
+	return render (request,"addpost.html",context)
+
+def update_word (request,wt_id):
+	wt= Word.objects.get(id=wt_id)
+	word_form=WordForm(instance=wt)
+
+	if request.method=="POST":
+		word_form=WordForm(request.POST,instance=wt)
+		if word_form.is_valid():
+			word_form.save()
+			return HttpResponseRedirect('/blog/allwords_admin')
+	context={"words":word_form}
+	return render (request,"newWords.html",context)
 
 def allusers_admin(request):
 	all_users = User.objects.all()
@@ -194,6 +232,16 @@ def allwords_admin(request):
 	all_words = Word.objects.all()
 	context = {"allwords_admin": all_words}
 	return render(request, 'allwords_admin.html', context)
+
+def addWords(request):
+	word_form=WordForm()
+	context= {"words":word_form}
+	if request.method=="POST":
+		word_form=WordForm(request.POST)
+		if word_form.is_valid():
+			word_form.save()
+			return HttpResponseRedirect ("/blog/allwords_admin")
+	return render(request,"newWords.html",context)
 
 def delete_word(request,wt_id):
 	wt= Word.objects.get(id=wt_id)

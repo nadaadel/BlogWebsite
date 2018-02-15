@@ -1,22 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Post , Tag , Word ,Comment ,Replay
+from .models import Post, Category, Tag, Word ,Comment ,Replay
 
 
-from .models import Comment ,Replay
-
-
-class CommentForm(forms.ModelForm):
-	class Meta:
-		model = Comment
-		fields = ('description',)
-
-
-class replayForm(forms.ModelForm):
-	class Meta:
-		model = Replay
-		fields = ('description',)
 
 # class UserForm(forms.ModelForm):
 #     class Meta:
@@ -53,6 +40,10 @@ class CommentForm(forms.ModelForm):
 		model = Comment
 		fields = ('description',)
 
+class CategoryForm(forms.ModelForm):
+	class Meta:
+		model = Category
+		fields = ('category_name',)
 
 class replayForm(forms.ModelForm):
 	class Meta:
@@ -64,10 +55,14 @@ class TagForm(forms.ModelForm):
         model = Tag
         fields = ('tag',)
 
+
+
 class WordForm(forms.ModelForm):
     class Meta:
         model = Word
         fields = ('word',)
+
+
 
 # class searchForm(forms.Form):
 #    search = forms.CharField(max_length = 100)
