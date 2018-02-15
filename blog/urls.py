@@ -16,8 +16,7 @@ urlpatterns = [
     url(r'^addpost$', views.addPost),
     url(r'^test$', views.postshow),
     url(r'^single/(?P<post_id>[0-9]+)$', views.get_post),
-
-
+    url(r'^single/ajax$', views.like ,name='single_like'),
 
 
 ]

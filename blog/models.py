@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
+
 
 class Category(models.Model):
 	category_name=models.CharField(max_length=200)
@@ -8,29 +10,29 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
+    # photo = models.TextField(default='null')
     description = models.TextField()
     rate = models.IntegerField()
     likes = models.IntegerField()
     dislikes = models.IntegerField()
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=datetime.now())
     author = models.ForeignKey(User)
 
     def __str__(self):
         return self.title
 
-
 class Comment(models.Model):
-    post_id= models.ForeignKey(Post)
+    post= models.ForeignKey(Post)
     description = models.CharField(max_length=500)
-    userid = models.ForeignKey(User)
-    date=models.DateTimeField()
+    user = models.ForeignKey(User)
+    date=models.DateTimeField(default=datetime.now())
     def __str__(self):
         return self.description
 
 class Replay(models.Model):
-    comment_id = models.ForeignKey(Comment)
-    userid = models.ForeignKey(User)
-    date = models.DateTimeField()
+    comment = models.ForeignKey(Comment)
+    user= models.ForeignKey(User)
+    date = models.DateTimeField(default=datetime.now())
     description = models.CharField(max_length=500)
     def __str__(self):
         return self.description
@@ -45,6 +47,7 @@ class Word(models.Model):
 
 class Tag(models.Model):
     tag = models.CharField(max_length=50)
+    post = models.ForeignKey(Post)
 
 
 

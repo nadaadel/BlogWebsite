@@ -295,6 +295,17 @@ ul.navig li a.active{
 }
 /*--banner-end--*/
 /*--about-start--*/
+.tag-style{
+
+}
+.tag-style b{
+background-color: #d8ddd0;
+font-size: 20px;
+font-family: inherit;
+padding: 10px;
+margin-left: 6px;
+margin-top: 9px;
+}
 .about{
 	padding:4em 0px;
 }
