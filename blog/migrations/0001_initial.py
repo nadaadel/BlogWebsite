@@ -33,6 +33,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=200)),
                 ('description', models.TextField()),
+                ('photo', models.FileField(upload_to=b'')),
                 ('rate', models.IntegerField()),
                 ('likes', models.IntegerField()),
                 ('dislikes', models.IntegerField()),
@@ -41,13 +42,20 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='PostTags',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('post_refrance', models.ForeignKey(to='blog.Post')),
+            ],
+        ),
+        migrations.CreateModel(
             name='Replay',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('date', models.DateTimeField()),
                 ('description', models.CharField(max_length=500)),
-                ('comment_id', models.ForeignKey(to='blog.Comment')),
-                ('userid', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('comment_replay', models.ForeignKey(to='blog.Comment')),
+                ('user_replay', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -58,6 +66,14 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='usersub',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('categoryid', models.ForeignKey(to='blog.Category')),
+                ('userid', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Word',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -65,13 +81,18 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
+            model_name='posttags',
+            name='tag_refrance',
+            field=models.ForeignKey(to='blog.Tag'),
+        ),
+        migrations.AddField(
             model_name='comment',
-            name='post_id',
+            name='post_comment',
             field=models.ForeignKey(to='blog.Post'),
         ),
         migrations.AddField(
             model_name='comment',
-            name='userid',
+            name='user_comment',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
         ),
     ]

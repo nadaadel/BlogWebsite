@@ -6,6 +6,11 @@ class Category(models.Model):
 	def __str__(self):
 		return self.category_name
 
+class Tag(models.Model):
+    tag = models.CharField(max_length=50)
+    def __str__(self):
+        return self.tag
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -15,22 +20,22 @@ class Post(models.Model):
     dislikes = models.IntegerField()
     date = models.DateTimeField()
     author = models.ForeignKey(User)
-
+    tag = models.ManyToManyField(Tag)
     def __str__(self):
         return self.title
 
 
 class Comment(models.Model):
-    post_id= models.ForeignKey(Post)
+    post_comment= models.ForeignKey(Post)
     description = models.CharField(max_length=500)
-    userid = models.ForeignKey(User)
+    user_comment = models.ForeignKey(User)
     date=models.DateTimeField()
     def __str__(self):
         return self.description
 
 class Replay(models.Model):
-    comment_id = models.ForeignKey(Comment)
-    userid = models.ForeignKey(User)
+    comment_replay = models.ForeignKey(Comment)
+    user_replay = models.ForeignKey(User)
     date = models.DateTimeField()
     description = models.CharField(max_length=500)
     def __str__(self):
@@ -42,8 +47,7 @@ class Replay(models.Model):
 class Word(models.Model):
     word = models.CharField(max_length=50)
 
-class Tag(models.Model):
-    tag = models.CharField(max_length=50)
+
 
 
 

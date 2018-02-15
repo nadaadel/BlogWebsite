@@ -18,7 +18,7 @@ def allPosts(request):
 	return context
 
 def allcat(request):
-	all_post = Category.objects.all()
+	allcat = Category.objects.all()
 	context = {"allcat": allcat}
 	return context
 
@@ -52,8 +52,17 @@ def  addTag(request):
 
 def postshow(request):
 	posts=Post.objects.filter(title__contains=request.POST['search_box'])
-	# return HttpResponse(posts)
-	return render(request, 'test.html', {'posts': posts })
+
+	try:
+		tag = Tag.objects.get(tag__contains=request.POST['search_box'])
+		posts2 = Post.objects.filter(tag=tag.id)
+
+	except :
+		return render(request, 'test.html', {'posts': posts})
+	else:
+		return render(request, 'test.html', {'posts': posts, "posts2": posts2})
+
+
 
 def getPost(request,post_id):
 	return HttpResponse(post_id)

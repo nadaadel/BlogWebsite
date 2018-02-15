@@ -25,7 +25,7 @@ class RegisterationForm(UserCreationForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'description', 'photo', 'rate', 'likes', 'dislikes', 'date','author',)
+        fields = ('title', 'description', 'photo', 'rate', 'likes', 'dislikes', 'date','author','tag')
 
 
 class CommentForm(forms.ModelForm):
