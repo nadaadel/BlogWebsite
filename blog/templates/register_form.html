@@ -1,28 +1,25 @@
-{% extends "base.html" %}
 
-{% block main_block %}
-    <form role="form" class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
-
-        {% csrf_token %}
-    <div class="form-group">
-        {% for field in form %}
-            <div class="input-group">
-                <span class="input-group-addon" style="background-color:#b77b48; color:white"><span class="glyphicon glyphicon-user"></span></span>
-                <input class="form-control" id="{{ field.id_for_label }}" maxlength="30" name="{{ field.html_name }}" value="{{ field.value }}" type="text" />
-                {{ field.errors }}
-            </div>
-        {% endfor %}
-        <input type="submit" class="btn btn-primary" value="login" />
-        <input type="hidden" name="next" value="{{ next }}" />
-    </div>
-</form>
-{#    <h2>Register</h2>#}
-{#      <form method="POST">#}
-{#          {% csrf_token %}#}
-{#           {{ form.as_p }}#}
-{#        <input type="submit" value="Sign Up">#}
-{#      </form>#}
-{% endblock %}
+{#    <form role="form" class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">#}
+{##}
+{#        {% csrf_token %}#}
+{#    <div class="form-group">#}
+{#        {% for field in form %}#}
+{#            <div class="input-group">#}
+{#                <span class="input-group-addon" style="background-color:#b77b48; color:white"><span class="glyphicon glyphicon-user"></span></span>#}
+{#                <input class="form-control" id="{{ field.id_for_label }}" maxlength="30" name="{{ field.html_name }}" value="{{ field.value }}" type="text" />#}
+{#                {{ field.errors }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#        <input type="submit" class="btn btn-primary" value="login" />#}
+{#        <input type="hidden" name="next" value="{{ next }}" />#}
+{#    </div>#}
+{#</form>#}
+    <h2>Register</h2>
+      <form method="POST">
+          {% csrf_token %}
+           {{ form.as_p }}
+        <input type="submit" value="Sign Up">
+      </form>
 
 {#{%  load static %}#}
 {#<!DOCTYPE html>#}

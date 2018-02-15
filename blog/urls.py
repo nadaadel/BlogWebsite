@@ -12,11 +12,10 @@ urlpatterns = [
     url(r'^logout$', views.user_logout),
     url(r'^about$', views.get_about),
     url(r'^contact$', views.get_contact),
-    url(r'^addpost$', views.addPost),
-    url(r'^single$', views.get_post),
     url(r'^addcat$', views.addCat),
+    url(r'^addpost$', views.addPost),
     url(r'^test$', views.postshow),
-    url(r'^single/(?P<post_id>[0-9]+)$', views.getPost),
+    url(r'^single/(?P<post_id>[0-9]+)$', views.get_post),
 
 
 

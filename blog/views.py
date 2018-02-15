@@ -15,7 +15,6 @@ def allPosts(request):
 	context = {"allpost": all_post}
 	return context
 
-
 def addPost(request):
 	form = PostForm()
 	if request.method == "POST":
@@ -23,7 +22,27 @@ def addPost(request):
 		if form.is_valid():
 			form.save()
 		return HttpResponseRedirect('/blog/home')
-	return render(request,'/blog/addpost.html', {'form':form})
+	return render(request,'addpost.html', {'form':form})
+
+
+def get_post(request, post_id):
+    if request.user.is_authenticated():
+        if request.method == "POST":
+            comment_form = CommentForm(request.POST )
+            if comment_form.is_valid():
+                comment_form.save()
+                return HttpResponseRedirect('/blog/single/1')
+
+        # pass
+
+        #     comment_text = request.POST['comment_text']
+        #     comment = Comment.objects.create(description = comment_text ,date= "5/7/2017" , post_id = post_id , user_id = request.user.id)
+    comment_form = CommentForm()
+    onePost = Post.objects.get(id=post_id)
+    postAuthor = User.objects.get(id=onePost.author_id)
+    # all_comments = Comment.objects.get(post_id_id = post_id)
+    context = {'post': onePost, 'postAuthor': postAuthor ,  'form' : comment_form}
+    return render(request, "single.html", context)
 
 def addCat(request):
 	form = CatForm()
@@ -98,8 +117,7 @@ def get_home(request):
 
 # Create your views here.
 
-def get_post(request):
-    return render(request, "single.html")
+
 def get_contact(request):
     return render(request, "contact.html")
 # def get_home(request):
@@ -122,14 +140,13 @@ def login_form(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponse("Login success")
+            return HttpResponseRedirect('home')
     return render(request, "login_form.html")
 
 def register_form(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('home')
-    if request.user.is_authenticated():
-        return HttpResponse("You are Logged in")
+
     if request.method == "POST":
         user_form = RegisterationForm(request.POST)
         if user_form.is_valid():

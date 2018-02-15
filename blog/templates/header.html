@@ -34,16 +34,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="head-main">
                 <a href="index.html"><img src="{% static "images/logo-1.png" %}" alt=""/></a>
+                {%  if user.is_authenticated %}
+
+                     <div class="unauthentication">
                 <div>
-                    <form method="post" action="/blog/login" class="submit-btn">
+                    <a href="#"> Account</a>
+                </div>
+                <div class="submit-btn">
+                    <form method="POST" action="/blog/logout">
+                        {% csrf_token %}
+                        <input type="submit" value="LOGOUT">
+                    </form>
+                </div>
+            </div>
+
+
+                    {% else %}
+            <div class="authentication">
+                <div>
+                    <form method="get" action="/blog/login" class="submit-btn">
                         <input type="submit" value="SIGN IN">
                     </form>
                 </div>
                 <div class="submit-btn">
-                    <form method="POST" action="/home/regitser">
+                    <form method="get" action="/blog/register">
                         <input type="submit" value="SIGN UP">
                     </form>
                 </div>
+            </div>
+          {% endif %}
             </div>
 
         </div>

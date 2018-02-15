@@ -9,7 +9,6 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    # photo = models. ImageField(upload_to='images/')
     rate = models.IntegerField()
     likes = models.IntegerField()
     dislikes = models.IntegerField()
@@ -38,6 +37,8 @@ class Replay(models.Model):
 
 
 
+class Test(models.Model):
+    text = models.CharField(max_length=50)
 
 class Word(models.Model):
     word = models.CharField(max_length=50)
