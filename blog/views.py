@@ -29,7 +29,7 @@ def addPost(request):
 		if form.is_valid():
 			form.save()
 		return HttpResponseRedirect('/blog/home')
-	return render(request,'/blog/addpost.html', {'form':form})
+	return render(request,'addpost.html', {'form':form})
 
 def addCat(request):
 	form = CatForm()

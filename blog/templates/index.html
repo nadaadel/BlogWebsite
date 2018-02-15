@@ -56,7 +56,7 @@
 
 			{% for x in allpost3 %}
 				<li>
-					
+
 						<div class="banner-1">
 							<a href="/blog/single/{{x.id}}"><img src="{% static "images/s-1.jpg" %}" class="img-responsive" alt=""></a>
 						</div>
@@ -66,7 +66,7 @@
 					{%  endfor  %}
 							 -->
 			</ul>
-							
+
 							 <script type="text/javascript">
 								$(window).load(function() {
 									
@@ -126,9 +126,11 @@
 	<div class="col-10">
 		
 		{%  for post in allpost  %}
-															
+
 						<div class="col-md-4 abt-left">
-								<a href="single.html"><img src="{% static "images/c-3.jpg" %}" alt="" /></a>
+
+
+								<a href="single.html"><img src="{% static ""%}images/{{post.photo}}" alt="" /></a>  <!--post.photo.url-->
 								<h3><a href="/blog/single/{{post.id}}">{{post.title}}</a></h3>
 								<p>{{post.description}}</p>
 								<label>{{post.date}}</label>
