@@ -227,6 +227,21 @@ def unblock(request,ut_id):
 	ut.save()
 	#return HttpResponse("Deleted	")
 	return HttpResponseRedirect ('/blog/allusers_admin')
+def promote(request,ut_id):
+	ut=User.objects.get(id=ut_id)
+	ut.is_superuser=1
+	ut.save()
+	return HttpResponseRedirect ('/blog/allusers_admin')
+
+def unpromote(request,ut_id):
+	ut= User.objects.get(id=ut_id)
+	ut.is_superuser=0
+	ut.save()
+	#return HttpResponse("Deleted	")
+	return HttpResponseRedirect ('/blog/allusers_admin')
+
+
+
 
 def allwords_admin(request):
 	all_words = Word.objects.all()
