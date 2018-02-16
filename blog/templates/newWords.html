@@ -11,11 +11,8 @@
 	<link rel="stylesheet" href="{% static "assets/vendor/bootstrap/css/bootstrap.min.css" %}">
 	<link rel="stylesheet" href="{% static "assets/vendor/font-awesome/css/font-awesome.min.css"%}">
 	<link rel="stylesheet" href="{% static "assets/vendor/linearicons/style.css"%}">
-	<link rel="stylesheet" href="{% static "assets/vendor/chartist/css/chartist-custom.css"%}">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{% static "assets/css/main.css"%}">
-	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-	<link rel="stylesheet" href="{% static "assets/css/demo.css"%}">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
@@ -53,28 +50,36 @@
 				</div>
 			</div>
 		</nav>
-		<div class="panel-body text-center">
-			<div class="row">
-				<div class="col-md-offset-5 col-md-2 ">
-					<div class="metric">
-						    <h1>Forbbiden Words</h1>
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="/blog/allusers_admin/" class="active"><i class="lnr lnr-home"></i> <span>Users</span></a></li>
+						<li><a href="/blog/allposts_admin/" class=""><i class="lnr lnr-code"></i> <span>Posts</span></a></li>
+						<li><a href="/blog/allcategories_admin/" class=""><i class="lnr lnr-chart-bars"></i> <span>Categories</span></a></li>
+						<li><a href="/blog/allwords_admin/" class=""><i class="lnr lnr-cog"></i> <span>Forbbiden Words</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+		<div class="main">
+			<div class="main-content">
 								<div class="form-group">
     <form method="POST">{% csrf_token %}
     {{ words.as_p }}
-    <button type="submit" >add word</button>
+		<button type="submit" class="btn ">Add Word</button>
 	</div>
 	</div>
 </div>
-</div>
-</div>
 
 
-    <script src="{% static "assets/vendor/jquery/jquery.min.js"%}"></script>
-  	<script src="{% static "assets/vendor/bootstrap/js/bootstrap.min.js" %}"></script>
-  	<script src="{% static "assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"%}"></script>
-  	<script src="{% static "assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"%}"></script>
-  	<script src="{%static "assets/vendor/chartist/js/chartist.min.js"%}"></script>
-  	<script src="{% static "assets/scripts/klorofil-common.js" %}"></script>
+
+<script src="{% static "assets/vendor/jquery/jquery.min.js"%}"></script>
+<script src="{% static "assets/vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+<script src="{% static "assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"%}"></script>
+<script src="{% static "assets/scripts/klorofil-common.js" %}"></script>
+
 
   </body>
 

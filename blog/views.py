@@ -122,6 +122,7 @@ def home(request):
 	# get_home(request)
 	return render(request, "index.html", context)
 
+
 def admin(request):
 	 return render(request, 'indexadmin.html')
 
@@ -150,6 +151,7 @@ def getPost(request, pt_id):
 	pt = Post.objects.get(id = pt_id)
 	context = {"post":pt }
 	return render(request, "pt_details.html", context)
+
 
 
 def allcategories_admin(request):
@@ -240,7 +242,11 @@ def unpromote(request,ut_id):
 	#return HttpResponse("Deleted	")
 	return HttpResponseRedirect ('/blog/allusers_admin')
 
-
+def delete_user(request,ut_id):
+	ut= User.objects.get(id=ut_id)
+	ut.delete()
+	#return HttpResponse("Deleted	")
+	return HttpResponseRedirect ('/blog/allusers_admin')
 
 
 def allwords_admin(request):

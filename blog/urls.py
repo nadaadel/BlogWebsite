@@ -21,9 +21,9 @@ urlpatterns = [
     url(r'^allcategories_admin/$', views.allcategories_admin),
     url(r'^(?P<ct_id>[0-9]+)/delete_category$', views.delete_category),
     url (r'^new/$', views.addCategory),
-    url(r'^(?P<ct_id>[0-9]+)/update_category', views.update_category),
+    url(r'^(?P<ct_id>[0-9]+)/update_category$', views.update_category),
     url(r'^allusers_admin/$', views.allusers_admin),
-    #url(r'^(?P<ut_id>[0-9]+)/delete_user$', views.delete_user),
+    url(r'^(?P<ut_id>[0-9]+)/delete_user$', views.delete_user),
     url(r'^(?P<ut_id>[0-9]+)/block$', views.block),
     url(r'^(?P<ut_id>[0-9]+)/unblock$', views.unblock),
     url(r'^(?P<ut_id>[0-9]+)/promote$', views.promote),
@@ -31,14 +31,10 @@ urlpatterns = [
     url(r'^allwords_admin/$', views.allwords_admin),
     url(r'^(?P<wt_id>[0-9]+)/delete_word$', views.delete_word),
     url (r'^newWord$', views.addWords),
-    url(r'^(?P<wt_id>[0-9]+)/update_word', views.update_word),
+    url(r'^(?P<wt_id>[0-9]+)/update_word$', views.update_word),
 
 
 
 
 
 ]
-# urlpatterns += patterns('',
-#                         url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls')), )
-#
-# urlpatterns += staticfiles_urlpatterns()
