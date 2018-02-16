@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterationForm
 # from django.views.generric import ListView
 import json
+from django.http import JsonResponse
 
 
 
@@ -169,14 +170,21 @@ def sub(request,cat_id):
 	user=request.user
 	category = Category.objects.get(id=cat_id)
 	category.cat.add(1)
-	return HttpResponse(category.cat)
+	# print ("mina")
+	# response_data['result'] = 'Create post successful!'
+	# return HttpResponse(
+	# 	json.dumps(response_data),
+	# 	content_type="application/json")
+	return JsonResponse({'foo': 'bar'})
 #
 
 def unsub(request,cat_id):
 	user=request.user
 	# category = Category.objects.get(id=cat_id)
+	cat_id=int(cat_id)
 	subtoremove = Category.objects.filter(cat=1,id=cat_id)
 	subtoremove.delete()
+	print ("mina")
 	return HttpResponse(subtoremove)
 
 
