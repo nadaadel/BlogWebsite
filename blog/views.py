@@ -161,6 +161,24 @@ def home(request):
 	all_post3 = Post.objects.order_by('-date' )[:3]
 	return render(request, "index.html", {"allpost":all_post , "allcat":all_cat ,"allpost3" : all_post3})
 
+def getCat(request):
+    return render(request , "category.html")
+
+#html
+def sub(request,cat_id):
+	user=request.user
+	category = Category.objects.get(id=cat_id)
+	category.cat.add(1)
+	return HttpResponse(category.cat)
+#
+
+def unsub(request,cat_id):
+	user=request.user
+	category = Category.objects.get(id=cat_id)
+	category.cat.add(1)
+	return HttpResponse(category.cat)
+
+
 
 # def get_places(request):
 #   # if request.is_ajax():
