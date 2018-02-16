@@ -175,28 +175,9 @@ def sub(request,cat_id):
 
 def unsub(request,cat_id):
 	user=request.user
-	# category = Category.objects.get(id=cat_id)
+
 	cat_id=int(cat_id)
 	subtoremove = Category.objects.filter(cat=1,id=cat_id)
 	subtoremove.delete()
-	print ("mina")
-	return HttpResponse(subtoremove)
+	return JsonResponse({'foo': 'bar'})
 
-
-
-# def get_places(request):
-#   # if request.is_ajax():
-#   #   q = request.GET.get('term', '')
-#   #   posts = Post.objects.filter(title=q)
-#   #   results = []
-#   #   for post in posts:
-#   #     place_json = {}
-#   #     place_json = post.id + "," + post.title
-#   #     results.append(place_json)
-#   #   data = json.dumps(results)
-#   # else:
-#   #   data = 'fail'
-#   # mimetype = 'application/json'
-#   # return HttpResponse(data, mimetype)
-#   data = { "name":"John" }
-#   return HttpResponse (data)
