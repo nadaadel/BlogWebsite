@@ -116,7 +116,7 @@
 <div class="col-2">
 <table class="table table-striped table-hover">
 			{%  for cat in allcat  %}
-			<tr><td><a href="/blog/single/{{cat.id}}">{{cat.category_name}} </a>  <button  val={{cat.id}} class="supscrip btn-xs btn-primary mina">SUBSCRIP</button></td></tr>
+			<tr><td><a href="/blog/single/{{cat.id}}">{{cat.category_name}} </a>  <button  value={{cat.id}} class="supscrip btn-xs btn-primary mina">SUBSCRIP</button></td></tr>
 
 				{%  endfor  %}
 
@@ -153,14 +153,19 @@
             console.log("LLL")
         if($(this).hasClass("btn-primary")){
         var id =$(this).val()
-
-        var x= "http://127.0.0.1:8000/blog/sub/6"
+        console.log(id)
+        var x= "http://127.0.0.1:8000/blog/sub/".concat(id);
+        console.log(x)
         console.log("LLL")
             $(this).html("Unsupscrip");
         }else{
+        var id =$(this).val()
+        console.log(id)
+        var x= "http://127.0.0.1:8000/blog/unsub/".concat(id);
+        console.log(x)
+        console.log("LLL")
             $(this).html("Supscrip");
-            var id =$(this).val()
-            var x= "http://127.0.0.1:8000/bolg/unsub/".id
+
         }
         $(this).toggleClass("btn-primary");
         $(this).toggleClass("btn-danger");

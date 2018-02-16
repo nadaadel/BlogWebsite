@@ -170,11 +170,6 @@ def sub(request,cat_id):
 	user=request.user
 	category = Category.objects.get(id=cat_id)
 	category.cat.add(1)
-	# print ("mina")
-	# response_data['result'] = 'Create post successful!'
-	# return HttpResponse(
-	# 	json.dumps(response_data),
-	# 	content_type="application/json")
 	return JsonResponse({'foo': 'bar'})
 #
 
