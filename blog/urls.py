@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^single/(?P<post_id>[0-9]+)$', views.getPost),
     url(r'^getcat$', views.getCat),
     url(r'^sub/(?P<cat_id>[0-9]+)$', views.sub),
+    url(r'^unsub/(?P<cat_id>[0-9]+)$', views.unsub),
     # url(r'^api/get_places/', views.get_places, name='get_places'),
 
 

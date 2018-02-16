@@ -174,9 +174,10 @@ def sub(request,cat_id):
 
 def unsub(request,cat_id):
 	user=request.user
-	category = Category.objects.get(id=cat_id)
-	category.cat.add(1)
-	return HttpResponse(category.cat)
+	# category = Category.objects.get(id=cat_id)
+	subtoremove = Category.objects.filter(cat=1,id=cat_id)
+	subtoremove.delete()
+	return HttpResponse(subtoremove)
 
 
 
