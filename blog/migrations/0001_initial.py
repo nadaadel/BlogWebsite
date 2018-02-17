@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('category_name', models.CharField(max_length=200)),
+                ('cat', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -33,13 +34,13 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=200)),
                 ('description', models.TextField()),
-                ('photo', models.ImageField(upload_to=b'')),
-
+                ('photo', models.FileField(upload_to=b'')),
                 ('rate', models.IntegerField()),
                 ('likes', models.IntegerField()),
                 ('dislikes', models.IntegerField()),
                 ('date', models.DateTimeField()),
                 ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('category_name', models.ForeignKey(to='blog.Category')),
             ],
         ),
         migrations.CreateModel(
@@ -48,8 +49,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('date', models.DateTimeField()),
                 ('description', models.CharField(max_length=500)),
-                ('comment_id', models.ForeignKey(to='blog.Comment')),
-                ('userid', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('comment_replay', models.ForeignKey(to='blog.Comment')),
+                ('user_replay', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -67,13 +68,18 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
+            model_name='post',
+            name='tag',
+            field=models.ManyToManyField(to='blog.Tag'),
+        ),
+        migrations.AddField(
             model_name='comment',
-            name='post_id',
+            name='post_comment',
             field=models.ForeignKey(to='blog.Post'),
         ),
         migrations.AddField(
             model_name='comment',
-            name='userid',
+            name='user_comment',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
         ),
     ]

@@ -11,9 +11,8 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
             model_name='post',
-            name='photo',
-            field=models.ImageField(null=True, upload_to=b'cover/%Y/%m/%D/', blank=True),
+            name='tag',
         ),
     ]
