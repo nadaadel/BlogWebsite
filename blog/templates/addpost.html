@@ -69,7 +69,7 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
 <div class="form-group">
-<form method="POST">{% csrf_token %}
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
 {{ form.as_p }}
 <button type="submit" class="btn ">Add Post</button>
 </form>

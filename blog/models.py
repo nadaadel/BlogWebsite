@@ -19,7 +19,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    photo = models. FileField()
+    photo = models.FileField()
     rate = models.IntegerField()
     likes = models.IntegerField()
     dislikes = models.IntegerField()

@@ -2,14 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from blog.models import Comment,Replay,Category,Post,Tag,Word
 from blog.models import Comment, Replay, Post, Tag,Word, Category
-from .forms import PostForm, TagForm, CommentForm, RegisterationForm,CategoryForm,WordForm,CatForm
+from .forms import PostForm, TagForm, CommentForm, RegisterationForm,CategoryForm,WordForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 import json
 from django.http import JsonResponse
-
+import re
 
 
 def allPosts(request):
@@ -48,7 +48,7 @@ def  addTag(request):
 		if form.is_valid():
 			form.save()
 		return HttpResponseRedirect('/blog/home')
-	return render(request,'blog/addpost.html', {'form':form})
+	return render(request,'addpost2.html', {'form':form})
 
 
 def postshow(request):
@@ -145,24 +145,24 @@ def home(request):
 	all_post3 = Post.objects.order_by('-date' )[:3]
 	return render(request, "index.html", {"allpost":all_post , "allcat":all_cat ,"allpost3" : all_post3})
 
-# def getCat(request):
-#     return render(request , "category.html")
+def getCat(request):
+    return render(request , "category.html")
 
 #html
 def sub(request,cat_id):
 	user=request.user
 	category = Category.objects.get(id=cat_id)
-	category.cat.add(1)
-	return JsonResponse({'foo': 'bar'})
+	category.cat.add(2)
+	return HttpResponse(cat_id)
 #
 
 def unsub(request,cat_id):
 	user=request.user
 
 	cat_id=int(cat_id)
-	subtoremove = Category.objects.filter(cat=1,id=cat_id)
-	subtoremove.delete()
-	return JsonResponse({'foo': 'bar'})
+	# category = Category.objects.filter(id=cat_id,cat=2)
+	Category.cat.through.objects.filter(category_id=cat_id,user_id=2).delete()
+	return HttpResponse("done")
 
 def admin(request):
 	 return render(request, 'indexadmin.html')
@@ -175,18 +175,18 @@ def allPosts_admin(request):
 def delete(request,pt_id):
 	pt= Post.objects.get(id=pt_id)
 	pt.delete()
-	return HttpResponseRedirect ('/blog/allposts_admin')
+	return HttpResponseRedirect ('/blog/allposts_admin/')
 
 
 
 def  addPost_admin(request):
 	form = PostForm()
 	if request.method == "POST":
-		form = PostForm(request.POST)
+		form = PostForm(request.POST,request.FILES)
 		if form.is_valid():
 			form.save()
-		return HttpResponseRedirect('/blog/home')
-	return render(request, 'addpost.html', {'form':form})
+			return HttpResponseRedirect('/blog/allposts_admin/')
+	return render(request, 'addpost.html', {'form': form})
 
 def getPost(request, pt_id):
 	pt = Post.objects.get(id = pt_id)
@@ -204,7 +204,7 @@ def delete_category(request,ct_id):
 	ct= Category.objects.get(id=ct_id)
 	ct.delete()
 	#return HttpResponse("Deleted	")
-	return HttpResponseRedirect ('/blog/allcategories_admin')
+	return HttpResponseRedirect ('/blog/allcategories_admin/')
 
 def addCategory (request):
 	category_form=CategoryForm()
@@ -213,7 +213,7 @@ def addCategory (request):
 		category_form=CategoryForm(request.POST)
 		if category_form.is_valid():
 			category_form.save()
-			return HttpResponseRedirect ("/blog/allcategories_admin")
+			return HttpResponseRedirect ("/blog/allcategories_admin/")
 	return render(request,"newCategory.html",context)
 
 def update_category (request,ct_id):
@@ -224,7 +224,7 @@ def update_category (request,ct_id):
 		category_form=CategoryForm(request.POST,instance=ct)
 		if category_form.is_valid():
 			category_form.save()
-			return HttpResponseRedirect('/blog/allcategories_admin')
+			return HttpResponseRedirect('/blog/allcategories_admin/')
 	context={"category":category_form}
 	return render (request,"newCategory.html",context)
 
@@ -310,3 +310,7 @@ def delete_word(request,wt_id):
 	wt.delete()
 	#return HttpResponse("Deleted	")
 	return HttpResponseRedirect ('/blog/allwords_admin')
+
+# def checktag
+	# pattern = re.findall(r"#(\w+)", s)
+	# pattern.match(string)
