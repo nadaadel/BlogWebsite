@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate, login, logout
 import json
 from django.http import JsonResponse
 import re
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
 
 
 def allPosts(request):
@@ -166,7 +168,17 @@ def home(request):
 	for s in allsub:
 		# category = Category.objects.filter(id=s.category_id)
 		categories.append(s.category_id)
-	return render(request, "index.html", {"allpost":all_post , "allcat":all_cat ,"allpost3" : all_post3 ,"allsub" : categories})
+
+	contact_list = all_post
+	paginator = Paginator(contact_list, 5)  # Show 25 contacts per page
+	page = request.GET.get('page',1)
+	try:
+		contacts = paginator.page(page)
+	except PageNotAnInteger:
+		contacts = paginator.page(1)
+	except EmptyPage:
+		contacts = paginator.page(paginator.num_pages)
+	return render(request, "index.html", {"allpost":contacts , "allcat":all_cat ,"allpost3" : all_post3 ,"allsub" : categories})
 	# return HttpResponse(categories)
 
 def getCat(request):

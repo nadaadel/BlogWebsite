@@ -140,18 +140,92 @@
 </div>
 	<div class="col-10">
 		
-		{%  for post in allpost  %}
+		<!--{%  for post in allpost  %}-->
 
-						<div class="col-md-4 abt-left">
+						<!--<div class="col-md-4 abt-left">-->
 
 
-								<a href="/blog/single/{{post.id}}"><img src="{% static ""%}images/{{post.photo}}" alt="" /></a>  <!--post.photo.url-->
-								<h3><a href="/blog/single/{{post.id}}">{{post.title}}</a></h3>
-								<p>{{post.description}}</p>
-								<label>{{post.date}}</label>
+								<!--<a href="/blog/single/{{post.id}}"><img src="{% static ""%}images/{{post.photo}}" alt="" /></a>  &lt;!&ndash;post.photo.url&ndash;&gt;-->
+								<!--<h3><a href="/blog/single/{{post.id}}">{{post.title}}</a></h3>-->
+								<!--<p>{{post.description}}</p>-->
+								<!--<label>{{post.date}}</label>-->
+						<!--</div>-->
+							<!--{%  endfor  %}-->
+				                    	<!--{% for num in allpost.paginator.page_range %}-->
+                                                 <!--{% ifequal num contacts.number %}-->
+                                   <!--<span class="current"><b>{{ num }}</b></span>-->
+                             <!--{% else %}-->
+                          <!--<a href="?page={{ num }}"> {{ num }}</a>-->
+                                         <!--{% endifequal %}-->
+                                                    <!--{% endfor %}-->
+
+               <!--{% for contact in allpost %}-->
+
+
+    <!--<div class="col-md-4 abt-left">-->
+
+
+								<!--<a href="/blog/single/{{post.id}}"><img src="{% static ""%}images/{{contact.photo}}" alt="" /></a>  &lt;!&ndash;post.photo.url&ndash;&gt;-->
+								<!--<h3><a href="/blog/single/{{post.id}}">{{contact.title}}</a></h3>-->
+								<!--<p>{{contact.description}}</p>-->
+								<!--<label>{{contact.date}}</label>-->
+						<!--</div>-->
+
+<!--{% endfor %}-->
+
+<!--<div class="pagination">-->
+    <!--<span class="step-links">-->
+        <!--{% if allpost.has_previous %}-->
+            <!--<a href="?page={{ allpost.previous_page_number }}">previous</a>-->
+        <!--{% endif %}-->
+
+        <!--<span class="current">-->
+            <!--Page {{ allpost.number }} of {{ allpost.paginator.num_pages }}.-->
+        <!--</span>-->
+
+        <!--{% if allpost.has_next %}-->
+            <!--<a href="?page={{ allpost.next_page_number }}">next</a>-->
+        <!--{% endif %}-->
+    <!--</span>-->
+<!--</div>-->
+
+
+
+
+    {% for contact in allpost %}
+      <div class="col-md-4 abt-left">
+
+
+								<a href="/blog/single/{{post.id}}"><img src="{% static ""%}images/{{contact.photo}}" alt="" /></a>  <!--post.photo.url-->
+								<h3><a href="/blog/single/{{post.id}}">{{contact.title}}</a></h3>
+								<p>{{contact.description}}</p>
+								<label>{{contact.date}}</label>
 						</div>
-							{%  endfor  %}
-					
+    {% endfor %}
+
+{% if allpost.has_other_pages %}
+  <ul class="pagination">
+    {% if allpost.has_previous %}
+      <li><a href="?page={{ allpost.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in allpost.paginator.page_range %}
+      {% if allpost.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if allpost.has_next %}
+      <li><a href="?page={{ allpost.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
 
 
 
