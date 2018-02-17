@@ -39,10 +39,10 @@ body a:hover{
 }
 /*--Header-top-Starts--*/
 .head-main{
-	text-align:center;
+	text-align:left;
 }
 .header-top{
-	padding:2em 0px;
+	padding:1em 0px;
 }
 /*--Header-top-end--*/
 /*--Header-Starts--*/
@@ -73,8 +73,12 @@ body a:hover{
 .head {
     position: relative;
 }
+.auth-home{
+    padding: 20px;
+    display: -webkit-inline-box;
+}
 .header {
-	padding: 2em 0px;
+	padding: 1em 0px;
     box-shadow: 0px 1px 9px 1px rgba(0, 0, 0, 0.11);
 }
 ul.navig {
@@ -296,15 +300,15 @@ ul.navig li a.active{
 /*--banner-end--*/
 /*--about-start--*/
 .tag-style{
-
+   margin-top: 20px;
 }
 .tag-style b{
-background-color: #d8ddd0;
-font-size: 20px;
-font-family: inherit;
-padding: 10px;
-margin-left: 6px;
-margin-top: 9px;
+    background-color: #d8ddd0;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 10px;
+    margin-left: 9px;
+    margin-top: 32px;
 }
 .about{
 	padding:4em 0px;

@@ -51,6 +51,9 @@ class Test(models.Model):
 class Word(models.Model):
     word = models.CharField(max_length=50)
 
+    # def __str__(self):
+    #     return self.word
+
 
 class Tag(models.Model):
     tag = models.CharField(max_length=50)

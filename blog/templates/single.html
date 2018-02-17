@@ -50,7 +50,7 @@
 
                             <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart-empty" id="like-icon"
                                           }
-                                          counterl="{{ post.likes }}"> </i>Like <span id="counter_like">
+                            > </i>Like <span id="counter_like">
                             {{ post.likes }}
                         </span></span>
                             </li>
@@ -64,7 +64,18 @@
                         {% endif %}
                     </ul>
                     <p>{{ post.description }}</p>
+                    <div class="comments heading" style="padding: inherit;">
+                        <h3 class="text-uppercase"> TAGS </h3>
+                        <div class="tag-style">
+                            {% for tag in tags %}
 
+                                <b>{{ tag.tag }}</b>
+
+                            {% endfor %}
+                        </div>
+
+
+                    </div>
                 </div>
 
 
@@ -146,6 +157,11 @@
                     <h3 id="test">Leave a Comment</h3>
                     <div class="col-lg-12">
                         <div class="col-lg-8">
+{#                             {%  if user.is_authenticated %}#}
+{#                                 <form method="post" action="/blog/single/{{ post.id }}">#}
+{#                                  {% else %}#}
+{#                                 <form method="post" action="/blog/login">#}
+{#                                  {% endif %}#}
                             <form method="post" action="/blog/single/{{ post.id }}">
                                 {% csrf_token %}
                                 <textarea cols="20" rows="5" name="comment_text" value=" " onfocus="this.value='';"
@@ -153,22 +169,6 @@
                                 <input name="commentBtn" type="submit" value="Comment">
                             </form>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="comments heading">
-                                <h3 class="text-uppercase"> TAGS </h3>
-                                <div class="tag-style">
-                                    {% for tag in tags %}
-
-                                        <b>{{ tag.tag }}</b>
-
-                                    {% endfor %}
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
                     </div>
 
                 </div>

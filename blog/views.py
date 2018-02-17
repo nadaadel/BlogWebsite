@@ -41,12 +41,33 @@ def get_post(request, post_id):
     if request.user.is_authenticated():
         if request.method == "POST":
             if 'replyBtn' in request.POST:
-                replay = Replay.objects.create(description=request.POST['replay_text'],
+                textReply = request.POST['replay_text']
+                words = request.POST['replay_text'].split()
+                badwords = Word.objects.all()
+                for word in words:
+                    for wordobi in badwords:
+                        if word == wordobi.word:
+                            wordLen = len(word)
+                            newWord = '*' * wordLen
+                            textReply = textReply.replace(word, newWord)
+
+                replay = Replay.objects.create(description=textReply,
                                                comment_id=request.POST['comment_id'], user_id=request.user.id)
                 replay.save()
                 return HttpResponseRedirect('/blog/single/%s'%post_id)
             elif 'commentBtn' in request.POST:
-                comment = Comment.objects.create(description=request.POST['comment_text'],
+                textComment = request.POST['comment_text']
+                words = request.POST['comment_text'].split()
+                badwords = Word.objects.all()
+                for word in words:
+                    for wordobi in badwords:
+                        if word == wordobi.word:
+                            wordLen = len(word)
+                            newWord = '*' * wordLen
+                            textComment=textComment.replace(word ,newWord)
+
+                # return HttpResponse(textComment)
+                comment = Comment.objects.create(description=textComment,
                                                  post_id=post_id, user_id=request.user.id)
                 comment.save()
                 return HttpResponseRedirect('/blog/single/%s'%post_id)
