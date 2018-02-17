@@ -29,18 +29,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
 
-
     <div class="header-top">
         <div class="container">
-            <div class="head-main">
-                <a href="index.html"><img src="{% static "images/logo-1.png" %}" alt=""/></a>
-                {%  if user.is_authenticated %}
+            <div class="head-main row">
+               <div class="col-lg-6 col-md-3 col-sm-12">
+                      <a href="/blog/home"><img src="{% static "images/logo-1.png" %}" alt=""/></a>
+               </div>
+               <div class="col-lg-6 col-md-9 col-sm-12">
+                                 {%  if user.is_authenticated %}
 
                      <div class="unauthentication">
-                <div>
-                    <a href="#"> Account</a>
+                <div class="col-lg-3 col-md-5 col-sm-6">
+                    <p> Welcome
+                        <i style="color:#3d1a1b" class="glyphicon glyphicon-user"></i>
+                   <span style="color:#9f9b83;">{{ user.username }}</span></p>
+{#                    <a href="#"> Account</a>#}
                 </div>
-                <div class="submit-btn">
+                <div class="submit-btn col-lg-3 col-md-4 col-sm-6" style="    float: right;
+    margin-top: -21px; margin-right: 26px;">
                     <form method="POST" action="/blog/logout">
                         {% csrf_token %}
                         <input type="submit" value="LOGOUT">
@@ -63,6 +69,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </div>
           {% endif %}
+               </div>
+
+
             </div>
 
         </div>
@@ -90,15 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="submit" value="">
 
 					</form>
-
 				</div>
-				<ul>
-					<li><a href="#"><span class="fb"> </span></a></li>
-					<li><a href="#"><span class="twit"> </span></a></li>
-					<li><a href="#"><span class="pin"> </span></a></li>
-					<li><a href="#"><span class="rss"> </span></a></li>
-					<li><a href="#"><span class="drbl"> </span></a></li>
-				</ul>
 			</div>
                 <div class="clearfix"></div>
             </div>

@@ -13,11 +13,12 @@ urlpatterns = [
     url(r'^about$', views.get_about),
     url(r'^contact$', views.get_contact),
     url(r'^addcat$', views.addCat),
+    url(r'^getcat$', views.getCat),
     url(r'^addpost$', views.addPost),
     url(r'^test$', views.postshow),
     url(r'^single/(?P<post_id>[0-9]+)$', views.get_post),
-    url(r'^single/ajax$', views.like ,name='single_like'),
-
+    url(r'^single/ajax$', views.checkLike),
+    url(r'^single/ajaxdis$', views.checkdisLike),
 
 ]
 # urlpatterns += patterns('',

@@ -3,9 +3,12 @@
 {% load static %}
 {% block main_block %}
 
+    <!----------------------- start main block---------------------------->
     <!--start-single-->
     <div class="single">
         <div class="container">
+            <!----------------------- start post description---------------------------->
+
             <div class="single-top">
                 <a href="#"><img class="img-responsive" src="{% static "images/single-1.jpg" %}" alt=" "></a>
                 <div class=" single-grid">
@@ -15,18 +18,57 @@
                                                   class="glyphicon glyphicon-user"> </i>Author : {{ postAuthor.username }}</span>
                         </a></li>
                         <li><span><i class="glyphicon glyphicon-time"> </i>{{ post.date }}</span></li>
-                        <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart-empty" id="like-icon"
-                                      counterl="{{ post.likes }}"> </i>Like {{ post.likes }}</span></li>
-                        <li><a href="#"><span> <i style="color: crimson"
-                                                  class="glyphicon glyphicon-remove"> </i>disLike {{ post.dislikes }}</span>
-                        </a></li>
+                        {% if userlike.state == 0 %}
+                            <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart-empty" id="like-icon"
+                                          counterl="{{ post.likes }}"> </i>Like <span id="counter_like">
+                            {{ post.likes }}
+                        </span></span>
+                            </li>
+                            <li><span> <i style="color: crimson"
+                                          id="dislike-icon" class="glyphicon glyphicon-remove-sign">
+                        </i> disLike
+                            <span id="counter_dislike">
+                            {{ post.dislikes }}
+                        </span></span>
+                            </li>
+
+                        {% elif userlike.state == 1 %}
+
+                            <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart" id="like-icon"
+                                          counterl="{{ post.likes }}"> </i>Like <span id="counter_like">
+                            {{ post.likes }}
+                        </span></span>
+                            </li>
+                            <li><span> <i style="color: crimson"
+                                          id="dislike-icon" class="glyphicon glyphicon-remove">
+                        </i> disLike
+                            <span id="counter_dislike">
+                            {{ post.dislikes }}
+                        </span></span>
+                            </li>
+                        {% else %}
+
+                            <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart-empty" id="like-icon"
+                                          }
+                                          counterl="{{ post.likes }}"> </i>Like <span id="counter_like">
+                            {{ post.likes }}
+                        </span></span>
+                            </li>
+                            <li><span> <i style="color: crimson"
+                                          id="dislike-icon" class="glyphicon glyphicon-remove">
+                        </i> disLike
+                            <span id="counter_dislike">
+                            {{ post.dislikes }}
+                        </span></span>
+                            </li>
+                        {% endif %}
                     </ul>
                     <p>{{ post.description }}</p>
 
                 </div>
 
 
-                {#                 comment display                #}
+                <!-------display comment start ------->
                 <div class="comments heading">
                     <h3>Comments</h3>
 
@@ -39,14 +81,14 @@
                             </a>
                         </div>
 
-
                         <div class="media-body">
                             <h4 class="media-heading"> {{ comment.user.username }}</h4>
                             <p>{{ comment.description }}</p>
                             <a href="" class="replay"><span> <i class="glyphicon glyphicon-share-alt"> </i>replay</span></a>
 
+                            <!-------display replay start ------->
                             <div class="media">
-                                {#                                replay display#}
+
                                 <ul>
                                     {% for rep in replay_comments %}
                                         {% if comment.id == rep.comment_id %}
@@ -58,7 +100,7 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading"> {{ rep.user.username }}</h4>
-                                                <p>{{ rep.description }}</p>
+                                                    <p>{{ rep.description }}</p>
 
                                                 </div>
 
@@ -70,9 +112,10 @@
 
 
                             </div>
+                            <!-------end display replay ------->
+                            <!-------end display comment ------->
 
-
-                            {# leave a replayhere#}
+                            <!----------------------- insert replay ---------------------------->
                             <div class="comment-bottom heading">
                                 <div class="col-lg-12">
                                     <div class="col-lg-8">
@@ -90,6 +133,7 @@
                                 </div>
 
                             </div>
+                            <!----------------------- insert replay end---------------------------->
 
                         </div>
                     {% endfor %}
@@ -97,7 +141,7 @@
                 </div>
 
 
-                {#                leave a comment here#}
+                <!----------------------- insert comment ---------------------------->
                 <div class="comment-bottom heading">
                     <h3 id="test">Leave a Comment</h3>
                     <div class="col-lg-12">
@@ -128,40 +172,84 @@
                     </div>
 
                 </div>
+                <!----------------------- insert comment end ---------------------------->
             </div>
+            <!----------------------- post description end ---------------------------->
         </div>
     </div>
 {% endblock %}
+<!-----------------------end main block ---------------------------->
 {% block javascript %}
     <script>
+
         $(".replay").click(function () {
             $(this).toggle();
-        }
+        });
 
-
+        //AJAX for like
         $("#like-icon").click(function () {
-
-            console.log("clicked")
             likecount = $(this).attr("counterl");
-            console.log($(this).attr("counterl"));
             $.ajax({
-                url: '{% url "single_like" %}',
-                type: 'get',
+                url: 'http://127.0.0.1:8000/blog/single/ajax?postid={{ post.id }}',
                 data: {
                     'likecount': likecount
                 },
                 dataType: 'json',
                 success: function (data) {
-                    if (data.is_taken) {
-                        alert("A user with this username already exists.");
+
+                    console.log("ajax is success");
+                    data = JSON.parse(data)
+                    likedata = data.likedata;
+
+                    if ($("#like-icon").attr("class") == "glyphicon glyphicon-heart-empty") {
+                        $("#like-icon").attr("class", "glyphicon glyphicon-heart");
+                        $("#counter_like").html((parseInt(likedata)))
+
+                    } else {
+                        $("#like-icon").attr("class", "glyphicon glyphicon-heart-empty");
+                        $("#counter_like").html((parseInt(likedata)))
                     }
                 },
                 failure: function (data) {
-                    alert('Got an error dude');
+                    alert('Got an error like');
                 }
 
             });
-            console.log("aftter")
+        });
+
+        $("#dislike-icon").click(function () {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/blog/single/ajaxdis?postid={{ post.id }}',
+                data: {
+                    'likecount': 1
+                },
+                dataType: 'json',
+                success: function (data) {
+                    data = JSON.parse(data)
+                    dislikedata = data.dislikedata;
+                    likedata = data.likedata;
+
+                    if ($("#dislike-icon").attr('class') == 'glyphicon glyphicon-remove-sign') {
+                        $("#dislike-icon").attr("class", "glyphicon glyphicon-remove");
+                        console.log("discolord");
+                        $("#counter_dislike").html((parseInt(dislikedata)))
+
+                    } else {
+
+                        $("#dislike-icon").attr("class", "glyphicon glyphicon-remove-sign");
+                        $("#counter_dislike").html((parseInt(dislikedata)))
+                        oldlike = $("#counter_like").html();
+                        if (oldlike != likedata) {
+                            $("#counter_like").html((parseInt(likedata)))
+                            $("#like-icon").attr("class", "glyphicon glyphicon-heart-empty");
+                        }
+                    }
+                },
+                failure: function (data) {
+                    alert('Got an error dislike');
+                }
+
+            });
         });
 
     </script>
