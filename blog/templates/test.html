@@ -7,22 +7,27 @@
 </head>
 <body>
 
-{%  for s in allsub  %}
+{%  for s in posts  %}
 
 
- {% if  30 == s.category_id %}
-    <p> you entered correct </p>
-
-{% else %}
-  <p> you entered mina </p>
-
-   {% endif %}
 
 
-<label>{{s.category_id}}</label>
+<label>{{s.title}}</label>
 
 
 {%  endfor  %}
+
+
+{%  for s in posts2  %}
+
+
+
+
+<label>{{s.tag}}</label>
+
+
+{%  endfor  %}
+
 
 
 </body>

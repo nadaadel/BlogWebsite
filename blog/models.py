@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-
+from datetime import datetime
 
 class Tag(models.Model):
     tag = models.CharField(max_length=50)
     def __str__(self):
         return self.tag
+
 
 
 class Category(models.Model):
@@ -20,16 +20,17 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     photo = models.FileField()
-    rate = models.IntegerField()
-    likes = models.IntegerField()
-    dislikes = models.IntegerField()
-    date = models.DateTimeField()
+    rate = models.IntegerField(null=True)
+    likes = models.IntegerField(null=True)
+    dislikes = models.IntegerField(null=True)
+    date = models.DateTimeField(default=datetime.now())
     author = models.ForeignKey(User)
+    category =models.ForeignKey(Category)
     tag = models.ManyToManyField(Tag)
-
-
     def __str__(self):
         return self.title
+
+
 
 
 class Comment(models.Model):

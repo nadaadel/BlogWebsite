@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^allposts_admin/$', views.allPosts_admin),
     url(r'^(?P<pt_id>[0-9]+)/delete$', views.delete),
     url(r'^addPost_admin$', views.addPost_admin),
-    url(r'^(?P<pt_id>[0-9]+)/update_post', views.update_post),
+    url(r'^(?P<pt_id>[0-9]+)/update_post$', views.update_post),
     url(r'^(?P<pt_id>[0-9]+)$',  views.getPost),
     url(r'^allcategories_admin/$', views.allcategories_admin),
     url(r'^(?P<ct_id>[0-9]+)/delete_category$', views.delete_category),
@@ -33,13 +33,15 @@ urlpatterns = [
     url(r'^(?P<wt_id>[0-9]+)/delete_word$', views.delete_word),
     url (r'^newWord$', views.addWords),
     url(r'^(?P<wt_id>[0-9]+)/update_word$', views.update_word),
-    # url(r'^single$', views.get_post),
+    url(r'^test$', views.postshow),
     url(r'^test/(?P<cat_id>[0-9]+)$', views.allsub),
-    url(r'^single/(?P<post_id>[0-9]+)$', views.getPost),
+    url(r'^single/(?P<post_id>[0-9]+)$', views.getPost2),
     url(r'^getcat$', views.getCat),
     url(r'^sub/(?P<cat_id>[0-9]+)$', views.sub),
     url(r'^unsub/(?P<cat_id>[0-9]+)$', views.unsub),
-    url (r'^newtag', views.addTag),
+    url(r'^addtag$', views.addTag),
+    url(r'^singlee/(?P<cat_id>[0-9]+)$', views.getPosts),
+
 
 ]
 # urlpatterns += patterns('',

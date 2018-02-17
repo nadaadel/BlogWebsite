@@ -71,6 +71,7 @@
 <div class="form-group">
 <form method="POST" enctype="multipart/form-data">{% csrf_token %}
 {{ form.as_p }}
+	<a href="/blog/addtag" > <span>add tag</span></a><br/>
 <button type="submit" class="btn ">Add Post</button>
 </form>
 </div>

@@ -121,9 +121,9 @@
 
  {% if cat.id in allsub %}
 
-<tr><td><a href="/blog/single/{{cat.id}}">{{cat.category_name}} </a>  <button  value={{cat.id}} class="supscrip btn-xs btn-danger mina">Unsupscrip</button></td></tr>
+<tr><td><a href="/blog/singlee/{{cat.id}}">{{cat.category_name}} </a>  <button  value={{cat.id}} class="supscrip btn-xs btn-danger mina">Unsupscrip</button></td></tr>
 {% else %}
-  <tr><td><a href="/blog/single/{{cat.id}}">{{cat.category_name}} </a>  <button  value={{cat.id}} class="supscrip btn-xs btn-primary mina">Supscrip</button></td></tr>
+  <tr><td><a href="/blog/singlee/{{cat.id}}">{{cat.category_name}} </a>  <button  value={{cat.id}} class="supscrip btn-xs btn-primary mina">Supscrip</button></td></tr>
 
    {% endif %}
 
@@ -145,7 +145,7 @@
 						<div class="col-md-4 abt-left">
 
 
-								<a href="single.html"><img src="{% static ""%}images/{{post.photo}}" alt="" /></a>  <!--post.photo.url-->
+								<a href="/blog/single/{{post.id}}"><img src="{% static ""%}images/{{post.photo}}" alt="" /></a>  <!--post.photo.url-->
 								<h3><a href="/blog/single/{{post.id}}">{{post.title}}</a></h3>
 								<p>{{post.description}}</p>
 								<label>{{post.date}}</label>

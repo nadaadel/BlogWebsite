@@ -54,14 +54,20 @@ def allsub(request,cat_id):
 # 	return render(request,'addcat.html', {'form':form})
 
 def  addTag(request):
+	# form = TagForm()
+	# if request.method == "POST":
+	# 	form = TagForm(request.POST)
+	# 	if form.is_valid():
+	# 		form.save()
+	# 	return HttpResponseRedirect('/blog/addPost_admin')
+	# return render(request,'addpost2.html', {'form':form})
 	form = TagForm()
 	if request.method == "POST":
 		form = TagForm(request.POST)
 		if form.is_valid():
 			form.save()
-		return HttpResponseRedirect('/blog/home')
-	return render(request,'addpost2.html', {'form':form})
-
+			return HttpResponseRedirect('/blog/addPost_admin')
+	return render(request, 'addtag.html', {'form': form})
 
 def postshow(request):
 	posts=Post.objects.filter(title__contains=request.POST['search_box'])
@@ -196,6 +202,11 @@ def delete(request,pt_id):
 	return HttpResponseRedirect ('/blog/allposts_admin/')
 
 
+def getPosts(request,cat_id):
+	pt= Post.objects.filter(category=cat_id)
+	context={"posts":pt}
+	return render(request, 'singlee.html', context)
+
 
 def  addPost_admin(request):
 	form = PostForm()
@@ -206,11 +217,17 @@ def  addPost_admin(request):
 			return HttpResponseRedirect('/blog/allposts_admin/')
 	return render(request, 'addpost.html', {'form': form})
 
-def getPost(request, pt_id):
+def getPost(request,pt_id):
 	pt = Post.objects.get(id = pt_id)
 	context = {"post":pt }
 	return render(request, "pt_details.html", context)
 
+def getPost2(request,post_id):
+	pt = Post.objects.get(id = post_id)
+	context = {"post":pt }
+	tags = Tag.objects.filter(post=post_id)
+	context2={"tags":tags}
+	return render(request, "single.html", {"post":pt ,"tags":tags})
 
 
 def allcategories_admin(request):
@@ -239,7 +256,7 @@ def update_category (request,ct_id):
 	category_form=CategoryForm(instance=ct)
 
 	if request.method=="POST":
-		category_form=CategoryForm(request.POST,instance=ct)
+		category_form=CategoryForm(request.POST,instance=ct )
 		if category_form.is_valid():
 			category_form.save()
 			return HttpResponseRedirect('/blog/allcategories_admin/')
@@ -252,10 +269,10 @@ def update_post (request,pt_id):
 	post_form=PostForm(instance=pt)
 
 	if request.method=="POST":
-		post_form=PostForm(request.POST,instance=pt)
+		post_form=PostForm(request.POST,request.FILES,instance=pt)
 		if post_form.is_valid():
 			post_form.save()
-			return HttpResponseRedirect('/blog/allposts_admin')
+			return HttpResponseRedirect('/blog/allposts_admin/')
 	context={"form":post_form}
 	return render (request,"addpost.html",context)
 
