@@ -7,32 +7,22 @@
 </head>
 <body>
 
-<!--{%  for s in posts  %}-->
+{%  for s in allsub  %}
 
 
-																	<!---->
-						<!--<label>mina</label>-->
+ {% if  30 == s.category_id %}
+    <p> you entered correct </p>
 
-								<!--<h3><a href="single.html">{{s.title}}</a></h3>-->
+{% else %}
+  <p> you entered mina </p>
 
-							<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-							<!--{%  endfor  %}-->
-<!--{%  for s in posts2  %}-->
+   {% endif %}
 
 
-
-						<!--<label>mina</label>-->
-
-								<!--<h3><a href="single.html">{{s.title}}</a></h3>-->
-
-							<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-							<!--{%  endfor  %}-->
+<label>{{s.category_id}}</label>
 
 
-
-{ %  request.POST['name']  %}
+{%  endfor  %}
 
 
 </body>

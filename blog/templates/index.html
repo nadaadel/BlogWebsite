@@ -116,7 +116,21 @@
 <div class="col-2">
 <table class="table table-striped table-hover">
 			{%  for cat in allcat  %}
-			<tr><td><a href="/blog/single/{{cat.id}}">{{cat.category_name}} </a>  <button  value={{cat.id}} class="supscrip btn-xs btn-primary mina">SUBSCRIP</button></td></tr>
+
+
+
+ {% if cat.id in allsub %}
+
+<tr><td><a href="/blog/single/{{cat.id}}">{{cat.category_name}} </a>  <button  value={{cat.id}} class="supscrip btn-xs btn-danger mina">Unsupscrip</button></td></tr>
+{% else %}
+  <tr><td><a href="/blog/single/{{cat.id}}">{{cat.category_name}} </a>  <button  value={{cat.id}} class="supscrip btn-xs btn-primary mina">Supscrip</button></td></tr>
+
+   {% endif %}
+
+
+
+
+
 
 				{%  endfor  %}
 

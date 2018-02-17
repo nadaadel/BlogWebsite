@@ -22,6 +22,18 @@ def allcat(request):
 	context = {"allcat": allcat}
 	return context
 
+def allsub(request,cat_id):
+	allsub=Category.cat.through.objects.filter(user_id=2)
+	# categories=list()
+	# for s in allsub:
+	# 	category = Category.objects.filter(id=s.category_id)
+	# 	categories.append(category)
+	context = {"allsub": allsub}
+	return context
+	# return render(request, "test.html", context)
+	# return HttpResponse(context)
+
+
 
 # def  addPost(request):
 # 	form = PostForm()
@@ -143,7 +155,13 @@ def home(request):
 	all_post = Post.objects.all().order_by('-date' )[:5]
 	all_cat = Category.objects.all()
 	all_post3 = Post.objects.order_by('-date' )[:3]
-	return render(request, "index.html", {"allpost":all_post , "allcat":all_cat ,"allpost3" : all_post3})
+	allsub = Category.cat.through.objects.filter(user_id=2)
+	categories=[]
+	for s in allsub:
+		# category = Category.objects.filter(id=s.category_id)
+		categories.append(s.category_id)
+	return render(request, "index.html", {"allpost":all_post , "allcat":all_cat ,"allpost3" : all_post3 ,"allsub" : categories})
+	# return HttpResponse(categories)
 
 def getCat(request):
     return render(request , "category.html")
