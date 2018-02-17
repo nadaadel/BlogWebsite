@@ -22,22 +22,26 @@ class RegisterationForm(UserCreationForm):
         return user
 
 
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'description', 'photo', 'rate', 'likes', 'dislikes', 'date','author','tag')
-
+        fields = ('title', 'description', 'photo', 'rate', 'likes', 'dislikes', 'date','author',)
 
 class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comment
-    		fields = ('description',)
+		fields = ('description',)
 
-class CatForm(forms.ModelForm):
+# class CatForm(forms.ModelForm):
+# 	class Meta:
+# 		model = Category
+# 		fields = ('category_name',)
+
+class CategoryForm(forms.ModelForm):
 	class Meta:
 		model = Category
 		fields = ('category_name',)
-
 
 class replayForm(forms.ModelForm):
 	class Meta:
@@ -54,7 +58,6 @@ class WordForm(forms.ModelForm):
         model = Word
         fields = ('word',)
 
-
 # class searchForm(forms.Form):
 #    search = forms.CharField(max_length = 100)
 #
@@ -63,10 +66,3 @@ class WordForm(forms.ModelForm):
 #    name = forms.CharField(max_length = 100)
 #    picture = forms.ImageFields()
 #
-
-
-# class SearchForm(forms.ModelForm):
-#     class Meta:
-#         model = Search
-#         field =('s_v',)
-
