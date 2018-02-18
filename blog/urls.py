@@ -17,9 +17,9 @@ urlpatterns = [
     url(r'^addpost$', views.addPost),
     url(r'^test$', views.postshow),
     url(r'^single/(?P<post_id>[0-9]+)$', views.get_post),
+    url(r'^del/(?P<post_id>[0-9]+)$', views.post_delete),
     url(r'^single/ajax$', views.checkLike),
     url(r'^single/ajaxdis$', views.checkdisLike),
-
 ]
 # urlpatterns += patterns('',
 #                         url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls')), )

@@ -148,8 +148,13 @@ def checkdisLike(request):
         data = json.dumps({'likedata': dislikedata.likes,'dislikedata': dislikedata.dislikes})
         return JsonResponse(data, safe=False)
 
-def postDel(request):
-    pass
+def post_delete(request , post_id):
+    if request.method == 'POST':
+        postDel = Post.objects.get(id=post_id)
+        postDel.delete()
+        return HttpResponseRedirect('/blog/home')
+
+
 
 #=================================authentication===============================
 def login_form(request):

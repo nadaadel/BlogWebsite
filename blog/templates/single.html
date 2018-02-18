@@ -34,7 +34,6 @@
                             </li>
 
                         {% elif userlike.state == 1 %}
-
                             <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart" id="like-icon"
                                           counterl="{{ post.likes }}"> </i>Like <span id="counter_like">
                             {{ post.likes }}
@@ -65,16 +64,11 @@
                         {% endif %}
                     </ul>
 
+        <form style="display: none;" method="POST" class="confirm" action="/blog/del/{{ post.id }}">
+            {% csrf_token %}
+			<input type="submit" name="delete" class="btn btn-danger" data-toggle="modal" data-target="#myModal" value="Delete">
 
-
-{#        <form>#}
-{#			<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">#}
-{#			 send</button>#}
-{#			<button type="button" class="btn btn-danger">Reset</button>#}
-{#		</form>#}
-{##}
-
-
+		</form>
 
                     <p>{{ post.description }}</p>
                     <div class="comments heading" style="padding: inherit;">
@@ -275,8 +269,10 @@
                     dislikedata = data.dislikedata;
                     likedata = data.likedata;
                     if(dislikedata == 10){
+
                         // show popup here
                         console.log('item will deleted')
+                        $(".confirm").css("display" , "block")
                     }
                     if ($("#dislike-icon").attr('class') == 'glyphicon glyphicon-remove-sign') {
                         $("#dislike-icon").attr("class", "glyphicon glyphicon-remove");
