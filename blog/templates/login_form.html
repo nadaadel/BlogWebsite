@@ -23,12 +23,6 @@
 			</div>
         <form method="POST">
             {% csrf_token %}
-              {% if message %}
-          <div class="alert alert-danger" style="color: crimson">
-                <strong>  {{ message }}</strong>
-          </div>
-
-       {% endif %}
             <label for="username">Username</label>
 			<br/>
 			<input type="text" id="username" name="username">

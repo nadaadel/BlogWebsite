@@ -1,32 +1,39 @@
 {% extends "base.html" %}
 {%  include "header.html" %}
-
+{% load static %}
 {% block main_block %}
     <div class="container">
                 <h3 class=" text-center"> Category Name</h3>
                  <div class="col-md-12 about-left">
 					<div class="about-tre">
 						<div class="a-1">
+
+                            {% for post in posts %}
+                                <span>mina</span>
 							<div class="col-md-4 abt-left">
-								<a href="single.html"><img src="images/c-3.jpg" alt="" /></a>
-								<h6>Find The Most</h6>
-								<h3><a href="single.html">Tasty Coffee</a></h3>
-								<p>Vivamus interdum diam diam, non faucibus tortor consequat vitae. Proin sit amet augue sed massa pellentesque viverra. Suspendisse iaculis purus eget est pretium aliquam ut sed diam.</p>
-								<label>May 29, 2015</label>
+								<a href="/blog/single/{{post.id}}"><img src="{% static ""%}images/{{post.photo}}" alt="" /></a>
+								<h6></h6>
+								<h3><a href="/blog/single/{{post.id}}">{{ post.title }}</a></h3>
+								<p> {{ post.description }}</p>
+								<label>{{ post.date }}</label>
 							</div>
+
+
+                                {% endfor %}
+
+                        {% for post in posts2 %}
+                                <span>mina</span>
 							<div class="col-md-4 abt-left">
-								<a href="single.html"><img src="images/c-4.jpg" alt="" /></a>
-								<h6>Find The Most</h6>
-								<h3><a href="single.html">Tasty Coffee</a></h3>
-								<p>Vivamus interdum diam diam, non faucibus tortor consequat vitae. Proin sit amet augue sed massa pellentesque viverra. Suspendisse iaculis purus eget est pretium aliquam ut sed diam.</p>
-								<label>May 29, 2015</label>
+								<a href="/blog/single/{{post.id}}"><img src="{% static ""%}images/{{post.photo}}" alt="" /></a>
+								<h6></h6>
+								<h3><a href="/blog/single/{{post.id}}">{{ post.title }}</a></h3>
+								<p> {{ post.description }}</p>
+								<label>{{ post.date }}</label>
 							</div>
-                            <div class="col-md-4 abt-left">
-								<a href="single.html"><img src="images/c-4.jpg" alt="" /></a>
-								<h6>Find The Most</h6>
-								<h3><a href="single.html">Tasty Coffee</a></h3>
-								<p>Vivamus interdum diam diam, non faucibus tortor consequat vitae. Proin sit amet augue sed massa pellentesque viverra. Suspendisse iaculis purus eget est pretium aliquam ut sed diam.</p>
-								<label>May 29, 2015</label>
+
+
+                                {% endfor %}
+
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -34,27 +41,7 @@
 
              			<div class="about-tre">
 						<div class="a-1">
-							<div class="col-md-4 abt-left">
-								<a href="single.html"><img src="images/c-3.jpg" alt="" /></a>
-								<h6>Find The Most</h6>
-								<h3><a href="single.html">Tasty Coffee</a></h3>
-								<p>Vivamus interdum diam diam, non faucibus tortor consequat vitae. Proin sit amet augue sed massa pellentesque viverra. Suspendisse iaculis purus eget est pretium aliquam ut sed diam.</p>
-								<label>May 29, 2015</label>
-							</div>
-							<div class="col-md-4 abt-left">
-								<a href="single.html"><img src="images/c-4.jpg" alt="" /></a>
-								<h6>Find The Most</h6>
-								<h3><a href="single.html">Tasty Coffee</a></h3>
-								<p>Vivamus interdum diam diam, non faucibus tortor consequat vitae. Proin sit amet augue sed massa pellentesque viverra. Suspendisse iaculis purus eget est pretium aliquam ut sed diam.</p>
-								<label>May 29, 2015</label>
-							</div>
-                            <div class="col-md-4 abt-left">
-								<a href="single.html"><img src="images/c-4.jpg" alt="" /></a>
-								<h6>Find The Most</h6>
-								<h3><a href="single.html">Tasty Coffee</a></h3>
-								<p>Vivamus interdum diam diam, non faucibus tortor consequat vitae. Proin sit amet augue sed massa pellentesque viverra. Suspendisse iaculis purus eget est pretium aliquam ut sed diam.</p>
-								<label>May 29, 2015</label>
-							</div>
+
 							<div class="clearfix"></div>
 						</div>
 					</div>

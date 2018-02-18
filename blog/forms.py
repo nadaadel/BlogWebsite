@@ -23,7 +23,7 @@ class RegisterationForm(UserCreationForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'description', 'rate', 'likes', 'dislikes', 'author',)
+        fields = ('title', 'description',  'author','photo' ,'category','tag', )
 
 
 class CommentForm(forms.ModelForm):
@@ -31,17 +31,17 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('description',)
 
-#
-# def save(self, commit=True):
-#     comment = super(CommentForm, self).save(commit=False)
-#     if commit:
-#         comment.save()
+
+class CommentForm(forms.ModelForm):
+	class Meta:
+		model = Comment
+		fields = ('description',)
 
 
-class CatForm(forms.ModelForm):
-    class Meta:
-        model = Category
-        fields = ('category_name',)
+class CategoryForm(forms.ModelForm):
+	class Meta:
+		model = Category
+		fields = ('category_name',)
 
 
 class replayForm(forms.ModelForm):
@@ -53,7 +53,7 @@ class replayForm(forms.ModelForm):
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
-        fields = ('tag','post')
+        fields = ('tag',)
 
 
 class WordForm(forms.ModelForm):
@@ -61,17 +61,5 @@ class WordForm(forms.ModelForm):
         model = Word
         fields = ('word',)
 
-# class searchForm(forms.Form):
-#    search = forms.CharField(max_length = 100)
-#
-#
-# class ProfileForm(forms.Form):
-#    name = forms.CharField(max_length = 100)
-#    picture = forms.ImageFields()
-#
 
 
-# class SearchForm(forms.ModelForm):
-#     class Meta:
-#         model = Search
-#         field =('s_v',)
