@@ -24,6 +24,7 @@
 			</div>
         <form method="POST">
             {% csrf_token %}
+			{{ form.as_p }}
             <label for="username">Username</label>
 			<br/>
 			<input type="text" id="username" name="username">

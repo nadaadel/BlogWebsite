@@ -14,9 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_URL = "/media/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -28,13 +26,15 @@ SECRET_KEY = 'ltr^^q%m+p3@5x)&6f_2blhh(e6yh=9kt^o1*h$2k*94w+6*@a'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_HOST_USER='brehan.ibrahim@gmail.com'
+EMAIL_HOST_PASSWORD=''
+EMAIL_PORT= 587
+EMAIL_USE_TLS=True
 
 # Application definition
 
 INSTALLED_APPS = (
-    # 'dajaxice',
-    # 'dajax',
     'blog',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blogdb',
         'USER': 'root',
-        'PASSWORD':'brehan',
+        'PASSWORD':'',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
@@ -109,28 +109,39 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+
+
+#
+# TEMPLATE_LOADERS = (
+#    'django.template.loaders.filesystem.Loader',
+#    'django.template.loaders.app_directories.Loader',
+#    'django.template.loaders.eggs.Loader',
+# )
+#
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#    'django.contrib.auth.context_processors.auth',
+#    'django.core.context_processors.debug',
+#    'django.core.context_processors.i18n',
+#    'django.core.context_processors.media',
+#    'django.core.context_processors.static',
+#    'django.core.context_processors.request',
+#    'django.contrib.messages.context_processors.messages'
+# )
+#
+# STATICFILES_FINDERS = (
+#    'django.contrib.staticfiles.finders.FileSystemFinder',
+#    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'dajaxice.finders.DajaxiceFinder',
+# )
+#
+# DAJAXICE_MEDIA_PREFIX = 'dajaxice'
+
+
+
+
 STATIC_URL = os.path.join(BASE_DIR, "blog/static/")
 
-TEMPLATE_LOADERS = (
-   'django.template.loaders.filesystem.Loader',
-   'django.template.loaders.app_directories.Loader',
-   'django.template.loaders.eggs.Loader',
-)
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-   'django.contrib.auth.context_processors.auth',
-   'django.core.context_processors.debug',
-   'django.core.context_processors.i18n',
-   'django.core.context_processors.media',
-   'django.core.context_processors.static',
-   'django.core.context_processors.request',
-   'django.contrib.messages.context_processors.messages'
-)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/static/images')
 
-STATICFILES_FINDERS = (
-   'django.contrib.staticfiles.finders.FileSystemFinder',
-   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-   'dajaxice.finders.DajaxiceFinder',
-)
-
-DAJAXICE_MEDIA_PREFIX = 'dajaxice'
+MEDIA_URL = 'blog/'
