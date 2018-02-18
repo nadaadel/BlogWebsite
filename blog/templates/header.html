@@ -15,6 +15,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     } </script>
     <link href="{% static "css/bootstrap.css" %}" rel='stylesheet' type='text/css'/>
     <link href=" {% static "css/style.css" %}" rel='stylesheet' type='text/css'/>
+   <script src=""{% static "js/bootstrap.bundle.min.js" %}></script>
     <script src="{% static "js/jquery.min.js" %} "></script>
 
 
@@ -41,6 +42,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <div class="col-lg-3 col-md-5 col-sm-6  ">
                     <p> Welcome
+                        {% if user.is_superuser == 1 %}
+                        <a href="/blog/admin">Manage Blog</a>
+                            {% endif %}
                         <i style="color:#3d1a1b" class="glyphicon glyphicon-user"></i>
 {#                   <span style="color:#9f9b83;">#}
                        {{ user.username }}
@@ -57,13 +61,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
 
                     {% else %}
-            <div class="authentication">
+            <div class="authentication col-lg-6 col-md-9 col-sm-12 ">
+
                 <div>
                     <form method="get" action="/blog/login" class="submit-btn">
                         <input type="submit" value="SIGN IN">
                     </form>
                 </div>
-                <div class="submit-btn">
+                <div class="submit-btn" style=" margin: auto;">
                     <form method="get" action="/blog/register">
                         <input type="submit" value="SIGN UP">
                     </form>
@@ -71,8 +76,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
           {% endif %}
                </div>
-
-
             </div>
 
         </div>

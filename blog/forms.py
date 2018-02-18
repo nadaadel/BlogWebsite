@@ -6,11 +6,11 @@ from .models import Post, Tag, Word, Comment, Replay, Category
 
 class RegisterationForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    name = forms.CharField(required=True)
+    # User._meta.get_field_by_name('email').unique = True
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email',)
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
 
     def save(self, commit=True):
         user = super(RegisterationForm, self).save(commit=False)

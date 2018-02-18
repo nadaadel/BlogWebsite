@@ -46,6 +46,12 @@ body a:hover{
 }
 /*--Header-top-end--*/
 /*--Header-Starts--*/
+.authentication{
+    display: inline-flex;
+    text-align: -webkit-auto;
+    margin: 14px auto;
+
+}
 .navigation {
 	float: left;
 }

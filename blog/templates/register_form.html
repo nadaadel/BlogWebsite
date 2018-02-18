@@ -1,110 +1,77 @@
-
-{#    <form role="form" class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">#}
-{##}
-{#        {% csrf_token %}#}
-{#    <div class="form-group">#}
-{#        {% for field in form %}#}
-{#            <div class="input-group">#}
-{#                <span class="input-group-addon" style="background-color:#b77b48; color:white"><span class="glyphicon glyphicon-user"></span></span>#}
-{#                <input class="form-control" id="{{ field.id_for_label }}" maxlength="30" name="{{ field.html_name }}" value="{{ field.value }}" type="text" />#}
-{#                {{ field.errors }}#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        <input type="submit" class="btn btn-primary" value="login" />#}
-{#        <input type="hidden" name="next" value="{{ next }}" />#}
-{#    </div>#}
-{#</form>#}
-
-
-{%  load static %}
+ {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-      <head>
-	<meta charset="utf-8">
-	<title>Sign In</title>
+<head>
+    <meta charset="utf-8">
+    <title>Sign In</title>
 
-	<!-- Google Fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900'
+          rel='stylesheet' type='text/css'>
 
-          	<!-- Custom Stylesheet -->
-	<link rel="stylesheet" href="{% static "css/animate.css" %}">
-	<link rel="stylesheet" href="{% static "css/style_login.css" %}">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{% static "css/animate.css" %}">
+    <link rel="stylesheet" href="{% static "css/style_login.css" %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<div class="top">
-			<h1 id="title" class="hidden"><span id="logo">Blog<span>UI</span></span></h1>
-		</div>
-		<div class="login-box animated fadeInUp">
-			<div class="box-header">
-				<h2>SIGN UP</h2>
-			</div>
-{#        <form method="POST">#}
-{#            {% csrf_token %}#}
-
-            {#            <label for="username">Username</label>#}
-{#			<br/>#}
-{#			<input type="text" for="form.username.id_for_input" id="username" name="username">#}
-{#			<br/>#}
-{#			<label for="password">Password</label>#}
-{#			<br/>#}
-{#			<input type="password" id="password" name="password">#}
-{#			<br/>#}
-{#			<button type="submit">Sign In</button>#}
-{#			<br/>#}
-{#			<a href="#"><p class="small">Forgot your password?</p></a>#}
-{#        </form>#}
-
-      <form method="POST">
-          {% csrf_token %}
-
-
-
-
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
-    {% endfor %}
-  {% endif %}
-
-
-          {% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
+<div class="container">
+    <div class="login-box animated fadeInUp">
+        <div class="box-header">
+            <h2>SIGN UP</h2>
         </div>
-    {% endfor %}
-{% endif %}
-{#           {{ form.as_p }}#}
-          <label for="{{ form.username.id_for_label }}">Username</label>
-          <input type="text" {{ form.username.id_for_input }} id="username" name="username" placeholder="Username">
 
-          <label for="{{ form.first_name.id_for_label }}">First Name</label>
-           <input type="text" {{ form.first_name.id_for_input }} id="first_name" name="first_name" placeholder="First Name">
+        <form method="POST">
+            {% csrf_token %}
 
-          <label for="{{ form.last_name.id_for_label }}">Last Name</label>
-          <input type="text" {{ form.last_name.id_for_input }} id="las_name" name="last_name" placeholder="Last Name">
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+                {% endfor %}
+              {% endif %}
+            <input type="text" {{ form.username.id_for_input }} id="username" name="username" placeholder="Username">
 
-          <label for="{{ form.email.id_for_label }}">Email</label>
-          <input type="text" {{ form.email.id_for_input }} id="email" name="email" placeholder="Email">
+            <div class="alert alert-danger" style="color: crimson">
+                <strong>    {{ form.username.errors }}</strong>
+            </div>
 
-           <label for="{{ form.password1.id_for_label }}">Password</label>
-          <input type="password" {{ form.password1.id_for_input }} id="password1" name="password1" placeholder="Password">
-           <label for="{{ form.password2.id_for_label }}">Password Confirmation</label>
-          <input type="password" {{ form.password2.id_for_input }} id="password2" name="password2" placeholder="Password Confirmation">
+            <input type="text" {{ form.first_name.id_for_input }} id="first_name" name="first_name"
+                   placeholder="First Name">
 
-        <input type="submit" class="" value="Sign Up">
-      </form>
-		</div>
-	</div>
+            <div class="alert alert-danger" style="color: crimson">
+                <strong> {{ form.first_name.errors }}</strong>
+            </div>
+
+            <input type="text" {{ form.last_name.id_for_input }} id="las_name" name="last_name" placeholder="Last Name">
+
+            <div class="alert alert-danger" style="color: crimson">
+                <strong>  {{ form.last_name.errors }}</strong>
+            </div>
+
+            <input type="text" {{ form.email.id_for_input }} id="email" name="email" placeholder="Email">
+
+            <div class="alert alert-danger" style="color: crimson">
+                <strong> {{ form.email.errors }}</strong>
+            </div>
+
+            <input type="password" {{ form.password1.id_for_input }} id="password1" name="password1"
+                   placeholder="Password">
+            <div class="alert alert-danger" style="color: crimson">
+                <strong> {{ form.password1.errors }}</strong>
+            </div>
+
+            <input type="password" {{ form.password2.id_for_input }} id="password2" name="password2"
+                   placeholder="Password Confirmation">
+            <div class="alert alert-danger" style="color: crimson">
+                <strong> {{ form.password2.errors }}</strong>
+            </div>
+
+            <br/>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
 

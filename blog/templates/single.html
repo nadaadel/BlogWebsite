@@ -10,6 +10,7 @@
             <!----------------------- start post description---------------------------->
 
             <div class="single-top">
+                <h3 class="text-right"> Related Category {{ categoryname }}</h3>
                 <a href="#"><img class="img-responsive" src="{% static "images/single-1.jpg" %}" alt=" "></a>
                 <div class=" single-grid">
                     <h4>{{ post.title }}</h4>
@@ -63,9 +64,23 @@
                             </li>
                         {% endif %}
                     </ul>
+
+
+
+{#        <form>#}
+{#			<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">#}
+{#			 send</button>#}
+{#			<button type="button" class="btn btn-danger">Reset</button>#}
+{#		</form>#}
+{##}
+
+
+
                     <p>{{ post.description }}</p>
                     <div class="comments heading" style="padding: inherit;">
+                     {% if tags %}
                         <h3 class="text-uppercase"> TAGS </h3>
+
                         <div class="tag-style">
                             {% for tag in tags %}
 
@@ -74,12 +89,11 @@
                             {% endfor %}
                         </div>
 
-
+                      {% endif %}
                     </div>
                 </div>
-
-
                 <!-------display comment start ------->
+        {% if allComments %}
                 <div class="comments heading">
                     <h3>Comments</h3>
 
@@ -91,10 +105,10 @@
                                 <img src="{% static "images/si.png" %}" alt="User Photo">
                             </a>
                         </div>
-
                         <div class="media-body">
                             <h4 class="media-heading"> {{ comment.user.username }}</h4>
                             <p>{{ comment.description }}</p>
+                            <span><i class="glyphicon glyphicon-time"> </i>{{ comment.date }}</span>
                             <a href="" class="replay"><span> <i class="glyphicon glyphicon-share-alt"> </i>replay</span></a>
 
                             <!-------display replay start ------->
@@ -112,6 +126,7 @@
                                                 <div class="media-body">
                                                     <h4 class="media-heading"> {{ rep.user.username }}</h4>
                                                     <p>{{ rep.description }}</p>
+                                                    <span><i class="glyphicon glyphicon-time"> </i>{{ rep.date }}</span>
 
                                                 </div>
 
@@ -124,17 +139,20 @@
 
                             </div>
                             <!-------end display replay ------->
+
                             <!-------end display comment ------->
 
                             <!----------------------- insert replay ---------------------------->
                             <div class="comment-bottom heading">
                                 <div class="col-lg-12">
                                     <div class="col-lg-8">
-                                        <form method="POST" action="/blog/single/{{ post.id }}">
+                                             {%  if user.is_authenticated %}
+                                 <form method="post" action="/blog/single/{{ post.id }}">
+                                  {% else %}
+                                 <form method="get" action="/blog/login">
+                                  {% endif %}
                                             {% csrf_token %}
-                                            <textarea cols="3" rows="1" name="replay_text" value=" "
-                                                      onfocus="this.value='';"
-                                                      onblur="if (this.value == '') {this.value = 'Message';}">replay for here</textarea>
+                                            <textarea cols="3" rows="1" name="replay_text" placeholder="replay here" required></textarea>
                                             <input type="hidden" name="comment_id" value="{{ comment.id }}">
                                             <input name="replyBtn" type="submit" value="replay">
                                         </form>
@@ -151,21 +169,20 @@
                     </div>
                 </div>
 
-
+     {% endif %}
                 <!----------------------- insert comment ---------------------------->
                 <div class="comment-bottom heading">
                     <h3 id="test">Leave a Comment</h3>
                     <div class="col-lg-12">
                         <div class="col-lg-8">
-{#                             {%  if user.is_authenticated %}#}
-{#                                 <form method="post" action="/blog/single/{{ post.id }}">#}
-{#                                  {% else %}#}
-{#                                 <form method="post" action="/blog/login">#}
-{#                                  {% endif %}#}
-                            <form method="post" action="/blog/single/{{ post.id }}">
+                             {%  if user.is_authenticated %}
+                                 <form method="post" action="/blog/single/{{ post.id }}">
+                                  {% else %}
+                                 <form method="get" action="/blog/login">
+                                  {% endif %}
+
                                 {% csrf_token %}
-                                <textarea cols="20" rows="5" name="comment_text" value=" " onfocus="this.value='';"
-                                          onblur="if (this.value == '') {this.value = 'Message';}">Write Your Comment</textarea>
+                                 <textarea cols="20" rows="5" name="comment_text" placeholder="Write Your Comment" required="true"></textarea>
                                 <input name="commentBtn" type="submit" value="Comment">
                             </form>
                         </div>
@@ -177,6 +194,35 @@
             <!----------------------- post description end ---------------------------->
         </div>
     </div>
+{##}
+{#<div class="modal fade" id="myModal" >#}
+{#  <div class="modal-dialog">#}
+{#    <div class="modal-content">#}
+{#      <div class="modal-header">#}
+{#        <h5 class="modal-title" id="exampleModalLabel">Welcome</h5>#}
+{#        <button type="button" class="close" data-dismiss="modal" >#}
+{#          <span >&times;</span>#}
+{#        </button>#}
+{#      </div>#}
+{#      <div class="modal-body">#}
+{#		<form>#}
+{#			<div class="form-group">#}
+{#				<label>Username</label>#}
+{#				<input type="text" class="form-control">#}
+{#			</div>#}
+{#			<div class="form-group">#}
+{#				<label>Password</label>#}
+{#				<input type="password" class="form-control">#}
+{#			</div>#}
+{#		</form>#}
+{# 	</div>#}
+{#      <div class="modal-footer">#}
+{#        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+{#        <button type="button" class="btn btn-primary">Save changes</button>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
 {% endblock %}
 <!-----------------------end main block ---------------------------->
 {% block javascript %}
@@ -228,7 +274,10 @@
                     data = JSON.parse(data)
                     dislikedata = data.dislikedata;
                     likedata = data.likedata;
-
+                    if(dislikedata == 10){
+                        // show popup here
+                        console.log('item will deleted')
+                    }
                     if ($("#dislike-icon").attr('class') == 'glyphicon glyphicon-remove-sign') {
                         $("#dislike-icon").attr("class", "glyphicon glyphicon-remove");
                         console.log("discolord");

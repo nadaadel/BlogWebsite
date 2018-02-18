@@ -37,6 +37,7 @@ def addPost(request):
     return render(request, 'addpost.html', {'form': form})
 
 #====================================post details ===================================
+# @login_required
 def get_post(request, post_id):
     if request.user.is_authenticated():
         if request.method == "POST":
@@ -66,7 +67,6 @@ def get_post(request, post_id):
                             newWord = '*' * wordLen
                             textComment=textComment.replace(word ,newWord)
 
-                # return HttpResponse(textComment)
                 comment = Comment.objects.create(description=textComment,
                                                  post_id=post_id, user_id=request.user.id)
                 comment.save()
@@ -89,6 +89,7 @@ def get_post(request, post_id):
     return render(request, "single.html", context)
 
 #ajax like handel
+@login_required
 def checkLike(request):
     if request.user.is_authenticated():
         post_id = request.GET.get('postid')
@@ -117,6 +118,7 @@ def checkLike(request):
         # return JsonResponse(serializers.serialize('json', {'likedata': 12}), safe=False)
         return JsonResponse(data, safe=False)
 
+
 #ajax dislike handle
 def checkdisLike(request):
     if request.user.is_authenticated():
@@ -130,10 +132,6 @@ def checkdisLike(request):
                                                   post_id=post_id, user_id=request.user.id)
             userdisliked.save()
             Post.objects.filter(id=post_id).update(dislikes=(dislikeCount + 1))
-            check_count =  Post.objects.get(id=post_id)
-            if check_count.dislikes == 10:
-                check_count.delete()
-                return HttpResponseRedirect('/blog/home')
         else:
             userdislike = Userlike.objects.get(post_id=post_id, user_id=request.user.id)
             if userdislike.state == 0:
@@ -150,11 +148,57 @@ def checkdisLike(request):
         data = json.dumps({'likedata': dislikedata.likes,'dislikedata': dislikedata.dislikes})
         return JsonResponse(data, safe=False)
 
-        #
-        # post = Post.objects.get(id=post_id)
-        # num = post.dislikes
-        # if (num == 10):
-        #     post.delete()
+def postDel(request):
+    pass
+
+#=================================authentication===============================
+def login_form(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('home')
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('home')
+            else:
+                message = "Sorry You are blocked from admin"
+                context = {'message': message}
+                return render(request, "login_form.html" , context)
+    return render(request, "login_form.html")
+
+def register_form(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('home')
+
+    if request.method == "POST":
+        user_form = RegisterationForm(request.POST)
+        if user_form.is_valid():
+            user_form.save()
+            user = authenticate(username=user_form.cleaned_data['username'], password=user_form.cleaned_data['password1'])
+            login(request, user)
+            return HttpResponseRedirect('home')
+    else:
+        user_form = RegisterationForm()
+    return render(request, "register_form.html", {'form': user_form})
+
+def user_logout(request):
+    if request.user.is_authenticated():
+        logout(request)
+        return HttpResponseRedirect('home')
+
+
+#=================================Routes===========================================
+def get_contact(request):
+    return render(request, "contact.html")
+
+def get_about(request):
+    return render(request, "about.html")
+
+
+#==================================================================================
 def addCat(request):
     form = CatForm()
     if request.method == "POST":
@@ -192,51 +236,3 @@ def addcomment(request, user_id):
             form.save()
         return HttpResponseRedirect('/blog/details')
     return render(request, 'blog/details.html', {'form': form})
-
-
-
-#=================================authentication===============================
-def login_form(request):
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('home')
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            loginUser = User.objects.get(username=username)
-            if loginUser.is_superuser == 1:
-                return HttpResponseRedirect('admin')
-            else:
-                return HttpResponseRedirect('home')
-    return render(request, "login_form.html")
-
-
-def register_form(request):
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('home')
-
-    if request.method == "POST":
-        user_form = RegisterationForm(request.POST)
-        if user_form.is_valid():
-            user_form.save()
-            return HttpResponseRedirect('home')
-    else:
-        user_form = RegisterationForm()
-    return render(request, "register_form.html", {'form': user_form})
-
-def user_logout(request):
-    if request.user.is_authenticated():
-        logout(request)
-        return HttpResponseRedirect('home')
-
-
-#=================================Routes===============================
-def get_contact(request):
-    return render(request, "contact.html")
-
-def get_about(request):
-    return render(request, "about.html")
-
-
