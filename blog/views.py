@@ -8,7 +8,48 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterationForm
+# from django.views.generric import ListView
 import json
+
+
+
+def allPosts(request):
+	all_post = Post.objects.all()
+	context = {"allpost": all_post}
+	return context
+
+def allcat(request):
+	all_post = Category.objects.all()
+	context = {"allcat": allcat}
+	return context
+
+def addPost(request):
+	form = PostForm()
+	if request.method == "POST":
+		form = PostForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/home')
+	return render(request,'/blog/addpost.html', {'form':form})
+
+def addCat(request):
+	form = CatForm()
+	if request.method == "POST":
+		form = CatForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/home')
+	return render(request,'addcat.html', {'form':form})
+
+def  addTag(request):
+	form = TagForm()
+	if request.method == "POST":
+		form = TagForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/home')
+	return render(request,'blog/addpost.html', {'form':form})
+
 
 #============================== home===============================
 def home(request):
@@ -17,9 +58,56 @@ def home(request):
 def getCat(request):
     return render(request, "category.html")
 
-def postshow(request):
-    posts = Post.objects.get(author_id=request.POST['search_box'])
-    return render(request, 'test.html', {'posts': posts})
+# def postshow(request):
+#
+#
+#     posts = Post.objects.get(author_id=request.POST['search_box'])
+#     return render(request, 'test.html', {'posts': posts})
+#
+# 	posts=Post.objects.filter(title__contains=request.POST['search_box'])
+#
+#     return render(request, 'test.html', {'posts': posts})
+	# return HttpResponse(posts)
+
+
+def getPost(request,post_id):
+	return HttpResponse(post_id)
+
+def allComment(request,post_id):
+	all_comments = Comment.objects.all(post_id)
+	context = {"allposts": all_comments}
+	return render(request, "post/details.html", context)
+
+def  addTag(request):
+	form = TagForm()
+	if request.method == "POST":
+		form = TagForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/home')
+	return render(request, 'blog/addpost.html', {'form':form})
+
+def  addcomment(request,user_id):
+	form = CommentForm()
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('/blog/details')
+	return render(request, 'blog/details.html', {'form':form})
+
+
+def like(request,post_id):
+	post = Post.objects.get(id =post_id)
+	if request.method == "POST":
+		post.likes+=1
+		post.update()
+	return
+
+
+def get_home(request):
+    return render(request, "index.html")
+
 
 def allPosts(request):
     all_post = Post.objects.all()[:5]
@@ -241,3 +329,11 @@ def addcomment(request, user_id):
             form.save()
         return HttpResponseRedirect('/blog/details')
     return render(request, 'blog/details.html', {'form': form})
+
+def home(request):
+	all_post = Post.objects.all().order_by('-date' )[:5]
+	all_cat = Category.objects.all()
+	all_post3 = Post.objects.order_by('-date' )[:3]
+	return render(request, "index.html", {"allpost":all_post , "allcat":all_cat ,"allpost3" : all_post3})
+
+
