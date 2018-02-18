@@ -12,8 +12,13 @@ from django.http import JsonResponse
 import re
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
+################################################
+from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
+from django.shortcuts import render_to_response ,RequestContext
 
-
+#============================Home===============================#
 def allPosts(request):
 	all_post = Post.objects.all()
 	context = {"allpost": all_post}
@@ -25,51 +30,36 @@ def allcat(request):
 	return context
 
 def allsub(request,cat_id):
-	allsub=Category.cat.through.objects.filter(user_id=2)
-	# categories=list()
-	# for s in allsub:
-	# 	category = Category.objects.filter(id=s.category_id)
-	# 	categories.append(category)
+	allsub=Category.cat.through.objects.filter(user_id=request.user.id)
 	context = {"allsub": allsub}
 	return context
-	# return render(request, "test.html", context)
-	# return HttpResponse(context)
 
 
+def home(request):
+	all_post = Post.objects.all().order_by('-date' )[:5]
+	all_cat = Category.objects.all()
+	all_post3 = Post.objects.order_by('-date' )[:3]
+	allsub = Category.cat.through.objects.filter(user_id=request.user.id)
+	categories=[]
+	for s in allsub:
+		# category = Category.objects.filter(id=s.category_id)
+		categories.append(s.category_id)
 
-# def  addPost(request):
-# 	form = PostForm()
-# 	if request.method == "POST":
-# 		form = PostForm(request.POST, request.FILES)
-# 		if form.is_valid():
-# 			form.save()
-# 		return HttpResponseRedirect('/blog/home')
-# 	return render(request, 'blog/addpost.html', {'form':form})
+	# contact_list = all_post
+	# page = request.GET.get('page', 1)
+	# paginator = Paginator(contact_list, 4)  # Show 25 contacts per page
+    #
+	# try:
+	# 	contacts = paginator.page(page)
+	# except PageNotAnInteger:
+	# 	contacts = paginator.page(page)
+	# except EmptyPage:
+	# 	contacts = paginator.page(paginator.num_pages)
+	return render(request, "index.html", {"allpost":all_post , "allcat":all_cat ,"allpost3" : all_post3 ,"allsub" : categories})
+	# return HttpResponse(categories)
 
-# def addCat(request):
-# 	form = CatForm()
-# 	if request.method == "POST":
-# 		form = CatForm(request.POST)
-# 		if form.is_valid():
-# 			form.save()
-# 		return HttpResponseRedirect('/blog/home')
-# 	return render(request,'addcat.html', {'form':form})
 
-def  addTag(request):
-	# form = TagForm()
-	# if request.method == "POST":
-	# 	form = TagForm(request.POST)
-	# 	if form.is_valid():
-	# 		form.save()
-	# 	return HttpResponseRedirect('/blog/addPost_admin')
-	# return render(request,'addpost2.html', {'form':form})
-	form = TagForm()
-	if request.method == "POST":
-		form = TagForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/blog/addPost_admin')
-	return render(request, 'addtag.html', {'form': form})
+#=============================== search===========================#
 
 def postshow(request):
 	posts=Post.objects.filter(title__contains=request.POST['search_box'])
@@ -77,118 +67,40 @@ def postshow(request):
 	try:
 		tag = Tag.objects.get(tag__contains=request.POST['search_box'])
 		posts2 = Post.objects.filter(tag=tag.id)
+
 	except :
 		return render(request, 'test.html', {'posts': posts})
 	else:
 		return render(request, 'test.html', {'posts': posts, "posts2": posts2})
 
-
-def allComment(request,post_id):
-	all_comments = Comment.objects.all(post_id)
-	context = {"allposts": all_comments}
-	return render(request, "post/details.html", context)
-
-
-def  addcomment(request,user_id):
-	form = CommentForm()
-	if request.method == "POST":
-		form = CommentForm(request.POST)
-		if form.is_valid():
-			form.save()
-		return HttpResponseRedirect('/blog/details')
-	return render(request, 'blog/details.html', {'form':form})
-
-
-def like(request,post_id):
-	post = Post.objects.get(id =post_id)
-	if request.method == "POST":
-		post.likes+=1
-		post.update()
-	return
-
-
-
-
-def checkdislike(request,post_id):
-	post = Post.objects.get(id=post_id)
-	num =post.dislikes
-	if (num==8):
-		post.delete()
-
-# def get_home(request):
-#     return render(request, "index.html")
-
-# Create your views here.
+#===============================end search===========================#
 
 def get_contact(request):
-    return render(request, "contact.html")
-# def get_home(request):
-    # return render(request, "index.html")
+	# send_mail('Subject here','minaaaaaaa','mina7esh@gmail.com',['minaibrahim1991@yahoo.com',],fail_silently=False,)
+	return render(request, "contact.html")
+
 def get_about(request):
     return render(request, "about.html")
 
+#===========================sub & unsub =================================#
 
-def user_logout(request):
-    if request.user.is_authenticated():
-        logout(request)
-        return HttpResponseRedirect('home')
-
-def login_form(request):
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('home')
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return HttpResponse("Login success")
-    return render(request, "login_form.html")
-
-def register_form(request):
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('home')
-    if request.user.is_authenticated():
-        return HttpResponse("You are Logged in")
-    if request.method == "POST":
-        user_form = RegisterationForm(request.POST)
-        if user_form.is_valid():
-            user_form.save()
-            return HttpResponseRedirect('home')
-    else:
-        user_form = RegisterationForm()
-    return render(request, "register_form.html", {'form': user_form})
-
-def home(request):
-	all_post = Post.objects.all().order_by('-date' )[:5]
-	all_cat = Category.objects.all()
-	all_post3 = Post.objects.order_by('-date' )[:3]
-	allsub = Category.cat.through.objects.filter(user_id=2)
-	categories=[]
-	for s in allsub:
-		# category = Category.objects.filter(id=s.category_id)
-		categories.append(s.category_id)
-
-	contact_list = all_post
-	paginator = Paginator(contact_list, 5)  # Show 25 contacts per page
-	page = request.GET.get('page',1)
-	try:
-		contacts = paginator.page(page)
-	except PageNotAnInteger:
-		contacts = paginator.page(1)
-	except EmptyPage:
-		contacts = paginator.page(paginator.num_pages)
-	return render(request, "index.html", {"allpost":contacts , "allcat":all_cat ,"allpost3" : all_post3 ,"allsub" : categories})
-	# return HttpResponse(categories)
-
-def getCat(request):
-    return render(request , "category.html")
-
-#html
 def sub(request,cat_id):
 	user=request.user
 	category = Category.objects.get(id=cat_id)
-	category.cat.add(2)
+	category.cat.add(request.user.id)
+	# subject = "Thank you ya m3lem "
+	# message ="welcome ya m3lem"
+	# to_list=['mina7esh@gmail.com',settings.EMAIL_HOST_USER]
+	# from_email = settings.EMAIL_HOST_USER
+	# send_mail(subject,message,from_email,to_list,fail_silenty=True)
+	send_mail(
+		'Subject here',
+		'hello nada aaaaaaaaa',
+		'minaibrahim1991@yahoo.com',
+		['mina7esh@gmail.com'],
+		fail_silently=False,
+	)
+
 	return HttpResponse(cat_id)
 #
 
@@ -197,8 +109,38 @@ def unsub(request,cat_id):
 
 	cat_id=int(cat_id)
 	# category = Category.objects.filter(id=cat_id,cat=2)
-	Category.cat.through.objects.filter(category_id=cat_id,user_id=2).delete()
+	Category.cat.through.objects.filter(category_id=cat_id,user_id=request.user.id).delete()
 	return HttpResponse("done")
+
+
+
+
+
+
+#====================================end home ============================#
+
+
+
+
+
+
+
+#==================================admin panal ==========================#
+
+def  addTag(request):
+	form = TagForm()
+	if request.method == "POST":
+		form = TagForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/blog/addPost_admin')
+	return render(request, 'addtag.html', {'form': form})
+
+
+def getCat(request):
+    return render(request , "category.html")
+
+#html
 
 def admin(request):
 	 return render(request, 'indexadmin.html')
@@ -215,9 +157,9 @@ def delete(request,pt_id):
 
 
 def getPosts(request,cat_id):
-	pt= Post.objects.filter(category=cat_id)
+	pt= Post.objects.filter(category=cat_id).order_by('-date' )
 	context={"posts":pt}
-	return render(request, 'singlee.html', context)
+	return render(request, 'category.html', context)
 
 
 def  addPost_admin(request):
