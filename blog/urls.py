@@ -41,7 +41,7 @@ urlpatterns = [
     url(r'^(?P<wt_id>[0-9]+)/update_word$', views.update_word),
     url(r'^test$', views.postshow),
     url(r'^test/(?P<cat_id>[0-9]+)$', views.allsub),
-    url(r'^single/(?P<post_id>[0-9]+)$', views.getPost2),
+    # url(r'^single/(?P<post_id>[0-9]+)$', views.getPost2),
     url(r'^getcat$', views.getCat),
     url(r'^sub/(?P<cat_id>[0-9]+)$', views.sub),
     url(r'^unsub/(?P<cat_id>[0-9]+)$', views.unsub),

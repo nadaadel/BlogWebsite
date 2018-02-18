@@ -61,7 +61,7 @@ def home(request):
     # 	contacts = paginator.page(page)
     # except EmptyPage:
     # 	contacts = paginator.page(paginator.num_pages)
-    return render(request, "index.html",{"allpost": all_post, "allcat": all_cat, "allpost3": all_post3, "allsub": categories})
+    return render(request, "index.html", {"posts": all_post, "categories": all_cat, "allpost3": all_post3, "allsub": categories})
     # return HttpResponse(categories)
 
 # return HttpResponse(categories)
@@ -203,7 +203,7 @@ def getPost2(request, post_id):
 
 
 def get_home(request):
-    return render(request, "index.html")
+    return render(request, "index1.html")
 
 
 def allcategories_admin(request):
@@ -447,7 +447,7 @@ def addcomment(request, user_id):
 #     all_post = Post.objects.all().order_by('-date')[:5]
 #     all_cat = Category.objects.all()
 #     all_post3 = Post.objects.order_by('-date')[:3]
-#     return render(request, "index.html", {"allpost": all_post, "allcat": all_cat, "allpost3": all_post3})
+#     return render(request, "index1.html", {"allpost": all_post, "allcat": all_cat, "allpost3": all_post3})
 
 
 def update_post(request, pt_id):
