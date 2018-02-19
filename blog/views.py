@@ -42,7 +42,7 @@ def allsub(request, cat_id):
 
 
 def home(request):
-    all_post = Post.objects.all().order_by('-date')[:5]
+    all_post = Post.objects.all().order_by('-date')
     all_cat = Category.objects.all()
     all_post3 = Post.objects.order_by('-date')[:3]
     allsub = Category.cat.through.objects.filter(user_id=request.user.id)
@@ -51,16 +51,18 @@ def home(request):
         # category = Category.objects.filter(id=s.category_id)
         categories.append(s.category_id)
 
-
+    contact_list = all_post
     page = request.GET.get('page', 1)
-    paginator = Paginator(all_post, 5)
+    paginator = Paginator(contact_list, 5)  # Show 25 contacts per page
+
     try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        posts = paginator.page(page)
+    	contacts = paginator.page(page)
+    except Exception as e :
+        print e
+    	contacts = paginator.page(page)
     except EmptyPage:
-        posts = paginator.page(paginator.num_pages)
-    return render(request, "index.html", {"posts": posts, "categories": all_cat, "allpost3": all_post3, "allsub": categories})
+    	contacts = paginator.page(paginator.num_pages)
+    return render(request, "index.html", {"posts": contacts, "categories": all_cat, "allpost3": all_post, "allsub": categories ,"slider" : all_post3})
     # return HttpResponse(categories)
 
 # return HttpResponse(categories)
@@ -78,6 +80,8 @@ def postshow(request):
     try:
         tag = Tag.objects.filter(tag__contains=request.POST['search_box'])
         posts2 = Post.objects.filter(tag=tag)
+
+
 
     except:
         return render(request, 'category.html', {'posts': posts})
@@ -444,6 +448,7 @@ def addcomment(request, user_id):
 
 def update_post(request, pt_id):
     pt = Post.objects.get(id=pt_id)
+
     post_form = PostForm(instance=pt)
 
     if request.method == "POST":
