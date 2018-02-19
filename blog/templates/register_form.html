@@ -1,4 +1,4 @@
- {% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +24,7 @@
         <form method="POST">
             {% csrf_token %}
 
-              {% if messages %}
-                {% for message in messages %}
-                  <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
-                {% endfor %}
-              {% endif %}
+
             <input type="text" {{ form.username.id_for_input }} id="username" name="username" placeholder="Username">
 
             <div class="alert alert-danger" style="color: crimson">
@@ -53,6 +49,11 @@
             <div class="alert alert-danger" style="color: crimson">
                 <strong> {{ form.email.errors }}</strong>
             </div>
+            {% if email_error %}
+                <div class="alert alert-danger" style="color: crimson">
+                    <strong> {{ email_error }}</strong>
+                </div>
+            {% endif %}
 
             <input type="password" {{ form.password1.id_for_input }} id="password1" name="password1"
                    placeholder="Password">

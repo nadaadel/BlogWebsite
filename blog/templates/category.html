@@ -3,18 +3,18 @@
 {% load static %}
 {% block main_block %}
     <div class="container">
-                <h3 class=" text-center"> Category Name</h3>
+                <h3 class=" text-center"> #{{ categoryName }}</h3>
                  <div class="col-md-12 about-left">
 					<div class="about-tre">
 						<div class="a-1">
 
                             {% for post in posts %}
-                                <span>mina</span>
+
 							<div class="col-md-4 abt-left">
 								<a href="/blog/single/{{post.id}}"><img src="{% static ""%}images/{{post.photo}}" alt="" /></a>
 								<h6></h6>
 								<h3><a href="/blog/single/{{post.id}}">{{ post.title }}</a></h3>
-								<p> {{ post.description }}</p>
+								<p> {{ post.description|slice:":100" }}</p>
 								<label>{{ post.date }}</label>
 							</div>
 
@@ -22,7 +22,7 @@
                                 {% endfor %}
 
                         {% for post in posts2 %}
-                                <span>mina</span>
+
 							<div class="col-md-4 abt-left">
 								<a href="/blog/single/{{post.id}}"><img src="{% static ""%}images/{{post.photo}}" alt="" /></a>
 								<h6></h6>

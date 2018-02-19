@@ -49,9 +49,8 @@ body a:hover{
 /*--Header-top-end--*/
 /*--Header-Starts--*/
 .authentication{
-    display: inline-flex;
-    text-align: -webkit-auto;
-    margin: 14px auto;
+	display: grid;
+    text-align: right;
 
 }
 .navigation {
@@ -83,7 +82,7 @@ body a:hover{
 }
 .auth-home{
     padding: 20px;
-    display: -webkit-inline-box;
+	display: grid;
 }
 .header {
 	padding: 1em 0px;
@@ -308,7 +307,7 @@ ul.navig li a.active{
 /*--banner-end--*/
 /*--about-start--*/
 .tag-style{
-   margin-top: 20px;
+   margin-top: 15px;
 }
 .tag-style b{
     background-color: #d8ddd0;
@@ -319,7 +318,7 @@ ul.navig li a.active{
     margin-top: 32px;
 }
 .about{
-	padding:4em 0px;
+	padding:1em 0px;
 }
 .about-one{
 	text-align:center;
@@ -396,7 +395,7 @@ ul.navig li a.active{
 	background-position:-64px 0px;
 }
 .about-tre{
-	margin-top:5%;
+	margin-top:0%;
 }
 .abt-left img{
 	width:100%;
@@ -1012,7 +1011,7 @@ ul.blog-ic li a:hover{
     margin-top: 22px;
 }
 .single {
-	padding: 6em 0;
+	padding:1em 0;
 }
 h4.media-heading {
     font-size: 18px;

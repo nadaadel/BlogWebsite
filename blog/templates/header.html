@@ -17,7 +17,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href=" {% static "css/style.css" %}" rel='stylesheet' type='text/css'/>
    <script src=""{% static "js/bootstrap.bundle.min.js" %}></script>
     <script src="{% static "js/jquery.min.js" %} "></script>
-    <script  src="{% static "js/jquery.flexisel.js" %} "></script>
+    <script type="text/javascript" src="{% static "js/jquery.flexisel.js" %} "></script>
     <script type="text/javascript" src="{% static "js/move-top.js" %}"></script>
     <script type="text/javascript" src="{% static "js/easing.js" %}"></script>
     <script type="text/javascript">
@@ -37,22 +37,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                </div>
                  {%  if user.is_authenticated %}
                <div class="col-lg-6 col-md-9 col-sm-12 auth-home">
-
-
-                <div class="col-lg-3 col-md-5 col-sm-6  ">
-                    <p> Welcome
-                        {% if user.is_superuser == 1 %}
+                <div class="col-lg-12 col-md-5 col-sm-6 " style="text-align: right;">
+                    <p>   Welcome
+                        <i style="color:#3d1a1b" class="glyphicon glyphicon-user"></i>
+                   <span style="color:#9f9b83;">
+                     {{ user.username }}
+                   </span>
+                    </p>
+                {% if user.is_superuser == 1 %}
                         <a href="/blog/admin">Manage Blog</a>
                             {% endif %}
-                        <i style="color:#3d1a1b" class="glyphicon glyphicon-user"></i>
-{#                   <span style="color:#9f9b83;">#}
-                       {{ user.username }}
-{#                   </span>#}
-                    </p>
 
                 </div>
-                <div class="submit-btn col-lg-3 col-md-4 col-sm-6" style="    float: right;
-    margin-top: -21px; margin-right: 26px;">
+                <div class="submit-btn col-lg-12 col-md-4 col-sm-6" style="    text-align: right;
+    margin-right: 26px;">
                     <form method="POST" action="/blog/logout">
                         {% csrf_token %}
                         <input type="submit" value="LOGOUT">
@@ -61,13 +59,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     {% else %}
             <div class="authentication col-lg-6 col-md-9 col-sm-12 ">
-
-                <div>
+                <div submit-btn col-lg-12 col-md-4 col-sm-6>
                     <form method="get" action="/blog/login" class="submit-btn">
                         <input type="submit" value="SIGN IN">
                     </form>
                 </div>
-                <div class="submit-btn" style=" margin: auto;">
+                <div class="submit-btn col-lg-12 col-md-4 col-sm-6" style=" margin: auto;">
                     <form method="get" action="/blog/register">
                         <input type="submit" value="SIGN UP">
                     </form>
@@ -89,8 +86,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="navig">
                         <li><a href="/blog/home">Home</a></li>
                         <li><a href="/blog/about">About</a></li>
-                        {#						<li><a href="gallery.html">Gallery</a></li>#}
-                        <li><a href="typo.html">Service</a></li>
                         <li><a href="/blog/contact">Contact</a></li>
                     </ul>
                 </div>
