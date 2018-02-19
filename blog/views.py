@@ -78,7 +78,7 @@ def postshow(request):
     posts = Post.objects.filter(title__contains=request.POST['search_box'])
     try:
         tag = Tag.objects.filter(tag__contains=request.POST['search_box'])
-        posts2 = Post.objects.filter(tag=tag.id)
+        posts2 = Post.objects.filter(tag=tag)
 
     except:
         return render(request, 'category.html', {'posts': posts})
@@ -108,11 +108,15 @@ def sub(request, cat_id):
     # to_list=['mina7esh@gmail.com',settings.EMAIL_HOST_USER]
     # from_email = settings.EMAIL_HOST_USER
     # send_mail(subject,message,from_email,to_list,fail_silenty=True)
+    user =User.objects.get(id=request.user.id)
+    to =user.email
+    cat =category.title
+    body= "you are subscribe on"+cat+"we are happy to have you"
     send_mail(
         'Subject here',
-        'hello nada aaaaaaaaa',
-        'minaibrahim1991@yahoo.com',
-        ['mina7esh@gmail.com'],
+        "ssdsd",
+        'mina7esh@gmail.com',
+        ['minaibrahim1991@yahoo.com'],
         fail_silently=False,
     )
 
@@ -403,6 +407,13 @@ def user_logout(request):
 
 # =================================Routes===========================================
 def get_contact(request):
+    send_mail(
+        'Subject here',
+        "ssdsd",
+        'mina7esh@gmial.com',
+        ['minaibrahim1991@yahoo.com'],
+        fail_silently=False,
+    )
     return render(request, "contact.html")
 
 
@@ -471,7 +482,7 @@ def update_word(request, wt_id):
         word_form = WordForm(request.POST, instance=wt)
         if word_form.is_valid():
             word_form.save()
-            return HttpResponseRedirect('/blog/allwords_admin')
+            return HttpResponseRedirect('/blog/allwords_admin/')
     context = {"words": word_form}
     return render(request, "newWords.html", context)
 
@@ -532,7 +543,7 @@ def addWords(request):
         word_form = WordForm(request.POST)
         if word_form.is_valid():
             word_form.save()
-            return HttpResponseRedirect("/blog/allwords_admin")
+            return HttpResponseRedirect("/blog/allwords_admin/")
     return render(request, "newWords.html", context)
 
 
@@ -540,4 +551,4 @@ def delete_word(request, wt_id):
     wt = Word.objects.get(id=wt_id)
     wt.delete()
     # return HttpResponse("Deleted	")
-    return HttpResponseRedirect('/blog/allwords_admin')
+    return HttpResponseRedirect('/blog/allwords_admin/')
