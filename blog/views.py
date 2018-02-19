@@ -425,17 +425,6 @@ def addCat(request):
 
 
 
-
-def addTag(request):
-    form = TagForm()
-    if request.method == "POST":
-        form = TagForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return HttpResponseRedirect('/blog/home')
-    return render(request, 'addtag.html', {'form': form})
-
-
 def addcomment(request, user_id):
     form = CommentForm()
     if request.method == "POST":
