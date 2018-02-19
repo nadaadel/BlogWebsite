@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+
+EMAIL_USE_TLS=True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mina7esh@gmail.com'
+EMAIL_HOST_PASSWORD='0353330999'
+EMAIL_PORT = 587
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blogdb',
         'USER': 'root',
-        'PASSWORD':'',
+        'PASSWORD':'brehan',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }

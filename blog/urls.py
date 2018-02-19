@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from blog import views
-#from dajaxice.core import dajaxice_autodiscover, dajaxice_config
+# from dajaxice.core import dajaxice_autodiscover, dajaxice_config
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
@@ -13,6 +13,12 @@ urlpatterns = [
     url(r'^logout$', views.user_logout),
     url(r'^about$', views.get_about),
     url(r'^contact$', views.get_contact),
+    url(r'^addcat$', views.addCat),
+    url(r'^getcat$', views.getCat),
+    url(r'^single/(?P<post_id>[0-9]+)$', views.get_post),
+    url(r'^del/(?P<post_id>[0-9]+)$', views.post_delete),
+    url(r'^single/ajax$', views.checkLike),
+    url(r'^single/ajaxdis$', views.checkdisLike),
     url(r'^adminModify$', views.admin),
     url(r'^allposts_admin/$', views.allPosts_admin),
     url(r'^(?P<pt_id>[0-9]+)/delete$', views.delete),
@@ -29,19 +35,18 @@ urlpatterns = [
     url(r'^(?P<ut_id>[0-9]+)/unblock$', views.unblock),
     url(r'^(?P<ut_id>[0-9]+)/promote$', views.promote),
     url(r'^(?P<ut_id>[0-9]+)/unpromote$', views.unpromote),
-    url(r'^allwords_admin$', views.allwords_admin),
+    url(r'^allwords_admin/$', views.allwords_admin),
     url(r'^(?P<wt_id>[0-9]+)/delete_word$', views.delete_word),
-    url (r'^newWord$', views.addWords),
+    url (r'^newWord/$', views.addWords),
     url(r'^(?P<wt_id>[0-9]+)/update_word$', views.update_word),
     url(r'^test$', views.postshow),
     url(r'^test/(?P<cat_id>[0-9]+)$', views.allsub),
-    url(r'^single/(?P<post_id>[0-9]+)$', views.getPost2),
+    # url(r'^single/(?P<post_id>[0-9]+)$', views.getPost2),
     url(r'^getcat$', views.getCat),
     url(r'^sub/(?P<cat_id>[0-9]+)$', views.sub),
     url(r'^unsub/(?P<cat_id>[0-9]+)$', views.unsub),
     url(r'^addtag$', views.addTag),
     url(r'^singlee/(?P<cat_id>[0-9]+)$', views.getPosts),
-
 
 ]
 # urlpatterns += patterns('',

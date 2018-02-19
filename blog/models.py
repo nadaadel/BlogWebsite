@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 
+
 class Tag(models.Model):
     tag = models.CharField(max_length=50)
     def __str__(self):
@@ -20,9 +21,9 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     photo = models.FileField()
-    rate = models.IntegerField(null=True)
-    likes = models.IntegerField(null=True)
-    dislikes = models.IntegerField(null=True)
+    rate = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
     date = models.DateTimeField(default=datetime.now())
     author = models.ForeignKey(User)
     category =models.ForeignKey(Category)
@@ -34,36 +35,35 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post_comment= models.ForeignKey(Post)
+    post = models.ForeignKey(Post)
     description = models.CharField(max_length=500)
-    user_comment = models.ForeignKey(User)
-    date=models.DateTimeField()
+    user = models.ForeignKey(User)
+    date = models.DateTimeField(default=datetime.now())
     def __str__(self):
         return self.description
+
 
 class Replay(models.Model):
-    comment_replay = models.ForeignKey(Comment)
-    user_replay = models.ForeignKey(User)
-    date = models.DateTimeField()
+    comment = models.ForeignKey(Comment)
+    user = models.ForeignKey(User)
+    date = models.DateTimeField(default=datetime.now())
     description = models.CharField(max_length=500)
+
     def __str__(self):
         return self.description
 
 
+class Test(models.Model):
+    text = models.CharField(max_length=50)
 
 
 class Word(models.Model):
     word = models.CharField(max_length=50)
 
-
-
-class Contact(models.Model):
-    name= models.CharField(max_length=50)
-    email= models.CharField(max_length=50)
-    message = models.CharField(max_length=500)
-    date=models.DateTimeField()
-    def __str__(self):
-        return self.description
+class Userlike(models.Model):
+    post = models.ForeignKey(Post)
+    user = models.ForeignKey(User)
+    state = models.IntegerField()
 
 # class Profile(models.Model):
 #    name = models.CharField(max_length = 50)

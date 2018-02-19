@@ -1,9 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
-
-
+<body lang="en">
 
 {% include "header.html" %}
 
@@ -13,6 +11,11 @@
         {% load static %}
        {% block main_block %}
       {% endblock %}
-</body>
+
+
+
     {% include "footer.html" %}
-</html>
+</body>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+{% block javascript %}{% endblock %}

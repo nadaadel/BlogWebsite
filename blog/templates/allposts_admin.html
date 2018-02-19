@@ -10,9 +10,13 @@
 	<!-- VENDOR CSS -->
 	<link rel="stylesheet" href="{% static "assets/vendor/bootstrap/css/bootstrap.min.css" %}">
 	<link rel="stylesheet" href="{% static "assets/vendor/font-awesome/css/font-awesome.min.css"%}">
+	<link rel="stylesheet" href="{% static "assets/vendor/bootstrap/css/bootstrap.min.css.map" %}">
+	<link rel="stylesheet" href="{% static "assets/vendor/bootstrap/css/bootstrap.css.map" %}">
 	<link rel="stylesheet" href="{% static "assets/vendor/linearicons/style.css"%}">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{% static "assets/css/main.css"%}">
+	<link rel="stylesheet" href="{% static "assets/css/bootstrap.min.css.map"%}">
+
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
@@ -26,7 +30,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.html"><img src="{% static "assets/img/logo-dark.png"%}" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="/blog/home">Return Home</a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -39,11 +43,8 @@
 
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static "assets/img/user.png"%}" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
-							</ul>
+							<a href="#"><i class="glyphicon glyphicon-user"> {{ user.username }}</i></a>
+
 						</li>
 
 					</ul>
@@ -91,9 +92,10 @@
 					{%  for pt in allPosts_admin  %}
 					<div class="panel panel-headline">
 						<div class="panel-heading">
-							<h5 class="panel-title">{{pt.title}}</h5>
+							<h3 class="panel-title">{{pt.title}}</h3>
+							<i class="glyphicon glyphicon-tint text-primary">{{pt.category_name}}</i>
 							<p class="panel-subtitle">{{pt.description}}</p>
-							<img width="700px" length="400px" src="{% static ""%}images/{{pt.photo}}" alt="" />
+							<p class="panel-subtitle">{{pt.photo}}</p>
 
 						</div>
 
@@ -128,6 +130,8 @@
 						</div>
 					</div>
 								{%  endfor  %}
+
+
 
 
 	<!-- END WRAPPER -->

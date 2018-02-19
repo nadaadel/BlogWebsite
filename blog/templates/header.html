@@ -15,11 +15,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     } </script>
     <link href="{% static "css/bootstrap.css" %}" rel='stylesheet' type='text/css'/>
     <link href=" {% static "css/style.css" %}" rel='stylesheet' type='text/css'/>
+   <script src=""{% static "js/bootstrap.bundle.min.js" %}></script>
     <script src="{% static "js/jquery.min.js" %} "></script>
-
-<link rel="stylesheet" href= "{% static "css/bootstrap.min.css"  %}">
-    <script src= "{% static "js/jquery.min.js" %}"></script>
-    <script src="{% static "js/bootstrap.bundle.min.js" %}"  ></script>
+    <script  src="{% static "js/jquery.flexisel.js" %} "></script>
     <script type="text/javascript" src="{% static "js/move-top.js" %}"></script>
     <script type="text/javascript" src="{% static "js/easing.js" %}"></script>
     <script type="text/javascript">
@@ -31,23 +29,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
 
-
     <div class="header-top">
         <div class="container">
-            <div class="head-main">
-                <a href="index.html"><img src="{% static "images/logo-1.png" %}" alt=""/></a>
+            <div class="head-main row">
+               <div class="col-lg-6 col-md-3 col-sm-12">
+                      <a href="/blog/home"><img  src="{% static "images/blog.png" %}" alt=""/></a>
+               </div>
+                 {%  if user.is_authenticated %}
+               <div class="col-lg-6 col-md-9 col-sm-12 auth-home">
+
+
+                <div class="col-lg-3 col-md-5 col-sm-6  ">
+                    <p> Welcome
+                        {% if user.is_superuser == 1 %}
+                        <a href="/blog/adminModify">Manage Blog</a>
+                            {% endif %}
+                        <i style="color:#3d1a1b" class="glyphicon glyphicon-user"></i>
+{#                   <span style="color:#9f9b83;">#}
+                       {{ user.username }}
+{#                   </span>#}
+                    </p>
+
+                </div>
+                <div class="submit-btn col-lg-3 col-md-4 col-sm-6" style="    float: right;
+    margin-top: -21px; margin-right: 26px;">
+                    <form method="POST" action="/blog/logout">
+                        {% csrf_token %}
+                        <input type="submit" value="LOGOUT">
+                    </form>
+                </div>
+
+                    {% else %}
+            <div class="authentication col-lg-6 col-md-9 col-sm-12 ">
+
                 <div>
-                    <form method="post" action="/blog/login" class="submit-btn">{% csrf_token %}
-                        {{ form.as_p }}
+                    <form method="get" action="/blog/login" class="submit-btn">
                         <input type="submit" value="SIGN IN">
                     </form>
                 </div>
-                <div class="submit-btn">
-                    <form method="POST" action="/home/regitser">{% csrf_token %}
-                        {{ form.as_p }}
+                <div class="submit-btn" style=" margin: auto;">
+                    <form method="get" action="/blog/register">
                         <input type="submit" value="SIGN UP">
                     </form>
                 </div>
+            </div>
+          {% endif %}
+               </div>
             </div>
 
         </div>
@@ -75,15 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="submit" value="">
 
 					</form>
-
 				</div>
-				<ul>
-					<li><a href="#"><span class="fb"> </span></a></li>
-					<li><a href="#"><span class="twit"> </span></a></li>
-					<li><a href="#"><span class="pin"> </span></a></li>
-					<li><a href="#"><span class="rss"> </span></a></li>
-					<li><a href="#"><span class="drbl"> </span></a></li>
-				</ul>
 			</div>
                 <div class="clearfix"></div>
             </div>
@@ -100,4 +119,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 </head>
-
