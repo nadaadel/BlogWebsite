@@ -371,22 +371,32 @@ background: #333333;
 <!--about-end-->
 
      <!------------------------------ pagination start----------------------->
-    {% if allpost.has_other_pages %}
+  <!-- Pagination -->
+       {% for user in posts %}
+
+        <span>{{ user.title }}</span>
+        <!--<td>{{ user.description }}</td>-->
+
+
+    {% endfor %}
+
+
+{% if posts.has_other_pages %}
   <ul class="pagination">
-    {% if allpost.has_previous %}
-      <li><a href="?page={{ allpost.previous_page_number }}">&laquo;</a></li>
+    {% if posts.has_previous %}
+      <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
     {% else %}
       <li class="disabled"><span>&laquo;</span></li>
     {% endif %}
-    {% for i in allpost.paginator.page_range %}
-      {% if allpost.number == i %}
+    {% for i in posts.paginator.page_range %}
+      {% if users.number == i %}
         <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
       {% else %}
         <li><a href="?page={{ i }}">{{ i }}</a></li>
       {% endif %}
     {% endfor %}
-    {% if allpost.has_next %}
-      <li><a href="?page={{ allpost.next_page_number }}">&raquo;</a></li>
+    {% if posts.has_next %}
+      <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
     {% else %}
       <li class="disabled"><span>&raquo;</span></li>
     {% endif %}

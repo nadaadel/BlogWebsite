@@ -51,17 +51,16 @@ def home(request):
         # category = Category.objects.filter(id=s.category_id)
         categories.append(s.category_id)
 
-    # contact_list = all_post
-    # page = request.GET.get('page', 1)
-    # paginator = Paginator(contact_list, 4)  # Show 25 contacts per page
-    #
-    # try:
-    # 	contacts = paginator.page(page)
-    # except PageNotAnInteger:
-    # 	contacts = paginator.page(page)
-    # except EmptyPage:
-    # 	contacts = paginator.page(paginator.num_pages)
-    return render(request, "index.html", {"posts": all_post, "categories": all_cat, "allpost3": all_post3, "allsub": categories})
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(all_post, 5)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(page)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return render(request, "index.html", {"posts": posts, "categories": all_cat, "allpost3": all_post3, "allsub": categories})
     # return HttpResponse(categories)
 
 # return HttpResponse(categories)
@@ -100,23 +99,16 @@ def get_about(request):
 # ===========================sub & unsub =================================#
 
 def sub(request, cat_id):
-    user = request.user
+    user = User.objects.get(id=request.user.id)
     category = Category.objects.get(id=cat_id)
     category.cat.add(request.user.id)
-    # subject = "Thank you ya m3lem "
-    # message ="welcome ya m3lem"
-    # to_list=['mina7esh@gmail.com',settings.EMAIL_HOST_USER]
-    # from_email = settings.EMAIL_HOST_USER
-    # send_mail(subject,message,from_email,to_list,fail_silenty=True)
-    user =User.objects.get(id=request.user.id)
-    to =user.email
-    cat =category.title
-    body= "you are subscribe on"+cat+"we are happy to have you"
+    cat =category.category_name
+    body="HI "+user.first_name+ " you are subscribe on "+cat+" we are happy to have you"
     send_mail(
         'Subject here',
-        "ssdsd",
-        'mina7esh@gmail.com',
-        ['minaibrahim1991@yahoo.com'],
+        body,
+        'mina7esh@gmial.com',
+        [user.email],
         fail_silently=False,
     )
 
