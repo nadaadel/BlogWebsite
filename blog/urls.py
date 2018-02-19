@@ -47,6 +47,8 @@ urlpatterns = [
     url(r'^unsub/(?P<cat_id>[0-9]+)$', views.unsub),
     url(r'^addtag$', views.addTag),
     url(r'^singlee/(?P<cat_id>[0-9]+)$', views.getPosts),
+    url (r'^new_user$', views.add_userAdmin),
+
 
 ]
 # urlpatterns += patterns('',

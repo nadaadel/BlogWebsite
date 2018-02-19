@@ -235,6 +235,15 @@ def update_category(request, ct_id):
     ct = Category.objects.get(id=ct_id)
     category_form = CategoryForm(instance=ct)
 
+def add_userAdmin(request):
+    user_form = RegisterationForm()
+    context = {"form": user_form}
+    if request.method == "POST":
+        user_form = RegisterationForm(request.POST)
+        if user_form.is_valid():
+            user_form.save()
+            return HttpResponseRedirect("/blog/allusers_admin/")
+    return render(request, "register_form.html", context)
 
 # ====================================post details ===================================
 # @login_required
