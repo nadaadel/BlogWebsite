@@ -78,7 +78,7 @@ def postshow(request):
     posts = Post.objects.filter(title__contains=request.POST['search_box'])
     try:
         tag = Tag.objects.filter(tag__contains=request.POST['search_box'])
-        posts2 = Post.objects.filter(tag=tag.id)
+        posts2 = Post.objects.filter(tag=tag)
 
     except:
         return render(request, 'category.html', {'posts': posts})
@@ -420,17 +420,6 @@ def addCat(request):
         return HttpResponseRedirect('/blog/home')
     return render(request, 'addcat.html', {'form': form})
 
-
-
-
-def addTag(request):
-    form = TagForm()
-    if request.method == "POST":
-        form = TagForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return HttpResponseRedirect('/blog/home')
-    return render(request, 'addtag.html', {'form': form})
 
 
 def addcomment(request, user_id):
