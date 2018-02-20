@@ -80,9 +80,6 @@ def postshow(request):
     try:
         tag = Tag.objects.filter(tag__contains=request.POST['search_box'])
         posts2 = Post.objects.filter(tag=tag)
-
-
-
     except:
         return render(request, 'category.html', {'posts': posts})
     else:
