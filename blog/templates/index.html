@@ -16,7 +16,7 @@
                                 <h3 class="text-center">Top Posts</h3>
                                 {% for top in tops %}
                                     <div class=" col-lg-4 col-md4 abt-left">
-                                        <a href="/blog/single/{{ top.id }}"><img
+                                        <a href="/blog/single/{{ top.id }}"><img style="max-width: 100%;"
                                                 src="{% static "" %}images/{{ top.photo }}" alt=""/></a>
                                         <h3><a href="/blog/single/{{ top.id }}">{{ top.title }}</a></h3>
                                         <p>{{ top.description|slice:":100" }}</p>
@@ -50,7 +50,7 @@
                                                 <a href="/blog/singlee/{{ category.id }}">{{ category.category_name }} </a>
                                                 {% if user.is_authenticated %}
                                                     <button value="{{ category.id }}"
-                                                            class="supscrip btn-xs btn-danger subscribe">Unsupscrip
+                                                            class="supscrip btn-xs btn-danger subscribe">Unsubscribe
                                                     </button>
                                                 {% endif %}
                                             </td>
@@ -62,7 +62,7 @@
                                                 <a href="/blog/singlee/{{ category.id }}">{{ category.category_name }} </a>
                                                 {% if user.is_authenticated %}
                                                     <button value="{{ category.id }}"
-                                                            class="supscrip btn-xs btn-primary subscribe">Supscrip
+                                                            class="supscrip btn-xs btn-primary subscribe">subscribe
                                                     </button>
                                                 {% endif %}
                                             </td>
@@ -228,14 +228,14 @@
                 var x = "http://127.0.0.1:8000/blog/sub/".concat(id);
                 console.log(x)
                 console.log("LLL")
-                $(this).html("Unsupscrip");
+                $(this).html("Unsubscribe");
             } else {
                 var id = $(this).val()
                 console.log(id)
                 var x = "http://127.0.0.1:8000/blog/unsub/".concat(id);
                 console.log(x)
                 console.log("LLL")
-                $(this).html("Supscrip");
+                $(this).html("subscribe");
 
             }
             $(this).toggleClass("btn-primary");

@@ -100,14 +100,15 @@ def getCat(request):
 
 def postshow(request):
     posts = Post.objects.filter(title__contains=request.POST['search_box'])
+    text_search = request.POST['search_box']
     try:
         tag = Tag.objects.filter(tag__contains=request.POST['search_box'])
-        posts2 = Post.objects.filter(tag=tag.id)
+        poststag = Post.objects.filter(tag=tag)
 
     except:
-        return render(request, 'category.html', {'posts': posts})
+        return render(request, 'category.html', {'posts': posts , 'text_search' :text_search})
     else:
-        return render(request, 'category.html', {'posts': posts, 'posts2': posts2})
+        return render(request, 'category.html', {'posts': posts, 'poststag': poststag ,'text_search' :text_search})
 
 
 # ===============================end search===========================#
@@ -124,19 +125,16 @@ def get_about(request):
 # ===========================sub & unsub =================================#
 
 def sub(request, cat_id):
-    user = request.user
+    user = User.objects.get(id=request.user.id)
     category = Category.objects.get(id=cat_id)
     category.cat.add(request.user.id)
-    # subject = "Thank you ya m3lem "
-    # message ="welcome ya m3lem"
-    # to_list=['mina7esh@gmail.com',settings.EMAIL_HOST_USER]
-    # from_email = settings.EMAIL_HOST_USER
-    # send_mail(subject,message,from_email,to_list,fail_silenty=True)
+    cat =category.category_name
+    body="HI "+user.first_name+ " you are subscribe on "+cat+" we are happy to have you"
     send_mail(
         'Subject here',
-        'hello nada aaaaaaaaa',
-        'minaibrahim1991@yahoo.com',
-        ['mina7esh@gmail.com'],
+        body,
+        'mina7esh@gmial.com',
+        [user.email],
         fail_silently=False,
     )
 
@@ -158,6 +156,15 @@ def unsub(request, cat_id):
 
 
 # ==================================admin panal ==========================#
+def add_userAdmin(request):
+    user_form = RegisterationForm()
+    context = {"form": user_form}
+    if request.method == "POST":
+        user_form = RegisterationForm(request.POST)
+        if user_form.is_valid():
+            user_form.save()
+            return HttpResponseRedirect("/blog/allusers_admin")
+    return render(request, "register_form.html", context)
 
 def addTag(request):
     form = TagForm()
@@ -254,6 +261,13 @@ def addCategory(request):
 def update_category(request, ct_id):
     ct = Category.objects.get(id=ct_id)
     category_form = CategoryForm(instance=ct)
+    if request.method == "POST":
+        category_form = CategoryForm(request.POST, request.FILES, instance=ct)
+        if category_form.is_valid():
+            category_form.save()
+            return HttpResponseRedirect('/blog/allcategories_admin')
+    context = {"category": category_form}
+    return render(request, "newCategory.html", context)
 
 
 # ====================================post details ===================================
@@ -299,13 +313,14 @@ def get_post(request, post_id):
     userLikes = Userlike.objects.filter(post_id=post_id, user_id=request.user.id)
     category = Category.objects.get(id = onePost.category_id)
     categoryName = category.category_name
+    other = Post.objects.get(id =2)
     if not userLikes:
         context = {'post': onePost, 'postAuthor': postAuthor, 'allComments': all_comments, 'tags': tags,
-                   'replay_comments': replay_comments ,'categoryName' : categoryName}
+                   'replay_comments': replay_comments ,'categoryName' : categoryName , 'other' :other}
     else:
         userLikess = Userlike.objects.get(post_id=post_id, user_id=request.user.id)
         context = {'post': onePost, 'postAuthor': postAuthor, 'allComments': all_comments, 'tags': tags,
-                   'replay_comments': replay_comments, 'userlike': userLikess ,'categoryName' : categoryName}
+                   'replay_comments': replay_comments, 'userlike': userLikess ,'categoryName' : categoryName , 'other' :other}
 
     return render(request, "single.html", context)
 
@@ -445,14 +460,6 @@ def addCat(request):
 
 
 
-def addTag(request):
-    form = TagForm()
-    if request.method == "POST":
-        form = TagForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return HttpResponseRedirect('/blog/home')
-    return render(request, 'addtag.html', {'form': form})
 
 
 def addcomment(request, user_id):

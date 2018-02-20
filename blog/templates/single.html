@@ -4,6 +4,25 @@
 {% block main_block %}
 
     <!----------------------- start main block---------------------------->
+  <div class="modal fade" id="exampleModal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Alert !</h5>
+        <button type="button" class="close" data-dismiss="modal" >
+          <span >&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		This post has 10 disLikes then will be delete <span>Thanks for attention</span>
+ 	</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
     <!--start-single-->
     <div class="single">
         <div class="container">
@@ -11,9 +30,32 @@
 
             <div class="single-top">
                 <h3 class="text-left"> # {{ categoryName }}</h3>
-              <a href="/blog/single/{{ post.id }}"><img
+            <div class="row">
+                <div class="col-lg-8">
+                    <a href="/blog/single/{{ post.id }}"><img
 {#                      src="{% static "images/c-1.jpg"%}" alt="" width="400px"/></a>#}
-                  src="{% static "" %}images/{{ post.photo }}" alt=""  width="700px" length="400px"/></a>
+                  src="{% static "" %}images/{{ post.photo }}" alt="" style="max-width: 100%"/></a>
+                </div>
+                <div class="col-lg-4 about-right heading">
+                <div class="abt-1">
+						<h3>See Other</h3>
+
+						<div class="abt-one">
+{#							  <a href="/blog/single/{{ other.id }}"><img#}
+{#                      src="{% static "images/c-1.jpg"%}" alt="" width="400px"/></a>#}
+{#                  src="{% static "" %}images/{{ other.photo }}" alt=""  width="700px" length="400px"/></a>#}
+                            <h4>{{ other.title }}</h4>
+							<p>{{ other.description|slice:":500" }}.</p>
+							<div class="a-btn">
+								<a href="single.html">Read More</a>
+							</div>
+						</div>
+					</div>
+
+                </div>
+
+            </div>
+
                 <div class=" single-grid">
                     <h4>{{ post.title }}</h4>
                     <ul class="blog-ic">
@@ -74,6 +116,10 @@
 
 		</form>
 
+
+
+
+
                     <p>{{ post.description }}</p>
                     <div class="comments heading" style="padding: inherit;">
                      {% if tags %}
@@ -107,7 +153,7 @@
                             <h4 class="media-heading"> {{ comment.user.username }}</h4>
                             <p>{{ comment.description }}</p>
                             <span><i class="glyphicon glyphicon-time"> </i>{{ comment.date }}</span>
-                            <a href="" class="replay"><span> <i class="glyphicon glyphicon-share-alt"> </i>replay</span></a>
+                            <a><span class="replay_action"> <i id="replay_icon" class="glyphicon glyphicon-share-alt replay_action"> </i>replay</span></a>
 
                             <!-------display replay start ------->
                             <div class="media">
@@ -143,7 +189,7 @@
                             <!----------------------- insert replay ---------------------------->
                             <div class="comment-bottom heading">
                                 <div class="col-lg-12">
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-8 replay-form" style="display: none;">
                                              {%  if user.is_authenticated %}
                                  <form method="post" action="/blog/single/{{ post.id }}">
                                   {% else %}
@@ -172,7 +218,7 @@
                 <div class="comment-bottom heading" style="margin-top: 20px;">
                     <h3 id="test">Leave a Comment</h3>
                     <div class="col-lg-12">
-                        <div class="col-lg-8">
+                        <div class="col-lg-8" >
                              {%  if user.is_authenticated %}
                                  <form method="post" action="/blog/single/{{ post.id }}">
                                   {% else %}
@@ -192,39 +238,15 @@
             <!----------------------- post description end ---------------------------->
         </div>
     </div>
-{##}
-{#<div class="modal fade" id="myModal" >#}
-{#  <div class="modal-dialog">#}
-{#    <div class="modal-content">#}
-{#      <div class="modal-header">#}
-{#        <h5 class="modal-title" id="exampleModalLabel">Welcome</h5>#}
-{#        <button type="button" class="close" data-dismiss="modal" >#}
-{#          <span >&times;</span>#}
-{#        </button>#}
-{#      </div>#}
-{#      <div class="modal-body">#}
-{#		<form>#}
-{#			<div class="form-group">#}
-{#				<label>Username</label>#}
-{#				<input type="text" class="form-control">#}
-{#			</div>#}
-{#			<div class="form-group">#}
-{#				<label>Password</label>#}
-{#				<input type="password" class="form-control">#}
-{#			</div>#}
-{#		</form>#}
-{# 	</div>#}
-{#      <div class="modal-footer">#}
-{#        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
-{#        <button type="button" class="btn btn-primary">Save changes</button>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
+
 {% endblock %}
 <!-----------------------end main block ---------------------------->
 {% block javascript %}
     <script>
+
+        $(".replay_action").on("click" , function () {
+            $(".replay-form").toggle()
+        })
 
         $(".replay").click(function () {
             $(this).toggle();
@@ -262,6 +284,7 @@
         });
 
         $("#dislike-icon").click(function () {
+             $("#exampleModal").modal('show');
             $.ajax({
                 url: 'http://127.0.0.1:8000/blog/single/ajaxdis?postid={{ post.id }}',
                 data: {
@@ -273,8 +296,7 @@
                     dislikedata = data.dislikedata;
                     likedata = data.likedata;
                     if(dislikedata == 10){
-
-                        // show popup here
+                        $("#exampleModal").modal('show');
                         console.log('item will deleted')
                         $(".confirm").css("display" , "block")
                     }

@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<body lang="en">
+
+{% include "header_admin.html" %}
+
+
+<body>
+
+        {% load static %}
+       {% block main_block %}
+      {% endblock %}
+
+
+
+</body>
+    <script src="{% static "assets/vendor/jquery/jquery.min.js"%}"></script>
+    <script src="{% static "assets/vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"%}"></script>
+    <script src="{% static "assets/scripts/klorofil-common.js" %}"></script>
+{% block javascript %}{% endblock %}

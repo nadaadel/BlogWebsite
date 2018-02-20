@@ -13,10 +13,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
+
     <link href="{% static "css/bootstrap.css" %}" rel='stylesheet' type='text/css'/>
     <link href=" {% static "css/style.css" %}" rel='stylesheet' type='text/css'/>
-   <script src=""{% static "js/bootstrap.bundle.min.js" %}></script>
     <script src="{% static "js/jquery.min.js" %} "></script>
+    <script src="{% static "js/bootstrap.js" %} "></script>
+    <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/jquery.flexisel.js" %} "></script>
     <script type="text/javascript" src="{% static "js/move-top.js" %}"></script>
     <script type="text/javascript" src="{% static "js/easing.js" %}"></script>
@@ -64,7 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <input type="submit" value="SIGN IN">
                     </form>
                 </div>
-                <div class="submit-btn col-lg-12 col-md-4 col-sm-6" style=" margin: auto;">
+                <div class="submit-btn col-lg-12 col-md-4 col-sm-6" style="margin-left: 16px;">
                     <form method="get" action="/blog/register">
                         <input type="submit" value="SIGN UP">
                     </form>
