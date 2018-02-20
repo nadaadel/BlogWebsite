@@ -3,7 +3,14 @@
 {% load static %}
 {% block main_block %}
     <div class="container">
-                <h3 class=" text-center"> #{{ text_search }}</h3>
+
+       {% if text_search %}
+           <h3 class=" text-center"> #{{ text_search }}</h3>
+       {% endif %}
+
+    {%if categoryName%}
+                <h3 class="text-center"># {{ categoryName }}</h3>
+    {% endif %}
                  <div class="col-md-12 about-left">
 					<div class="about-tre">
 						<div class="a-1">
