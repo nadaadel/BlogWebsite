@@ -40,30 +40,6 @@ def allsub(request, cat_id):
     context = {"allsub": allsub}
     return context
 
-# def home(request):
-#     all_post = Post.objects.all().order_by('-date')[:5]
-#     all_cat = Category.objects.all()
-#     all_post3 = Post.objects.order_by('-date')[:3]
-#     allsub = Category.cat.through.objects.filter(user_id=request.user.id)
-#     categories = []
-#     for s in allsub:
-#         # category = Category.objects.filter(id=s.category_id)
-#         categories.append(s.category_id)
-#
-#     # contact_list = all_post
-#     # page = request.GET.get('page', 1)
-#     # paginator = Paginator(contact_list, 4)  # Show 25 contacts per page
-#     #
-#     # try:
-#     # 	contacts = paginator.page(page)
-#     # except PageNotAnInteger:
-#     # 	contacts = paginator.page(page)
-#     # except EmptyPage:
-#     # 	contacts = paginator.page(paginator.num_pages)
-#     return render(request, "index.html", {"posts": all_post, "categories": all_cat, "tops": all_post3, "allsub": categories})
-#     # return HttpResponse(categories)
-#
-# # return HttpResponse(categories)
 def home(request):
     all_post = Post.objects.all().order_by('-date')
     all_cat = Category.objects.all()
@@ -71,7 +47,6 @@ def home(request):
     allsub = Category.cat.through.objects.filter(user_id=request.user.id)
     categories = []
     for s in allsub:
-        # category = Category.objects.filter(id=s.category_id)
         categories.append(s.category_id)
 
     contact_list = all_post
@@ -86,9 +61,7 @@ def home(request):
     except EmptyPage:
     	contacts = paginator.page(paginator.num_pages)
     return render(request, "index.html", {"posts": contacts, "categories": all_cat, "tops": all_post3, "allsub": categories ,"slider" : all_post3})
-    # return HttpResponse(categories)
 
-# return HttpResponse(categories)
 
 # ============================== home===============================
 
@@ -114,13 +87,7 @@ def postshow(request):
 # ===============================end search===========================#
 
 def get_contact(request):
-    # send_mail('Subject here','minaaaaaaa','mina7esh@gmail.com',['minaibrahim1991@yahoo.com',],fail_silently=False,)
     return render(request, "contact.html")
-
-
-def get_about(request):
-    return render(request, "about.html")
-
 
 # ===========================sub & unsub =================================#
 
@@ -313,7 +280,7 @@ def get_post(request, post_id):
     userLikes = Userlike.objects.filter(post_id=post_id, user_id=request.user.id)
     category = Category.objects.get(id = onePost.category_id)
     categoryName = category.category_name
-    other = Post.objects.get(id =2)
+    other = Post.objects.get(id=1)
     if not userLikes:
         context = {'post': onePost, 'postAuthor': postAuthor, 'allComments': all_comments, 'tags': tags,
                    'replay_comments': replay_comments ,'categoryName' : categoryName , 'other' :other}

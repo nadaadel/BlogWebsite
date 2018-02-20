@@ -2,27 +2,32 @@
 {% include "header.html" %}
 {% load static %}
 {% block main_block %}
-
+    <link rel="stylesheet" href="{% static "bootstrap.min.css" %}">
     <!----------------------- start main block---------------------------->
-  <div class="modal fade" id="exampleModal" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Alert !</h5>
-        <button type="button" class="close" data-dismiss="modal" >
-          <span >&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-		This post has 10 disLikes then will be delete <span>Thanks for attention</span>
- 	</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Ok</button>
-      </div>
+    <div class="modal fade" id="exampleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Alert !</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    This post has 10 disLikes then will be delete <span>Thanks for attention</span>
+                </div>
+                <div class="modal-footer">
+
+                    <form method="POST" class="confirm" action="/blog/del/{{ post.id }}">
+                        {% csrf_token %}
+                        <input type="submit" name="delete" class="btn btn-danger" data-toggle="modal"
+                               data-target="#myModal" value="Delete">
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
     <!--start-single-->
     <div class="single">
         <div class="container">
@@ -30,31 +35,29 @@
 
             <div class="single-top">
                 <h3 class="text-left"> # {{ categoryName }}</h3>
-            <div class="row">
-                <div class="col-lg-8">
-                    <a href="/blog/single/{{ post.id }}"><img
-{#                      src="{% static "images/c-1.jpg"%}" alt="" width="400px"/></a>#}
-                  src="{% static "" %}images/{{ post.photo }}" alt="" style="max-width: 100%"/></a>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <a href="/blog/single/{{ post.id }}"><img
+                                src="{% static "" %}images/{{ post.photo }}" alt="" style="max-width: 100%"/></a>
+                    </div>
+                    <div class="col-lg-4 about-right heading">
+                        {% if other %}
+                            <div class="abt-1">
+                                <h3>See Other</h3>
+
+                                <div class="abt-one">
+
+                                    <h4>{{ other.title }}</h4>
+                                    <p>{{ other.description|slice:":500" }}.</p>
+                                    <div class="a-btn">
+                                        <a href="/blog/single/{{ post.id }}">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
                 </div>
-                <div class="col-lg-4 about-right heading">
-                <div class="abt-1">
-						<h3>See Other</h3>
-
-						<div class="abt-one">
-{#							  <a href="/blog/single/{{ other.id }}"><img#}
-{#                      src="{% static "images/c-1.jpg"%}" alt="" width="400px"/></a>#}
-{#                  src="{% static "" %}images/{{ other.photo }}" alt=""  width="700px" length="400px"/></a>#}
-                            <h4>{{ other.title }}</h4>
-							<p>{{ other.description|slice:":500" }}.</p>
-							<div class="a-btn">
-								<a href="single.html">Read More</a>
-							</div>
-						</div>
-					</div>
-
-                </div>
-
-            </div>
 
                 <div class=" single-grid">
                     <h4>{{ post.title }}</h4>
@@ -63,171 +66,168 @@
                                                   class="glyphicon glyphicon-user"> </i>Author : {{ postAuthor.username }}</span>
                         </a></li>
                         <li><span><i class="glyphicon glyphicon-time"> </i>{{ post.date }}</span></li>
-                    {% if user.is_authenticated %}
-                        {% if userlike.state == 0 %}
-                            <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart-empty" id="like-icon"
-                                          counterl="{{ post.likes }}"> </i>Like <span id="counter_like">
+                        {% if user.is_authenticated %}
+                            {% if userlike.state == 0 %}
+                                <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart-empty"
+                                              id="like-icon"
+                                              counterl="{{ post.likes }}"> </i>Like <span id="counter_like">
                             {{ post.likes }}
                         </span></span>
-                            </li>
-                            <li><span> <i style="color: crimson"
-                                          id="dislike-icon" class="glyphicon glyphicon-remove-sign">
+                                </li>
+                                <li><span> <i style="color: crimson"
+                                              id="dislike-icon" class="glyphicon glyphicon-remove-sign">
                         </i> disLike
                             <span id="counter_dislike">
                             {{ post.dislikes }}
                         </span></span>
-                            </li>
+                                </li>
 
-                        {% elif userlike.state == 1 %}
-                            <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart" id="like-icon"
-                                          counterl="{{ post.likes }}"> </i>Like <span id="counter_like">
+                            {% elif userlike.state == 1 %}
+                                <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart" id="like-icon"
+                                              counterl="{{ post.likes }}"> </i>Like <span id="counter_like">
                             {{ post.likes }}
                         </span></span>
-                            </li>
-                            <li><span> <i style="color: crimson"
-                                          id="dislike-icon" class="glyphicon glyphicon-remove">
+                                </li>
+                                <li><span> <i style="color: crimson"
+                                              id="dislike-icon" class="glyphicon glyphicon-remove">
                         </i> disLike
                             <span id="counter_dislike">
                             {{ post.dislikes }}
                         </span></span>
-                            </li>
-                        {% else %}
+                                </li>
+                            {% else %}
 
-                            <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart-empty" id="like-icon"
-                                          }
-                            > </i>Like <span id="counter_like">
+                                <li><span> <i style="color: crimson" class="glyphicon glyphicon-heart-empty"
+                                              id="like-icon"
+                                              }
+                                > </i>Like <span id="counter_like">
                             {{ post.likes }}
                         </span></span>
-                            </li>
-                            <li><span> <i style="color: crimson"
-                                          id="dislike-icon" class="glyphicon glyphicon-remove">
+                                </li>
+                                <li><span> <i style="color: crimson"
+                                              id="dislike-icon" class="glyphicon glyphicon-remove">
                         </i> disLike
                             <span id="counter_dislike">
                             {{ post.dislikes }}
                         </span></span>
-                            </li>
+                                </li>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
                     </ul>
-
-        <form style="display: none;" method="POST" class="confirm" action="/blog/del/{{ post.id }}">
-            {% csrf_token %}
-			<input type="submit" name="delete" class="btn btn-danger" data-toggle="modal" data-target="#myModal" value="Delete">
-
-		</form>
-
-
-
 
 
                     <p>{{ post.description }}</p>
                     <div class="comments heading" style="padding: inherit;">
-                     {% if tags %}
-                        <h3 class="text-uppercase"> TAGS </h3>
+                        {% if tags %}
+                            <h3 class="text-uppercase"> TAGS </h3>
 
-                        <div class="tag-style">
-                            {% for tag in tags %}
+                            <div class="tag-style">
+                                {% for tag in tags %}
 
-                                <b>{{ tag.tag }}</b>
+                                    <b>{{ tag.tag }}</b>
 
-                            {% endfor %}
-                        </div>
+                                {% endfor %}
+                            </div>
 
-                      {% endif %}
+                        {% endif %}
                     </div>
                 </div>
                 <!-------display comment start ------->
-        {% if allComments %}
-                <div class="comments heading">
-                    <h3>Comments</h3>
+                {% if allComments %}
+                    <div class="comments heading">
+                        <h3>Comments</h3>
 
-                    {% for comment in allComments %}
+                        {% for comment in allComments %}
 
-                        <div class="media">
-                        <div class="media-left">
-                            <a href="#">
-                                <img src="{% static "images/si.png" %}" alt="User Photo">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading"> {{ comment.user.username }}</h4>
-                            <p>{{ comment.description }}</p>
-                            <span><i class="glyphicon glyphicon-time"> </i>{{ comment.date }}</span>
-                            <a><span class="replay_action"> <i id="replay_icon" class="glyphicon glyphicon-share-alt replay_action"> </i>replay</span></a>
-
-                            <!-------display replay start ------->
                             <div class="media">
-
-                                <ul>
-                                    {% for rep in replay_comments %}
-                                        {% if comment.id == rep.comment_id %}
-                                            <li>
-                                                <div class="media-left">
-                                                    <a href="#">
-                                                        <img src="{% static "images/si.png" %}" alt="User Photo">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4 class="media-heading"> {{ rep.user.username }}</h4>
-                                                    <p>{{ rep.description }}</p>
-                                                    <span><i class="glyphicon glyphicon-time"> </i>{{ rep.date }}</span>
-
-                                                </div>
-
-                                                {#                              <a href="" class="replay"><span> <i  class="glyphicon glyphicon-share-alt"> </i>replay</span></a>#}
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-
-
+                            <div class="media-left">
+                                <a href="#">
+                                    <img src="{% static "images/si.png" %}" alt="User Photo">
+                                </a>
                             </div>
-                            <!-------end display replay ------->
+                            <div class="media-body">
+                                <h4 class="media-heading"> {{ comment.user.username }}</h4>
+                                <p>{{ comment.description }}</p>
+                                <span><i class="glyphicon glyphicon-time"> </i>{{ comment.date }}</span>
+                                <a><span class="replay_action"> <i id="replay_icon"
+                                                                   class="glyphicon glyphicon-share-alt replay_action"> </i>replay</span></a>
 
-                            <!-------end display comment ------->
+                                <!-------display replay start ------->
+                                <div class="media">
 
-                            <!----------------------- insert replay ---------------------------->
-                            <div class="comment-bottom heading">
-                                <div class="col-lg-12">
-                                    <div class="col-lg-8 replay-form" style="display: none;">
-                                             {%  if user.is_authenticated %}
-                                 <form method="post" action="/blog/single/{{ post.id }}">
-                                  {% else %}
-                                 <form method="get" action="/blog/login">
-                                  {% endif %}
+                                    <ul>
+                                        {% for rep in replay_comments %}
+                                            {% if comment.id == rep.comment_id %}
+                                                <li>
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                            <img src="{% static "images/si.png" %}" alt="User Photo">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading"> {{ rep.user.username }}</h4>
+                                                        <p>{{ rep.description }}</p>
+                                                        <span><i
+                                                                class="glyphicon glyphicon-time"> </i>{{ rep.date }}</span>
+
+                                                    </div>
+
+                                                    {#                              <a href="" class="replay"><span> <i  class="glyphicon glyphicon-share-alt"> </i>replay</span></a>#}
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+
+
+                                </div>
+                                <!-------end display replay ------->
+
+                                <!-------end display comment ------->
+
+                                <!----------------------- insert replay ---------------------------->
+                                <div class="comment-bottom heading">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-8 replay-form" style="display: none;">
+                                            {% if user.is_authenticated %}
+                                                <form method="post" action="/blog/single/{{ post.id }}">
+                                            {% else %}
+                                                <form method="get" action="/blog/login">
+                                            {% endif %}
                                             {% csrf_token %}
-                                            <textarea cols="3" rows="1" name="replay_text" placeholder="replay here" required></textarea>
+                                            <textarea cols="3" rows="1" name="replay_text" placeholder="replay here"
+                                                      required></textarea>
                                             <input type="hidden" name="comment_id" value="{{ comment.id }}">
                                             <input name="replyBtn" type="submit" value="replay">
-                                        </form>
+                                            </form>
+                                        </div>
+                                        <div class="col-lg-4">
+                                        </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                    </div>
+
                                 </div>
+                                <!----------------------- insert replay end---------------------------->
 
                             </div>
-                            <!----------------------- insert replay end---------------------------->
-
+                        {% endfor %}
                         </div>
-                    {% endfor %}
                     </div>
-                </div>
 
-     {% endif %}
+                {% endif %}
                 <!----------------------- insert comment ---------------------------->
                 <div class="comment-bottom heading" style="margin-top: 20px;">
                     <h3 id="test">Leave a Comment</h3>
                     <div class="col-lg-12">
-                        <div class="col-lg-8" >
-                             {%  if user.is_authenticated %}
-                                 <form method="post" action="/blog/single/{{ post.id }}">
-                                  {% else %}
-                                 <form method="get" action="/blog/login">
-                                  {% endif %}
+                        <div class="col-lg-8">
+                            {% if user.is_authenticated %}
+                                <form method="post" action="/blog/single/{{ post.id }}">
+                            {% else %}
+                                <form method="get" action="/blog/login">
+                            {% endif %}
 
-                                {% csrf_token %}
-                                 <textarea cols="20" rows="5" name="comment_text" placeholder="Write Your Comment" required="true"></textarea>
-                                <input name="commentBtn" type="submit" value="Comment">
+                            {% csrf_token %}
+                            <textarea cols="20" rows="5" name="comment_text" placeholder="Write Your Comment"
+                                      required="true"></textarea>
+                            <input name="commentBtn" type="submit" value="Comment">
                             </form>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
 {% block javascript %}
     <script>
 
-        $(".replay_action").on("click" , function () {
+        $(".replay_action").on("click", function () {
             $(".replay-form").toggle()
         })
 
@@ -263,7 +263,6 @@
                 dataType: 'json',
                 success: function (data) {
 
-                    console.log("ajax is success");
                     data = JSON.parse(data)
                     likedata = data.likedata;
 
@@ -284,7 +283,6 @@
         });
 
         $("#dislike-icon").click(function () {
-             $("#exampleModal").modal('show');
             $.ajax({
                 url: 'http://127.0.0.1:8000/blog/single/ajaxdis?postid={{ post.id }}',
                 data: {
@@ -295,14 +293,12 @@
                     data = JSON.parse(data)
                     dislikedata = data.dislikedata;
                     likedata = data.likedata;
-                    if(dislikedata == 10){
+                    if (dislikedata == 10) {
                         $("#exampleModal").modal('show');
-                        console.log('item will deleted')
-                        $(".confirm").css("display" , "block")
+
                     }
                     if ($("#dislike-icon").attr('class') == 'glyphicon glyphicon-remove-sign') {
                         $("#dislike-icon").attr("class", "glyphicon glyphicon-remove");
-                        console.log("discolord");
                         $("#counter_dislike").html((parseInt(dislikedata)))
 
                     } else {
