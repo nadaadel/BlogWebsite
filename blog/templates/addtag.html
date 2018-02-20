@@ -1,4 +1,5 @@
 {% load static %}
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 
@@ -65,6 +66,11 @@
 			</div>
 		</div>
 		<!-- END LEFT SIDEBAR -->
+=======
+{% load static %}
+{% include "header_admin.html" %}
+{% block main_block %}
+>>>>>>> master
     <div class="main">
     <!-- MAIN CONTENT -->
     <div class="main-content">
@@ -76,10 +82,4 @@
 </div>
 </div>
 </div>
-<script src="{% static "assets/vendor/jquery/jquery.min.js"%}"></script>
-<script src="{% static "assets/vendor/bootstrap/js/bootstrap.min.js" %}"></script>
-<script src="{% static "assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"%}"></script>
-<script src="{% static "assets/scripts/klorofil-common.js" %}"></script>
-
-</body>
-</html>
+{% endblock %}

@@ -1,7 +1,4 @@
 {% load static %}
-<<<<<<< HEAD
-<!doctype html>
-<html lang="en">
 
 <head>
 	<title>ADMIN PANEL</title>
@@ -14,6 +11,7 @@
 	<link rel="stylesheet" href="{% static "assets/vendor/linearicons/style.css"%}">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{% static "assets/css/main.css"%}">
+
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
@@ -27,7 +25,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index1.html"><img src="{% static "assets/img/logo-dark.png"%}" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="/blog/home">Return Home</a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -40,11 +38,8 @@
 
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static "assets/img/user.png"%}" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
-							</ul>
+							<a href="#"><i class="glyphicon glyphicon-user"> {{ user.username }}</i></a>
+
 						</li>
 
 					</ul>
@@ -57,30 +52,11 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="/blog/allusers_admin/" class="active"><i class="lnr lnr-home"></i> <span>Users</span></a></li>
-						<li><a href="/blog/allposts_admin/" class=""><i class="lnr lnr-code"></i> <span>Posts</span></a></li>
-						<li><a href="/blog/allcategories_admin/" class=""><i class="lnr lnr-chart-bars"></i> <span>Categories</span></a></li>
+						<li><a href="/blog/allusers_admin" class="active"><i class="lnr lnr-home"></i> <span>Users</span></a></li>
+						<li><a href="/blog/allposts_admin" class=""><i class="lnr lnr-code"></i> <span>Posts</span></a></li>
+						<li><a href="/blog/allcategories_admin" class=""><i class="lnr lnr-chart-bars"></i> <span>Categories</span></a></li>
 						<li><a href="/blog/allwords_admin" class=""><i class="lnr lnr-cog"></i> <span>Forbbiden Words</span></a></li>
 					</ul>
 				</nav>
 			</div>
 		</div>
-		<!-- END LEFT SIDEBAR -->
-=======
-{% load static %}
-{% include "header_admin.html" %}
-{% block main_block %}
->>>>>>> master
-    <div class="main">
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
-<div class="form-group">
-<form method="POST" enctype="multipart/form-data">{% csrf_token %}
-{{ form.as_p }}
-	<a href="/blog/addtag" > <span>add tag</span></a><br/>
-<button type="submit" class="btn ">Add Post</button>
-</form>
-</div>
-</div>
-</div>
-{% endblock %}
