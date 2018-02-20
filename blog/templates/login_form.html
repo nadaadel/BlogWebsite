@@ -15,15 +15,19 @@
 </head>
 <body>
 	<div class="container">
-		<div class="top">
-			<h1 id="title" class="hidden"><span id="logo">Blog<span>UI</span></span></h1>
-		</div>
+
 		<div class="login-box animated fadeInUp">
 			<div class="box-header">
 				<h2>Log In</h2>
+
 			</div>
         <form method="POST">
             {% csrf_token %}
+            {% if message %}
+                <div class="alert alert-danger" style="color: crimson">
+                    <strong> {{ message }}</strong>
+                </div>
+            {% endif %}
             <label for="username">Username</label>
 			<br/>
 			<input type="text" id="username" name="username">

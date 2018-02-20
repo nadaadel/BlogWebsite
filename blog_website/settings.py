@@ -11,12 +11,18 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+
+EMAIL_USE_TLS=True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mina7esh@gmail.com'
+EMAIL_HOST_PASSWORD='0353330999'
+EMAIL_PORT = 587
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_URL = "/media/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -140,3 +146,6 @@ USE_TZ = True
 STATIC_URL = os.path.join(BASE_DIR, "blog/static/")
 
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/static/images')
+
+MEDIA_URL = 'blog/'

@@ -1,0 +1,95 @@
+{% load static %}
+{% load static %}
+{% include "header_admin.html" %}
+{% block main_block %}
+
+			<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<!-- OVERVIEW -->
+
+		<div class= "row">
+						<div class="col-md-2 col-sm-4 col-xs-6">
+							<div class="metric">
+								<p style="text-align: center;">
+									<span><a href = "/blog/new_user">Create User</a></span>
+
+								</p>
+							</div>
+						</div>
+					</div>
+					{%  for ut in allusers_admin  %}
+<div class ="row">
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							{% if ut.is_superuser == 1 %}
+							<i class="glyphicon glyphicon-wrench text-danger"> ADMIN </i>
+							<!-- <p class="panel-title text-danger">ADMIN</p> -->
+								{% endif %}
+
+
+							<p class="panel-title">
+								{% if ut.is_active == 0 %}
+								<i class="glyphicon glyphicon-remove text-danger"></i>
+								{% endif %}
+								{{ut.username}}
+
+							</p>
+
+
+						</div>
+
+						<div class="panel-body">
+							<div class="row">
+								{% if ut.is_superuser == 0 %}
+								<div class="col-md-2 ">
+									<div class="metric">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{ut.id}}/block">block</a></span>
+
+										</p>
+									</div>
+								</div>
+								{% endif %}
+								{% if ut.is_superuser == 0 %}
+
+								<div class="col-md-2">
+									<div class="metric">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{ut.id}}/unblock">unblock</a></span>
+										</p>
+									</div>
+								</div>
+								{% endif %}
+
+
+								<div class="col-md-2">
+									<div class="metric">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{ut.id}}/promote">promote</a></span>
+
+										</p>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="metric">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{ut.id}}/unpromote">unpromote</a></span>
+
+										</p>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="metric">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{ut.id}}/delete_user">Delete</a></span>
+
+										</p>
+									</div>
+								</div>
+							</div>
+								{%  endfor  %}
+
+
+	{% endblock %}

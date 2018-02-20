@@ -1,0 +1,16 @@
+{% load static %}
+{% load static %}
+{% include "header_admin.html" %}
+{% block main_block %}
+		<div class="main">
+			<div class="main-content">
+								<div class="form-group">
+    <form method="POST">{% csrf_token %}
+    {{ words.as_p }}
+		<button type="submit" class="btn ">Add Word</button>
+	</div>
+	</div>
+</div>
+
+
+{% endblock %}

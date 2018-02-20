@@ -1,0 +1,26 @@
+{% load static %}
+{% load static %}
+{% include "header_admin.html" %}
+{% block main_block %}
+
+
+			<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<!-- OVERVIEW -->
+					<div class= "row">
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							<h3 class="panel-title">Posts</h3>
+							<p class="panel-subtitle">{{post.title}}</p>
+							<p class="panel-subtitle">{{post.description}}</p>
+							<img src="{% static ""%}images/{{post.photo}}" alt="" />
+
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+	{% endblock %}

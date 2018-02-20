@@ -1,10 +1,17 @@
-<html>
-<body>
-<h1>New post</h1>
-<form method="POST">{% csrf_token %}
+{% load static %}
+{% load static %}
+{% include "header_admin.html" %}
+{% block main_block %}
+    <div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+<div class="form-group">
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
 {{ form.as_p }}
-<button type="submit" >add</button>
+	<a href="/blog/addtag" > <span>add tag</span></a><br/>
+<button type="submit" class="btn ">Add Post</button>
 </form>
-</body>
-</html>
-
+</div>
+</div>
+</div>
+{% endblock %}

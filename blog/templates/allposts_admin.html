@@ -1,0 +1,68 @@
+{% load static %}
+{% load static %}
+{% include "header_admin.html" %}
+{% block main_block %}
+
+			<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<!-- OVERVIEW -->
+					<div class= "row">
+						<div class="col-md-2 col-sm-4 col-xs-6">
+							<div class="metric">
+								<p style="text-align: center;">
+									<span><a href = "/blog/addPost_admin">Create Post</a></span>
+
+								</p>
+							</div>
+						</div>
+					</div>
+					{%  for pt in allPosts_admin  %}
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							<h3 class="panel-title">{{pt.title}}</h3>
+							<i class="glyphicon glyphicon-tint text-primary">{{pt.category_name}}</i>
+							<p class="panel-subtitle">{{pt.description}}</p>
+							<img style="max-width: 100%;" src="{% static "" %}images/{{ pt.photo }}" alt=""/>
+
+						</div>
+
+						<div class="panel-body">
+							<div class="row">
+								<div class=" col-lg-2 col-md-2 col-sm-2 col-xs-7">
+									<div class="metric">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{pt.id}}">Show more</a></span>
+
+										</p>
+									</div>
+								</div>
+
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-7">
+									<div class="metric">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{pt.id}}/update_post">Update</a></span>
+
+										</p>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-7">
+									<div class="metric">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{pt.id}}/delete">Delete</a></span>
+
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+								{%  endfor  %}
+
+
+
+
+	<!-- END WRAPPER -->
+	<!-- Javascript -->
+	{% endblock %}

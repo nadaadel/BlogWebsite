@@ -1,0 +1,54 @@
+{% load static %}
+{% include "header_admin.html" %}
+{% block main_block %}
+
+			<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<!-- OVERVIEW -->
+					<div class= "row">
+						<div class="col-md-2 col-sm-4 col-xs-6">
+							<div class="metric">
+								<p style="text-align: center;">
+									<span><a href = "/blog/newWord">Add Word</a></span>
+
+								</p>
+							</div>
+						</div>
+					</div>
+					{%  for wt in allwords_admin  %}
+					<div class= "row">
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							<p class="panel-subtitle">{{wt.word}}</p>
+
+
+						</div>
+						<div class="panel-body">
+							<div class="row">
+
+                <div class=" col-lg-2 col-md-2 col-sm-2 col-xs-7">
+									<div class="metric text_center">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{wt.id}}/update_word">Edit</a></span>
+
+										</p>
+									</div>
+								</div>
+
+
+
+								<div class=" col-lg-2 col-md-2 col-sm-2 col-xs-7">
+									<div class="metric text_center">
+										<p style="text-align: center;">
+											<span><a href = "/blog/{{wt.id}}/delete_word">Delete</a></span>
+
+										</p>
+									</div>
+								</div>
+							</div>
+								{%  endfor  %}
+
+
+								{% endblock %}
