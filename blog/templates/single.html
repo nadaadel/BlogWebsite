@@ -136,12 +136,10 @@
                 {% if allComments %}
                     <div class="comments heading">
                         <h3>Comments</h3>
-
                         {% for comment in allComments %}
-
                             <div class="media">
                             <div class="media-left">
-                                <a href="#">
+                                <a>
                                     <img src="{% static "images/si.png" %}" alt="User Photo">
                                 </a>
                             </div>
@@ -154,13 +152,12 @@
 
                                 <!-------display replay start ------->
                                 <div class="media">
-
                                     <ul>
                                         {% for rep in replay_comments %}
                                             {% if comment.id == rep.comment_id %}
                                                 <li>
                                                     <div class="media-left">
-                                                        <a href="#">
+                                                        <a>
                                                             <img src="{% static "images/si.png" %}" alt="User Photo">
                                                         </a>
                                                     </div>
@@ -169,15 +166,11 @@
                                                         <p>{{ rep.description }}</p>
                                                         <span><i
                                                                 class="glyphicon glyphicon-time"> </i>{{ rep.date }}</span>
-
                                                     </div>
-
-                                                    {#                              <a href="" class="replay"><span> <i  class="glyphicon glyphicon-share-alt"> </i>replay</span></a>#}
                                                 </li>
                                             {% endif %}
                                         {% endfor %}
                                     </ul>
-
 
                                 </div>
                                 <!-------end display replay ------->
@@ -208,10 +201,11 @@
                                 <!----------------------- insert replay end---------------------------->
 
                             </div>
-                        {% endfor %}
-                        </div>
-                    </div>
 
+                        </div>
+
+                        {% endfor %}
+                    </div>
                 {% endif %}
                 <!----------------------- insert comment ---------------------------->
                 <div class="comment-bottom heading" style="margin-top: 20px;">

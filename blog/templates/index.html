@@ -17,7 +17,8 @@
                                 {% for top in tops %}
                                     <div class=" col-lg-4 col-md4 abt-left">
                                         <a href="/blog/single/{{ top.id }}"><img style="max-width: 100%;"
-                                                src="{% static "" %}images/{{ top.photo }}" alt=""/></a>
+                                                                                 src="{% static "" %}images/{{ top.photo }}"
+                                                                                 alt=""/></a>
                                         <h3><a href="/blog/single/{{ top.id }}">{{ top.title }}</a></h3>
                                         <p>{{ top.description|slice:":100" }}</p>
 
@@ -76,50 +77,58 @@
                         <!---------------- All posts ---------------->
                         <div class="about-tre col-lg-9 col-md-8">
                             <div class="a-1">
-                                {% for post in posts %}
-                                    <div class=" col-lg-4 col-md4 abt-left">
-                                        <a href="/blog/single/{{ post.id }}"><img
-                                                src="{% static "" %}images/{{ post.photo }}" alt=""/></a>
-
-                                        <h3><a href="/blog/single/{{ post.id }}">{{ post.title }}</a></h3>
-                                        <p>{{ post.description|slice:":50" }}</p>
-                                        <label>{{ post.date }}</label>
-                                    </div>
-                                {% endfor %}
+                                <div class="row">
+                                    {% for post in posts %}
 
 
 
+
+                                        <div class=" col-lg-4 col-md4 abt-left">
+                                            <a href="/blog/single/{{ post.id }}"><img
+                                                    src="{% static "" %}images/{{ post.photo }}" alt=""/></a>
+
+                                            <h3><a href="/blog/single/{{ post.id }}">{{ post.title }}</a></h3>
+                                            <p>{{ post.description|slice:":50" }}</p>
+                                            <label>{{ post.date }}</label>
+                                        </div>
+
+                                    {% endfor %}
+                                </div>
                                 <div class="clearfix"></div>
-                            <!------------------------------ pagination start----------------------->
-
-    {% if posts.has_other_pages %}
-        <ul class="pagination  center-block" style="display: table;">
-            {% if posts.has_previous %}
-                <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-                <li class="disabled"><span>&laquo;</span></li>
-            {% endif %}
-            {% for i in posts.paginator.page_range %}
-                {% if posts.number == i %}
-                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                {% else %}
-                    <li><a href="?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if posts.has_next %}
-                <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
-            {% else %}
-                <li class="disabled"><span>&raquo;</span></li>
-            {% endif %}
-        </ul>
-    {% endif %}
-    <!------------------------------ pagination end----------------------->
-
                             </div>
 
+
+                            <!------------------------------ pagination start----------------------->
+
+                            {% if posts.has_other_pages %}
+                                <ul class="pagination  center-block" style="display: table;">
+                                    {% if posts.has_previous %}
+                                        <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                        <li class="disabled"><span>&laquo;</span></li>
+                                    {% endif %}
+                                    {% for i in posts.paginator.page_range %}
+                                        {% if posts.number == i %}
+                                            <li class="active"><span>{{ i }} <span
+                                                    class="sr-only">(current)</span></span></li>
+                                        {% else %}
+                                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if posts.has_next %}
+                                        <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                        <li class="disabled"><span>&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+
+
+                            <!------------------------------ pagination end----------------------->
+
                         </div>
-                        <!---------------- All posts ended---------------->
                     </div>
+                    <!---------------- All posts ended---------------->
 
 
                 </div>
@@ -129,89 +138,89 @@
     </div>
     <!--about-end-->
 
-{##}
-{#    <!--slide-starts------------------------------------------->#}
-{#    <div class="slide">#}
-{#        <div class="container">#}
-{#            <div class="fle-xsel">#}
-{#                <ul id="flexiselDemo3">#}
-{#                    <li>#}
-{#                        <a href="#">#}
-{#                            <div class="banner-1">#}
-{#                                <img src="images/s-1.jpg" class="img-responsive" alt="">#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                    <li>#}
-{#                        <a href="#">#}
-{#                            <div class="banner-1">#}
-{#                                <img src="images/s-2.jpg" class="img-responsive" alt="">#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                    <li>#}
-{#                        <a href="#">#}
-{#                            <div class="banner-1">#}
-{#                                <img src="images/s-3.jpg" class="img-responsive" alt="">#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                    <li>#}
-{#                        <a href="#">#}
-{#                            <div class="banner-1">#}
-{#                                <img src="images/s-4.jpg" class="img-responsive" alt="">#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                    <li>#}
-{#                        <a href="#">#}
-{#                            <div class="banner-1">#}
-{#                                <img src="images/s-5.jpg" class="img-responsive" alt="">#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                    <li>#}
-{#                        <a href="#">#}
-{#                            <div class="banner-1">#}
-{#                                <img src="images/s-6.jpg" class="img-responsive" alt="">#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                </ul>#}
-{##}
-{#                <script type="text/javascript">#}
-{#                    $(window).load(function () {#}
-{##}
-{#                        $("#flexiselDemo3").flexisel({#}
-{#                            visibleItems: 5,#}
-{#                            animationSpeed: 1000,#}
-{#                            autoPlay: true,#}
-{#                            autoPlaySpeed: 3000,#}
-{#                            pauseOnHover: true,#}
-{#                            enableResponsiveBreakpoints: true,#}
-{#                            responsiveBreakpoints: {#}
-{#                                portrait: {#}
-{#                                    changePoint: 480,#}
-{#                                    visibleItems: 2#}
-{#                                },#}
-{#                                landscape: {#}
-{#                                    changePoint: 640,#}
-{#                                    visibleItems: 3#}
-{#                                },#}
-{#                                tablet: {#}
-{#                                    changePoint: 768,#}
-{#                                    visibleItems: 3#}
-{#                                }#}
-{#                            }#}
-{#                        });#}
-{##}
-{#                    });#}
-{#                </script>#}
-{#                <script type="text/javascript" src="js/jquery.flexisel.js"></script>#}
-{#                <div class="clearfix"></div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    {##}
+    {#    <!--slide-starts------------------------------------------->#}
+    {#    <div class="slide">#}
+    {#        <div class="container">#}
+    {#            <div class="fle-xsel">#}
+    {#                <ul id="flexiselDemo3">#}
+    {#                    <li>#}
+    {#                        <a href="#">#}
+    {#                            <div class="banner-1">#}
+    {#                                <img src="images/s-1.jpg" class="img-responsive" alt="">#}
+    {#                            </div>#}
+    {#                        </a>#}
+    {#                    </li>#}
+    {#                    <li>#}
+    {#                        <a href="#">#}
+    {#                            <div class="banner-1">#}
+    {#                                <img src="images/s-2.jpg" class="img-responsive" alt="">#}
+    {#                            </div>#}
+    {#                        </a>#}
+    {#                    </li>#}
+    {#                    <li>#}
+    {#                        <a href="#">#}
+    {#                            <div class="banner-1">#}
+    {#                                <img src="images/s-3.jpg" class="img-responsive" alt="">#}
+    {#                            </div>#}
+    {#                        </a>#}
+    {#                    </li>#}
+    {#                    <li>#}
+    {#                        <a href="#">#}
+    {#                            <div class="banner-1">#}
+    {#                                <img src="images/s-4.jpg" class="img-responsive" alt="">#}
+    {#                            </div>#}
+    {#                        </a>#}
+    {#                    </li>#}
+    {#                    <li>#}
+    {#                        <a href="#">#}
+    {#                            <div class="banner-1">#}
+    {#                                <img src="images/s-5.jpg" class="img-responsive" alt="">#}
+    {#                            </div>#}
+    {#                        </a>#}
+    {#                    </li>#}
+    {#                    <li>#}
+    {#                        <a href="#">#}
+    {#                            <div class="banner-1">#}
+    {#                                <img src="images/s-6.jpg" class="img-responsive" alt="">#}
+    {#                            </div>#}
+    {#                        </a>#}
+    {#                    </li>#}
+    {#                </ul>#}
+    {##}
+    {#                <script type="text/javascript">#}
+    {#                    $(window).load(function () {#}
+    {##}
+    {#                        $("#flexiselDemo3").flexisel({#}
+    {#                            visibleItems: 5,#}
+    {#                            animationSpeed: 1000,#}
+    {#                            autoPlay: true,#}
+    {#                            autoPlaySpeed: 3000,#}
+    {#                            pauseOnHover: true,#}
+    {#                            enableResponsiveBreakpoints: true,#}
+    {#                            responsiveBreakpoints: {#}
+    {#                                portrait: {#}
+    {#                                    changePoint: 480,#}
+    {#                                    visibleItems: 2#}
+    {#                                },#}
+    {#                                landscape: {#}
+    {#                                    changePoint: 640,#}
+    {#                                    visibleItems: 3#}
+    {#                                },#}
+    {#                                tablet: {#}
+    {#                                    changePoint: 768,#}
+    {#                                    visibleItems: 3#}
+    {#                                }#}
+    {#                            }#}
+    {#                        });#}
+    {##}
+    {#                    });#}
+    {#                </script>#}
+    {#                <script type="text/javascript" src="js/jquery.flexisel.js"></script>#}
+    {#                <div class="clearfix"></div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
 {% endblock %}
 {#<!---------------------------------------------slide-end--------------------------------------------->#}
 <!---------------------------------------------  subscribe Hanle --------------------------------------------->

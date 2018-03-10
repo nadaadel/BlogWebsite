@@ -24,6 +24,7 @@ from django.shortcuts import render_to_response, RequestContext
 
 # ============================Home===============================#
 def allPosts(request):
+
     all_post = Post.objects.all()
     context = {"allpost": all_post}
     return context
@@ -124,23 +125,29 @@ def unsub(request, cat_id):
 
 # ==================================admin panal ==========================#
 def add_userAdmin(request):
-    user_form = RegisterationForm()
-    context = {"form": user_form}
-    if request.method == "POST":
-        user_form = RegisterationForm(request.POST)
-        if user_form.is_valid():
-            user_form.save()
-            return HttpResponseRedirect("/blog/allusers_admin")
-    return render(request, "register_form.html", context)
+    if request.user.is_superuser:
+        user_form = RegisterationForm()
+        context = {"form": user_form}
+        if request.method == "POST":
+            user_form = RegisterationForm(request.POST)
+            if user_form.is_valid():
+                user_form.save()
+                return HttpResponseRedirect("/blog/allusers_admin")
+        return render(request, "register_form.html", context)
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 def addTag(request):
-    form = TagForm()
-    if request.method == "POST":
-        form = TagForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/blog/addPost_admin')
-    return render(request, 'addtag.html', {'form': form})
+    if request.user.is_superuser:
+        form = TagForm()
+        if request.method == "POST":
+            form = TagForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/blog/addPost_admin')
+        return render(request, 'addtag.html', {'form': form})
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 
 def getCat(request):
@@ -150,13 +157,18 @@ def getCat(request):
 # html
 
 def admin(request):
-    return render(request, 'indexadmin.html')
-
+    if request.user.is_superuser:
+       return render(request, 'indexadmin.html')
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 def allPosts_admin(request):
-    all_posts = Post.objects.all()
-    context = {"allPosts_admin": all_posts}
-    return render(request, 'allposts_admin.html', context)
+    if request.user.is_superuser:
+        all_posts = Post.objects.all()
+        context = {"allPosts_admin": all_posts}
+        return render(request, 'allposts_admin.html', context)
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 
 def delete(request, pt_id):
@@ -174,13 +186,16 @@ def getPosts(request, cat_id):
 
 
 def addPost_admin(request):
-    form = PostForm()
-    if request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/blog/allposts_admin')
-    return render(request, 'addpost.html', {'form': form})
+    if request.user.is_superuser:
+        form = PostForm()
+        if request.method == "POST":
+            form = PostForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/blog/allposts_admin')
+        return render(request, 'addpost.html', {'form': form})
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 
 def getPost(request, pt_id):
@@ -197,9 +212,12 @@ def getPost2(request, post_id):
     return render(request, "single.html", {"post": pt, "tags": tags})
 
 def allcategories_admin(request):
-    all_categories = Category.objects.all()
-    context = {"allcategories_admin": all_categories}
-    return render(request, 'allcategories_admin.html', context)
+    if request.user.is_superuser:
+        all_categories = Category.objects.all()
+        context = {"allcategories_admin": all_categories}
+        return render(request, 'allcategories_admin.html', context)
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 
 def delete_category(request, ct_id):
@@ -210,32 +228,40 @@ def delete_category(request, ct_id):
 
 
 def allPosts(request):
-    all_post = Post.objects.all()[:5]
-    context = {"allpost": all_post}
-    return context
+    if request.user.is_superuser:
+        all_post = Post.objects.all()[:5]
+        context = {"allpost": all_post}
+        return context
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 def addCategory(request):
-    category_form = CategoryForm()
-    context = {"category": category_form}
-    if request.method == "POST":
-        category_form = CategoryForm(request.POST)
-        if category_form.is_valid():
-            category_form.save()
-            return HttpResponseRedirect("/blog/allcategories_admin")
-    return render(request, "newCategory.html", context)
+    if request.user.is_superuser:
+        category_form = CategoryForm()
+        context = {"category": category_form}
+        if request.method == "POST":
+            category_form = CategoryForm(request.POST)
+            if category_form.is_valid():
+                category_form.save()
+                return HttpResponseRedirect("/blog/allcategories_admin")
+        return render(request, "newCategory.html", context)
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 
 def update_category(request, ct_id):
-    ct = Category.objects.get(id=ct_id)
-    category_form = CategoryForm(instance=ct)
-    if request.method == "POST":
-        category_form = CategoryForm(request.POST, request.FILES, instance=ct)
-        if category_form.is_valid():
-            category_form.save()
-            return HttpResponseRedirect('/blog/allcategories_admin')
-    context = {"category": category_form}
-    return render(request, "newCategory.html", context)
-
+    if request.user.is_superuser:
+        ct = Category.objects.get(id=ct_id)
+        category_form = CategoryForm(instance=ct)
+        if request.method == "POST":
+            category_form = CategoryForm(request.POST, request.FILES, instance=ct)
+            if category_form.is_valid():
+                category_form.save()
+                return HttpResponseRedirect('/blog/allcategories_admin')
+        context = {"category": category_form}
+        return render(request, "newCategory.html", context)
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 # ====================================post details ===================================
 # @login_required
@@ -272,24 +298,29 @@ def get_post(request, post_id):
                 comment.save()
                 return HttpResponseRedirect('/blog/single/%s' % post_id)
 
-    onePost = Post.objects.get(id=post_id)
-    postAuthor = User.objects.get(id=onePost.author_id)
-    all_comments = Comment.objects.filter(post_id=post_id)
-    replay_comments = Replay.objects.all()
-    tags = Tag.objects.filter(post=post_id)
-    userLikes = Userlike.objects.filter(post_id=post_id, user_id=request.user.id)
-    category = Category.objects.get(id = onePost.category_id)
-    categoryName = category.category_name
-    other = Post.objects.get(id=1)
-    if not userLikes:
-        context = {'post': onePost, 'postAuthor': postAuthor, 'allComments': all_comments, 'tags': tags,
-                   'replay_comments': replay_comments ,'categoryName' : categoryName , 'other' :other}
-    else:
-        userLikess = Userlike.objects.get(post_id=post_id, user_id=request.user.id)
-        context = {'post': onePost, 'postAuthor': postAuthor, 'allComments': all_comments, 'tags': tags,
-                   'replay_comments': replay_comments, 'userlike': userLikess ,'categoryName' : categoryName , 'other' :other}
+    try:
+        onePost = Post.objects.get(id=post_id)
+        postAuthor = User.objects.get(id=onePost.author_id)
+        all_comments = Comment.objects.filter(post_id=post_id)
+        replay_comments = Replay.objects.all()
+        tags = Tag.objects.filter(post=post_id)
+        userLikes = Userlike.objects.filter(post_id=post_id, user_id=request.user.id)
+        category = Category.objects.get(id = onePost.category_id)
+        categoryName = category.category_name
+        other = Post.objects.get(id=1)
+        if not userLikes:
 
-    return render(request, "single.html", context)
+            context = {'post': onePost, 'postAuthor': postAuthor, 'allComments': all_comments, 'tags': tags,
+                       'replay_comments': replay_comments ,'categoryName' : categoryName , 'other' :other}
+        else:
+            userLikess = Userlike.objects.get(post_id=post_id, user_id=request.user.id)
+            context = {'post': onePost, 'postAuthor': postAuthor, 'allComments': all_comments, 'tags': tags,
+                       'replay_comments': replay_comments, 'userlike': userLikess ,'categoryName' : categoryName , 'other' :other}
+        return render(request, "single.html", context)
+
+    except:
+        message = "Post Not Found"
+        return render(request, "notfound.html", {'message': message})
 
 
 # ajax like handel
@@ -376,6 +407,11 @@ def login_form(request):
                 message = "Sorry You are blocked from admin"
                 context = {'message': message}
                 return render(request, "login_form.html", context)
+        else:
+
+            error = "invalid username or password"
+            context = {'message': error}
+            return render(request, "login_form.html" , context)
     return render(request, "login_form.html")
 
 def register_form(request):
@@ -473,9 +509,12 @@ def update_word(request, wt_id):
 
 
 def allusers_admin(request):
-    all_users = User.objects.all()
-    context = {"allusers_admin": all_users}
-    return render(request, 'allusers_admin.html', context)
+    if request.user.is_superuser:
+        all_users = User.objects.all()
+        context = {"allusers_admin": all_users}
+        return render(request, 'allusers_admin.html', context)
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 
 def block(request, ut_id):
@@ -516,20 +555,26 @@ def delete_user(request, ut_id):
 
 
 def allwords_admin(request):
-    all_words = Word.objects.all()
-    context = {"allwords_admin": all_words}
-    return render(request, 'allwords_admin.html', context)
+    if request.user.is_superuser:
+        all_words = Word.objects.all()
+        context = {"allwords_admin": all_words}
+        return render(request, 'allwords_admin.html', context)
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 
 def addWords(request):
-    word_form = WordForm()
-    context = {"words": word_form}
-    if request.method == "POST":
-        word_form = WordForm(request.POST)
-        if word_form.is_valid():
-            word_form.save()
-            return HttpResponseRedirect("/blog/allwords_admin")
-    return render(request, "newWords.html", context)
+    if request.user.is_superuser:
+        word_form = WordForm()
+        context = {"words": word_form}
+        if request.method == "POST":
+            word_form = WordForm(request.POST)
+            if word_form.is_valid():
+                word_form.save()
+                return HttpResponseRedirect("/blog/allwords_admin")
+        return render(request, "newWords.html", context)
+    else:
+        return HttpResponseRedirect('/blog/home')
 
 
 def delete_word(request, wt_id):
