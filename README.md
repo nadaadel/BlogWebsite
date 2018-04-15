@@ -14,7 +14,7 @@ project code by django framework and responsive web design
 7- you can start add posts and categories and other featutre from admin panel in url http://127.0.0.1:8000/blog/adminModify
 
 --------------------------------------------
-#project prerequisete make sure to install 
+#project prerequisite make sure to install 
 --------------------------------------------
 1- python package
 2- django frame work 
@@ -55,7 +55,7 @@ post details page contains
 image for post author and post date and user can like or dislike a certain post 
 user can make comment and replay for anthor comments 
 user can see the tags of post 
-there are another feature in comment is a forebidden words for unploite words 
+there are another feature in comment is a forbidden words for impolite words
 
 ----------------------------------------------------------------------------------------------------------------------
 # this project done with 4 team member 
