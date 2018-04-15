@@ -14,14 +14,14 @@ from django.contrib.auth import authenticate, login, logout
 import json
 from django.http import JsonResponse
 import re
+from email_detail import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render_to_response, RequestContext
-
-
+from django.conf import settings
 # ============================Home===============================#
 def allPosts(request):
 
@@ -105,7 +105,6 @@ def sub(request, cat_id):
         [user.email],
         fail_silently=False,
     )
-
     return HttpResponse(cat_id)
 
 
@@ -296,6 +295,19 @@ def get_post(request, post_id):
                 comment = Comment.objects.create(description=textComment,
                                                  post_id=post_id, user_id=request.user.id)
                 comment.save()
+                # send email to the post owner there is new comment on his post
+
+                currentPost = Post.objects.get(id=post_id)
+                postOwer = User.objects.get(id=currentPost.author_id)
+                emailSubject =(
+                welcome + postOwer.username+ content +request.user.username + " says  \" " +textComment
+                 + "\"" + conclusion)
+                send_mail(
+                     'Subject here',
+                 emailSubject, settings.EMAIL_HOST_USER  ,
+                 [postOwer.email],
+                fail_silently=False,
+                )
                 return HttpResponseRedirect('/blog/single/%s' % post_id)
 
     try:
